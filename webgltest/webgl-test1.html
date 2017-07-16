@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html  style="filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);-webkit-filter: grayscale(100%);" >
+<!-- -->
+<head>
+  <meta charset="utf-8">
+  
+  <title>ysp in France</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="WebGL Demo                       var canvas;       var gl;       //       // start       //       // Called when the canvas is created to get the ball rolling.       // Figuratively, that is.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ysp in France">
+<meta property="og:url" content="http://theysp.github.io/webgltest/webgl-test1.html">
+<meta property="og:site_name" content="ysp in France">
+<meta property="og:description" content="WebGL Demo                       var canvas;       var gl;       //       // start       //       // Called when the canvas is created to get the ball rolling.       // Figuratively, that is.">
+<meta property="og:updated_time" content="2017-07-16T08:27:37.643Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ysp in France">
+<meta name="twitter:description" content="WebGL Demo                       var canvas;       var gl;       //       // start       //       // Called when the canvas is created to get the ball rolling.       // Figuratively, that is.">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ysp in France</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/webgltest/webgl-test1.html" class="article-date">
+  <time datetime="2017-07-16T08:27:37.643Z" itemprop="datePublished">2017-07-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!doctype html>
+<html>
+  <head>
+    <title>WebGL Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="../webgl.css" type="text/css">
+
+    <script type="text/JavaScript">
+      var canvas;
+      var gl;
+      //
+      // start
+      //
+      // Called when the canvas is created to get the ball rolling.
+      // Figuratively, that is. There's nothing moving in this demo.
+      //
+      function start() {
+        canvas = document.getElementById("glcanvas");
+        initWebGL(canvas);      // Initialize the GL context
+        // Only continue if WebGL is available and working
+        if (gl) {
+          gl.clearColor(0.0, 0.0, 0.0, 1.0);  // Set clear color to black, fully opaque
+          gl.clearDepth(1.0);                 // Clear everything
+          gl.enable(gl.DEPTH_TEST);           // Enable depth testing
+          gl.depthFunc(gl.LEQUAL);            // Near things obscure far things
+        }
+      }
+      //
+      // initWebGL
+      //
+      // Initialize WebGL, returning the GL context or null if
+      // WebGL isn't available or could not be initialized.
+      //
+      function initWebGL() {
+        gl = null;
+        try {
+          gl = canvas.getContext("experimental-webgl");
+        }
+        catch(e) {
+        }
+        // If we don't have a GL context, give up now
+        if (!gl) {
+          alert("Unable to initialize WebGL. Your browser may not support it.");
+        }
+      }
+    </script>
+  </head>
+
+  <body onload="start()">
+    <canvas id="glcanvas" width="640" height="480">
+      Your browser doesn't appear to support the <code>&lt;canvas&gt;</code> element.
+    </canvas>
+  </body>
+</html>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/webgltest/webgl-test1.html" data-id="cj56iakzp00032wg6ekb5rm11" class="article-share-link">Partager</a>
+      
+        <a href="http://theysp.github.io/webgltest/webgl-test1.html#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/07/16/sadthing/">sadthing</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/15/Day2/">今天的目标是米和肉</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/14/hello-world/">第一篇</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 ysp<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'theysp-github-io';
+  
+  var disqus_url = 'http://theysp.github.io/webgltest/webgl-test1.html';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
