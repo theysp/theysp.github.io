@@ -87,9 +87,9 @@
 <p>看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的：</p>
 <p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/pipeline.png" alt=""></p>
 <h2 id="1-VERTEX-DATA"><a href="#1-VERTEX-DATA" class="headerlink" title="1. VERTEX DATA"></a>1. VERTEX DATA</h2><p>VERTEX DATA中可包含任意你需要的内容，包括模型顶点坐标、顶点属性（颜色、材质、纹理坐标、<span style="color:#de2020">任意其他属性</span>）。有了这些数据，可以在渲染的过程中做很多的事情。</p>
-<h2 id="12-VERTEX-SHADER"><a href="#12-VERTEX-SHADER" class="headerlink" title="12. VERTEX SHADER"></a>12. VERTEX SHADER</h2><p>这个步骤对每个参与渲染的顶点都做一次处理（SHADER其实就是一个小程序，其输入就是这每一个对象）。</p>
+<h2 id="2-VERTEX-SHADER"><a href="#2-VERTEX-SHADER" class="headerlink" title="2. VERTEX SHADER"></a>2. VERTEX SHADER</h2><p>这个步骤对每个参与渲染的顶点都做一次处理（SHADER其实就是一个小程序，其输入就是这每一个对象）。</p>
 <p>这里只要出现了SHADER，就说明这个是我们可以控制的部分了，这个过程可以做两类事情：<br>    生成渲染需要的顶点坐标，这个顶点坐标根据渲染的类型不同含义不同。如果是三角形渲染方式，那么每3个坐标为一个三角形的三个定点，如果是线段渲染，那每两个坐标为线段的两端点。<br>    进行其他处理，将数据传递给之后的SHADER。</p>
-<p>在这一步骤中，通过VERTEX SHADER进行顶点生成的目标是将需要可视化的内容放到(-1,-1,-1)到(1,1,1)中。及标准化设备坐标(Normalized Device Coordinate, NDC)中。形象一点说，OpenGL其实就是一个2X2X2的鱼缸，OpenGL窗口就是把鱼缸里的东西全部压扁到鱼缸的一个面形成的图像。为了实现我们需要的视角，我们需要透过种种坐标变换，将实际三维空间按我们定义的视角映射到这个2X2X2的标准设备空间中。</p>
+<p>在这一步骤中，通过VERTEX SHADER进行顶点生成的目标是将需要可视化的内容放到(-1,-1,-1)到(1,1,1)中。及标准化设备坐标(Normalized Device Coordinate, NDC)中。形象一点说，OpenGL其实就是一个2X2X2的鱼缸，OpenGL渲染过程就是把鱼缸里的东西全部压扁到鱼缸的一个面形成图像。为了实现我们需要的视角，我们需要透过种种坐标变换，将实际三维空间按我们定义的视角映射到这个2X2X2的标准设备空间中。</p>
 <h2 id="3-SHAPE-ASSEMBLY"><a href="#3-SHAPE-ASSEMBLY" class="headerlink" title="3. SHAPE ASSEMBLY"></a>3. SHAPE ASSEMBLY</h2><p>就是将步骤1中生成的顶点按渲染方式组装成几何体，比如，如果渲染方式是三角形，这里会将每3个顶点组装成一个三角形。</p>
 <h2 id="4-GEOMETRY-SHADER"><a href="#4-GEOMETRY-SHADER" class="headerlink" title="4. GEOMETRY SHADER"></a>4. GEOMETRY SHADER</h2><p>这个步骤对每个前面步骤组装的集合体都做一个处理。</p>
 <p>GEOMETRY SHADER默认可不设置，那么就会直接把ASSEMBLE后的SHAPE直接发给后面的步骤了。</p>
@@ -105,7 +105,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj5i3rhg40004g4g67xa2yzeq" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj5i4oz0c0003nkg6gn00l1gd" class="article-share-link">Share</a>
       
         <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -163,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/22/2017-07-22/" data-id="cj5i3rhfv0001g4g6nx6m90rg" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/22/2017-07-22/" data-id="cj5i4oz050001nkg6avqdgrdg" class="article-share-link">Share</a>
       
         <a href="http://theysp.github.io/2017/07/22/2017-07-22/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -209,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/19/2017-07-19/" data-id="cj5i3rhfn0000g4g6rj8decem" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/19/2017-07-19/" data-id="cj5i4oyzy0000nkg6jiudwjms" class="article-share-link">Share</a>
       
         <a href="http://theysp.github.io/2017/07/19/2017-07-19/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -285,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/16/opengl-history/" data-id="cj5i3rhgf0009g4g66bb0fdgp" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/16/opengl-history/" data-id="cj5i4oz0q0009nkg6rmruagan" class="article-share-link">Share</a>
       
         <a href="http://theysp.github.io/2017/07/16/opengl-history/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -337,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/16/sadthing/" data-id="cj5i3rhgi000ag4g6vhf5c3t0" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/16/sadthing/" data-id="cj5i4oz0t000ankg6jt180sht" class="article-share-link">Share</a>
       
         <a href="http://theysp.github.io/2017/07/16/sadthing/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -391,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/15/Day2/" data-id="cj5i3rhg20003g4g6epswbqkd" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/15/Day2/" data-id="cj5i4oz0l0005nkg6kel9w7rx" class="article-share-link">Share</a>
       
         <a href="http://theysp.github.io/2017/07/15/Day2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -454,7 +454,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/14/hello-world/" data-id="cj5i3rhgd0006g4g64n9016sk" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/14/hello-world/" data-id="cj5i4oz0e0004nkg6gvqxnq6s" class="article-share-link">Share</a>
       
         <a href="http://theysp.github.io/2017/07/14/hello-world/#disqus_thread" class="article-comment-link">Comments</a>
       
