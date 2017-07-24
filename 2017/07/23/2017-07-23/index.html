@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="ysp in France">
 <meta property="og:description" content="这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。原文在这里, 中文版翻译在这里，原文作者在这里 以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。 看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的">
 <meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/pipeline.png">
-<meta property="og:updated_time" content="2017-07-24T12:01:29.885Z">
+<meta property="og:updated_time" content="2017-07-24T12:04:00.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenGL 2 从Shader了解计算机三维渲染过程">
 <meta name="twitter:description" content="这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。原文在这里, 中文版翻译在这里，原文作者在这里 以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。 看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的">
@@ -56,7 +56,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
@@ -91,49 +91,28 @@
 <p>以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。</p>
 <p>看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的：</p>
 <p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/pipeline.png" alt=""></p>
-<ol>
-<li>VERTEX DATA</li>
-</ol>
-<p>VERTEX DATA中可包含任意你需要的内容，包括模型顶点坐标、顶点属性（颜色、材质、纹理坐标、<span style="color:#de2020">任意其他属性</span>）。有了这些数据，可以在渲染的过程中做很多的事情。</p>
-<ol>
-<li>VERTEX SHADER</li>
-</ol>
-<p>这个步骤对每个参与渲染的顶点都做一次处理（SHADER其实就是一个小程序，其输入就是这每一个对象）。</p>
+<h2 id="1-VERTEX-DATA"><a href="#1-VERTEX-DATA" class="headerlink" title="1. VERTEX DATA"></a>1. VERTEX DATA</h2><p>VERTEX DATA中可包含任意你需要的内容，包括模型顶点坐标、顶点属性（颜色、材质、纹理坐标、<span style="color:#de2020">任意其他属性</span>）。有了这些数据，可以在渲染的过程中做很多的事情。</p>
+<h2 id="12-VERTEX-SHADER"><a href="#12-VERTEX-SHADER" class="headerlink" title="12. VERTEX SHADER"></a>12. VERTEX SHADER</h2><p>这个步骤对每个参与渲染的顶点都做一次处理（SHADER其实就是一个小程序，其输入就是这每一个对象）。</p>
 <p>这里只要出现了SHADER，就说明这个是我们可以控制的部分了，这个过程可以做两类事情：<br>    生成渲染需要的顶点坐标，这个顶点坐标根据渲染的类型不同含义不同。如果是三角形渲染方式，那么每3个坐标为一个三角形的三个定点，如果是线段渲染，那每两个坐标为线段的两端点。<br>    进行其他处理，将数据传递给之后的SHADER。</p>
 <p>在这一步骤中，通过VERTEX SHADER进行顶点生成的目标是将需要可视化的内容放到(-1,-1,-1)到(1,1,1)中。及标准化设备坐标(Normalized Device Coordinate, NDC)中。形象一点说，OpenGL其实就是一个2X2X2的鱼缸，OpenGL窗口就是把鱼缸里的东西全部压扁到鱼缸的一个面形成的图像。为了实现我们需要的视角，我们需要透过种种坐标变换，将实际三维空间按我们定义的视角映射到这个2X2X2的标准设备空间中。</p>
-<ol>
-<li>SHAPE ASSEMBLY</li>
-</ol>
-<p>就是将步骤1中生成的顶点按渲染方式组装成几何体，比如，如果渲染方式是三角形，这里会将每3个顶点组装成一个三角形。</p>
-<ol>
-<li>GEOMETRY SHADER</li>
-</ol>
-<p>这个步骤对每个前面步骤组装的集合体都做一个处理。</p>
+<h2 id="3-SHAPE-ASSEMBLY"><a href="#3-SHAPE-ASSEMBLY" class="headerlink" title="3. SHAPE ASSEMBLY"></a>3. SHAPE ASSEMBLY</h2><p>就是将步骤1中生成的顶点按渲染方式组装成几何体，比如，如果渲染方式是三角形，这里会将每3个顶点组装成一个三角形。</p>
+<h2 id="4-GEOMETRY-SHADER"><a href="#4-GEOMETRY-SHADER" class="headerlink" title="4. GEOMETRY SHADER"></a>4. GEOMETRY SHADER</h2><p>这个步骤对每个前面步骤组装的集合体都做一个处理。</p>
 <p>GEOMETRY SHADER默认可不设置，那么就会直接把ASSEMBLE后的SHAPE直接发给后面的步骤了。</p>
 <p>GEOMETRY SHADER的输入就是前面ASSEMBLE后的个几何基本体（点/线段/三角形)。其可做的操作就是添加任意类型的几何基本体到当前的图形中，并交给后面的步骤处理。</p>
-<ol>
-<li>RASTERIZATION</li>
-</ol>
-<p>在这个步骤，OpenGL底层自动对所有几何按照(-1,-1,-1)到(1,1,1)这个范围进行裁剪。并将所有的基本集合体映射到光栅上，形成一个个片段（可以理解为一个个像素点）。这每一个片段都将在下一步骤进行处理。</p>
+<h2 id="5-RASTERIZATION"><a href="#5-RASTERIZATION" class="headerlink" title="5. RASTERIZATION"></a>5. RASTERIZATION</h2><p>在这个步骤，OpenGL底层自动对所有几何按照(-1,-1,-1)到(1,1,1)这个范围进行裁剪。并将所有的基本集合体映射到光栅上，形成一个个片段（可以理解为一个个像素点）。这每一个片段都将在下一步骤进行处理。</p>
 <p>这每个片段都将包含在步骤1的VERTEX SHADER中输出的属性值。对于非顶点的图形位置，其属性值是其所在基本体各定点的属性值的线性插值。<br>比如三角形内部点的纹理坐标就是各顶点纹理坐标的插值。用户也可自定义一些属性，比如三角形各顶点的属性也可以就是其坐标，那么内部顶点的属性也就会处理成其真实坐标。</p>
-<ol>
-<li>FRAGMENT SHADER</li>
-</ol>
-<p>在这个步骤，对每个片段（可理解为像素点）进行处理，其输入就是VERTEX SHADER传来的属性。输出为一个4通道颜色信息。</p>
-<ol>
-<li>TESETS AND BLENDING</li>
-</ol>
-<p>根据深度等信息，将所有FRAGMENT混合成一张图像。</p>
-<h3 id="GLSL"><a href="#GLSL" class="headerlink" title="GLSL"></a>GLSL</h3><p>Shader程序是由GLSL语言编写的子程序。这些子程序以字符串的形式传递给OpenGL的API，并由OpenGL的API进行编译、链接，并在三维渲染流程中被调用。Shader给予了程序员极大的自由度来操作三维渲染的过程。</p>
-<p>GLSL其实是在2004年才正式引入OpenGL 2.0的。</p>
-<p>具体可以参考<a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language" target="_blank" rel="external">维基百科</a>。</p>
+<h2 id="6-FRAGMENT-SHADER"><a href="#6-FRAGMENT-SHADER" class="headerlink" title="6. FRAGMENT SHADER"></a>6. FRAGMENT SHADER</h2><p>在这个步骤，对每个片段（可理解为像素点）进行处理，其输入就是VERTEX SHADER传来的属性。输出为一个4通道颜色信息。</p>
+<h2 id="7-TESETS-AND-BLENDING"><a href="#7-TESETS-AND-BLENDING" class="headerlink" title="7. TESETS AND BLENDING"></a>7. TESETS AND BLENDING</h2><p>根据深度等信息，将所有FRAGMENT混合成一张图像。</p>
+<blockquote>
+<p>Shader程序是由GLSL语言编写的子程序。这些子程序以字符串的形式传递给OpenGL的API，并由OpenGL的API进行编译、链接，并在三维渲染流程中被调用。Shader给予了程序员极大的自由度来操作三维渲染的过程。GLSL其实是在2004年才正式引入OpenGL 2.0的。具体可以参考<a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language" target="_blank" rel="external">维基百科</a>。</p>
+</blockquote>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj5i3qkcx0001x4g6wze42j92" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj5i3rhg40004g4g67xa2yzeq" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -146,7 +125,7 @@
   
   
     <a href="/2017/07/22/2017-07-22/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">人人人</div>
     </a>
   
@@ -171,7 +150,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Catégories</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
     </div>
@@ -181,7 +160,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Mot-clés</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
     </div>
@@ -191,7 +170,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
       <a href="/tags/法国生活/" style="font-size: 10px;">-法国生活</a> <a href="/tags/opengl/" style="font-size: 15px;">opengl</a> <a href="/tags/万事开头难/" style="font-size: 15px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/法国生活/" style="font-size: 20px;">法国生活</a>
     </div>
@@ -210,7 +189,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -247,7 +226,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 ysp<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
