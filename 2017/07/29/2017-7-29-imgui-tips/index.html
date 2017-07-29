@@ -6,19 +6,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>不好的事情引发的一系列想法 | ysp in France</title>
+  <title>IMGUI用法小结 | ysp in France</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="家里老人情况比较严重了，今天就不说其他事情了。回忆一下以往的印象和经历吧。 想起来五六年前我还痴迷于摩托车之类的事务，虽然现在偶尔还会心动一下，但是更多的是对摩托车那恼人的轰隆声的厌恶了。感觉经过这几年我和之前那天不怕地不怕的少年渐行渐远，我已经不是我了？数年前，身在事外时，很多事情道不尽摸不透，总有朦胧的美感，但是俯身探到其脚下又发现那高不可攀的巨像面目狰狞浑身不是迷雾而是热辣辣的蒸汽喷发。无法">
-<meta name="keywords" content="不太好的事情">
+  <meta name="description" content="字体导入与使用由于是国内的项目，需要使用中文字体，因此借鉴imgui主页的例子。12345ImGuiIO&amp;amp; io = ImGui::GetIO();io.Fonts-&amp;gt;AddFontFromFileTTF(&quot;ArialUni.ttf&quot;, 18.0f, NULL, io.Fonts-&amp;gt;GetGlyphRangesJapanese());// For Microsoft IME,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不好的事情引发的一系列想法">
-<meta property="og:url" content="http://theysp.github.io/2017/07/16/sadthing/index.html">
+<meta property="og:title" content="IMGUI用法小结">
+<meta property="og:url" content="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/index.html">
 <meta property="og:site_name" content="ysp in France">
-<meta property="og:description" content="家里老人情况比较严重了，今天就不说其他事情了。回忆一下以往的印象和经历吧。 想起来五六年前我还痴迷于摩托车之类的事务，虽然现在偶尔还会心动一下，但是更多的是对摩托车那恼人的轰隆声的厌恶了。感觉经过这几年我和之前那天不怕地不怕的少年渐行渐远，我已经不是我了？数年前，身在事外时，很多事情道不尽摸不透，总有朦胧的美感，但是俯身探到其脚下又发现那高不可攀的巨像面目狰狞浑身不是迷雾而是热辣辣的蒸汽喷发。无法">
-<meta property="og:updated_time" content="2017-07-19T18:29:53.355Z">
+<meta property="og:description" content="字体导入与使用由于是国内的项目，需要使用中文字体，因此借鉴imgui主页的例子。12345ImGuiIO&amp;amp; io = ImGui::GetIO();io.Fonts-&amp;gt;AddFontFromFileTTF(&quot;ArialUni.ttf&quot;, 18.0f, NULL, io.Fonts-&amp;gt;GetGlyphRangesJapanese());// For Microsoft IME,">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png">
+<meta property="og:updated_time" content="2017-07-29T20:36:27.312Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="不好的事情引发的一系列想法">
-<meta name="twitter:description" content="家里老人情况比较严重了，今天就不说其他事情了。回忆一下以往的印象和经历吧。 想起来五六年前我还痴迷于摩托车之类的事务，虽然现在偶尔还会心动一下，但是更多的是对摩托车那恼人的轰隆声的厌恶了。感觉经过这几年我和之前那天不怕地不怕的少年渐行渐远，我已经不是我了？数年前，身在事外时，很多事情道不尽摸不透，总有朦胧的美感，但是俯身探到其脚下又发现那高不可攀的巨像面目狰狞浑身不是迷雾而是热辣辣的蒸汽喷发。无法">
+<meta name="twitter:title" content="IMGUI用法小结">
+<meta name="twitter:description" content="字体导入与使用由于是国内的项目，需要使用中文字体，因此借鉴imgui主页的例子。12345ImGuiIO&amp;amp; io = ImGui::GetIO();io.Fonts-&amp;gt;AddFontFromFileTTF(&quot;ArialUni.ttf&quot;, 18.0f, NULL, io.Fonts-&amp;gt;GetGlyphRangesJapanese());// For Microsoft IME,">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -63,16 +64,12 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-sadthing" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2017-7-29-imgui-tips" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/07/16/sadthing/" class="article-date">
-  <time datetime="2017-07-16T07:29:38.000Z" itemprop="datePublished">2017-07-16</time>
+    <a href="/2017/07/29/2017-7-29-imgui-tips/" class="article-date">
+  <time datetime="2017-07-29T08:48:05.000Z" itemprop="datePublished">2017-07-29</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/法国生活/">法国生活</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -81,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      不好的事情引发的一系列想法
+      IMGUI用法小结
     </h1>
   
 
@@ -89,40 +86,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>家里老人情况比较严重了，今天就不说其他事情了。回忆一下以往的印象和经历吧。</p>
-<p>想起来五六年前我还痴迷于摩托车之类的事务，虽然现在偶尔还会心动一下，但是更多的是对摩托车那恼人的轰隆声的厌恶了。感觉经过这几年我和之前那天不怕地不怕的少年渐行渐远，我已经不是我了？数年前，身在事外时，很多事情道不尽摸不透，总有朦胧的美感，但是俯身探到其脚下又发现那高不可攀的巨像面目狰狞浑身不是迷雾而是热辣辣的蒸汽喷发。无法驾驭的巨龙对普通人来说仿佛是地底岩浆塑成的恶魔，你不是乘着巨龙遨游云巅而是在旷野上被龙火炙烤。碧玉深潭是擅泳者的冒险天堂，确是泥牛葬身之处。那么问题来了，谁说你不行呢？也许只是内心的畏惧和表面的高墙的限制吧。</p>
-<p>过去几年对人在世上与他人的关系这件事情认识上有了深刻的转变，独行侠这条路也许只有天才才能走到头吧。一般人还是互相抱团取暖，才能得到善终。<br>虽然心有不甘，但是如果要免俗，对技能的锻炼所要付出的努力是相当大的。</p>
-<p>想法的改变对于老人来说真是很困难，在二三十年前，一块钱和现在的一块钱的意义改变得太大了。人心也被飞速发展的社会生产力改变得太多了。</p>
+        <h2 id="字体导入与使用"><a href="#字体导入与使用" class="headerlink" title="字体导入与使用"></a>字体导入与使用</h2><p>由于是国内的项目，需要使用中文字体，因此借鉴<a href="https://github.com/ocornut/imgui" target="_blank" rel="external">imgui主页</a>的例子。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ImGuiIO&amp; io = ImGui::GetIO();</div><div class="line">io.Fonts-&gt;AddFontFromFileTTF(<span class="string">"ArialUni.ttf"</span>, <span class="number">18.0f</span>, <span class="literal">NULL</span>, io.Fonts-&gt;GetGlyphRangesJapanese());</div><div class="line"></div><div class="line"><span class="comment">// For Microsoft IME, pass your HWND to enable IME positioning:</span></div><div class="line">io.ImeWindowHandle = my_hwnd;</div></pre></td></tr></table></figure></p>
+<p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png" alt=""><br>可以实现相应的中文输入。</p>
+<p>基本上imgui也是个状态机，字体的颜色、窗口的背景等等均可通过PushStyle和PosStyle实现，所以以往接触过opengl立即模式的话应该很快能理解。</p>
+<p>目前imgui没有实现运行时字体动态大小切换功能，一个比较费事的方法是在导入字体时生成多种大小的字体，在程序运行中通过PushFont和PopFont实现。<br>此外，imgui可支持子界面的缩放，适当运用也可以缓解字体缩放的困难，如<a href="https://github.com/ocornut/imgui/issues/772#issuecomment-244512595" target="_blank" rel="external">#772 (comment)</a>所示。</p>
+<h2 id="UI排版"><a href="#UI排版" class="headerlink" title="UI排版"></a>UI排版</h2><p>主要是从<a href="http://blog.csdn.net/sunny__chen/article/details/51273726" target="_blank" rel="external">参考文章</a>中获取的信息。<br>imgui的排版建议开始按自动的来。<br>自动布局时，默认情况下，各控件由上到下依次显示。<br>可以使用GUILayout.BeginHoriztontal(),GUILayout.EndHorizontal(), GUILayout.BeginVertical(), and GUILayout.EndVertical().来控制各控件水平显示或垂直显示。可嵌套。</p>
+<p>关于UI在主窗口的停靠，目前官方没有出排版套路，但是一些用户给出了解决方法。</p>
+<p>目前我的做法是直接把子界面的位置固定在窗口内，只做一个隐藏弹出的切换。</p>
+<h2 id="c-11支持utf8-vs2017-community"><a href="#c-11支持utf8-vs2017-community" class="headerlink" title="c++11支持utf8 + vs2017 community"></a>c++11支持utf8 + vs2017 community</h2><p>支持utf8了！再也不用与编码纠缠了，再见GTK，再见GB。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/16/sadthing/" data-id="cj5prcivu000jacg6ri678yhh" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cj5prcivh0009acg6tfudlgkl" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/16/sadthing/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/07/16/opengl-history/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
-      <div class="article-nav-title">
-        
-          OpenGL 1 从OpenGL的角度看三维计算机图形库的发展
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/07/15/Day2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/07/26/2017-07-26-Cooking/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">今天的目标是米和肉</div>
+      <div class="article-nav-title">论怎么花10分钟做出两天的饭</div>
     </a>
   
 </nav>
@@ -238,7 +228,7 @@
 <script>
   var disqus_shortname = 'theysp-github-io';
   
-  var disqus_url = 'http://theysp.github.io/2017/07/16/sadthing/';
+  var disqus_url = 'http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/';
   
   (function(){
     var dsq = document.createElement('script');
