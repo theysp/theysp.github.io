@@ -49,7 +49,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
@@ -88,6 +88,8 @@
       
         <p>感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。</p>
 <p>由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。</p>
+<h2 id="底层Opengl的API支持"><a href="#底层Opengl的API支持" class="headerlink" title="底层Opengl的API支持"></a>底层Opengl的API支持</h2><p>Opengl是通过context间共享资源实现多线程加载的。虽然官方不太推荐，但是好歹给了一个方法。</p>
+<h2 id="GLFW封装的方法"><a href="#GLFW封装的方法" class="headerlink" title="GLFW封装的方法"></a>GLFW封装的方法</h2><p>但是我这从头学起的工程，都是基于GLFW编的，所以我就找了一圈，找到一个老司机的答案：</p>
 <p><a href="https://www.opengl.org/discussion_boards/showthread.php/184813-Creating-multiple-OpenGL-contexts-with-GLFW-on-different-threads" target="_blank" rel="external">一老司机的回答</a></p>
 <blockquote>
 <p>Make a second invisible window that has the main window as the parent (the last parameter is for list sharing)<br>E.g.: GLUtil::_loaderWindow = glfwCreateWindow(1, 1, “whatever”, nullptr, GLUtil::_mainWindow);<br>Create another thread and in its run()(or whatever) method call this: glfwMakeContextCurrent(GLUtil::_loaderWindow);</p>
@@ -97,13 +99,14 @@
 </blockquote>
 <p>大意是直接用glfw通过与原上下文共享的方式创建新上下文即可，把新出现的窗口隐藏就行了。<br>然后主线程用主上下文，在资源读取线程中，将新的上下文设置为当前上下文即可。由于在创建时新的上下文使用了GLFWWindow作为最后一个参数，即与原上下文共享了列表（sharelist,一大堆显卡相关的东西），所以在使用新的上下文线程中可以进行shader编译、texture读取等等操作。</p>
 <p>好吧，老司机说这么多年都这么过来了，我决定听老司机的了。</p>
+<h2 id="需要注意的事项"><a href="#需要注意的事项" class="headerlink" title="需要注意的事项"></a>需要注意的事项</h2><p>OpenGL不允许在不同的context下共享顶点缓存（VAO）。<br>所以顶点缓存还需要在主线程中创建。<br>目前在线程中做的主要是将纹理的读取和处理放在非主线程中了。用c++11的std::thread非常方便，爱上新标准了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cj6c58stc000bhcg6qosethwu" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cj6ca1454000ds0g69f3kbfld" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -156,9 +159,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cj6c58stt000lhcg6cqfhfpqr" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cj6ca145g000ks0g6gkipmyff" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/并行计算/">并行计算</a></li></ul>
@@ -220,9 +223,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/" data-id="cj6c58stl000ehcg6c778shfq" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/" data-id="cj6ca145e000hs0g62liu2z7v" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ITER/">ITER</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
@@ -283,9 +286,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cj6c58st70009hcg6amwbq0ki" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cj6ca144z000as0g6n0kume7s" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -350,9 +353,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/" data-id="cj6c58st20006hcg60g9zvo17" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/" data-id="cj6ca144t0006s0g6pbuymklc" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
@@ -421,9 +424,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/" data-id="cj6c58ssw0005hcg614reyc2i" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/" data-id="cj6ca144p0005s0g6zq4w5d3c" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -488,9 +491,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj6c58sss0003hcg6u1uk906l" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj6ca144m0004s0g6ifq99qhf" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -546,9 +549,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/22/2017-07-22/" data-id="cj6c58ssd0000hcg61kha69s3" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/07/22/2017-07-22/" data-id="cj6ca144d0001s0g63jm7lj82" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/07/22/2017-07-22/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/07/22/2017-07-22/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">-法国生活</a></li></ul>
@@ -596,9 +599,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/19/2017-07-19/" data-id="cj6c58ssl0001hcg6ef10in9w" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/07/19/2017-07-19/" data-id="cj6ca14450000s0g6j4pnb8tv" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/07/19/2017-07-19/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/07/19/2017-07-19/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
@@ -672,9 +675,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/16/opengl-history/" data-id="cj6c58su5000uhcg6l94lkyee" class="article-share-link">Delen</a>
+      <a data-url="http://theysp.github.io/2017/07/16/opengl-history/" data-id="cj6ca145s000ts0g6kswlsaxq" class="article-share-link">Share</a>
       
-        <a href="http://theysp.github.io/2017/07/16/opengl-history/#disqus_thread" class="article-comment-link">Commentaren</a>
+        <a href="http://theysp.github.io/2017/07/16/opengl-history/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/历史/">历史</a></li></ul>
@@ -701,7 +704,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
+    <h3 class="widget-title">Categories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
     </div>
@@ -711,7 +714,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
     </div>
@@ -730,7 +733,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
@@ -740,7 +743,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
