@@ -6,14 +6,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Label: ITER | YSP AND HLL</title>
+  <title>GLFW多上下文与多线程资源读取 | YSP AND HLL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="YSP AND HLL">
-<meta property="og:url" content="http://theysp.github.io/tags/ITER/index.html">
+  <meta name="description" content="感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。 由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。 一老司机的回答  Make a second invisible window that has the main window as the parent (the last parameter is for list">
+<meta name="keywords" content="opengl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GLFW多上下文与多线程资源读取">
+<meta property="og:url" content="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/index.html">
 <meta property="og:site_name" content="YSP AND HLL">
+<meta property="og:description" content="感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。 由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。 一老司机的回答  Make a second invisible window that has the main window as the parent (the last parameter is for list">
+<meta property="og:updated_time" content="2017-08-14T12:36:44.122Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YSP AND HLL">
+<meta name="twitter:title" content="GLFW多上下文与多线程资源读取">
+<meta name="twitter:description" content="感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。 由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。 一老司机的回答  Make a second invisible window that has the main window as the parent (the last parameter is for list">
   
   
     <link rel="icon" href="/favicon.png">
@@ -58,40 +63,81 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/05/2017-8-5-safty-training/" class="archive-article-date">
-  <time datetime="2017-08-05T18:34:04.000Z" itemprop="datePublished">Aug 5</time>
+        <section id="main"><article id="post-2017-8-14-Opengl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/14/2017-8-14-Opengl/" class="article-date">
+  <time datetime="2017-08-14T12:28:06.000Z" itemprop="datePublished">2017-08-14</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/05/2017-8-5-safty-training/">ITER的安全培训</a>
+    <h1 class="article-title" itemprop="name">
+      GLFW多上下文与多线程资源读取
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。</p>
+<p>由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。</p>
+<p><a href="https://www.opengl.org/discussion_boards/showthread.php/184813-Creating-multiple-OpenGL-contexts-with-GLFW-on-different-threads" target="_blank" rel="external">一老司机的回答</a></p>
+<blockquote>
+<p>Make a second invisible window that has the main window as the parent (the last parameter is for list sharing)<br>E.g.: GLUtil::_loaderWindow = glfwCreateWindow(1, 1, “whatever”, nullptr, GLUtil::_mainWindow);<br>Create another thread and in its run()(or whatever) method call this: glfwMakeContextCurrent(GLUtil::_loaderWindow);</p>
+<p>If you are using GLEW, build GLEW with the GLEW_MX define and call init() in the second thread as well. Read up on GLEW_MX about multithreaded usage. I strongly recommend boost thread specific pointers for this.</p>
+<p>Remember to destroy the second window just like the main one. That’s it. I’ve been using this method for background resource loading for years and haven’t ran into any issues.</p>
+<p>Hope it helps.</p>
+</blockquote>
+<p>大意是直接用glfw通过与原上下文共享的方式创建新上下文即可，把新出现的窗口隐藏就行了。<br>然后主线程用主上下文，在资源读取线程中，将新的上下文设置为当前上下文即可。由于在创建时新的上下文使用了GLFWWindow作为最后一个参数，即与原上下文共享了列表（sharelist,一大堆显卡相关的东西），所以在使用新的上下文线程中可以进行shader编译、texture读取等等操作。</p>
+<p>好吧，老司机说这么多年都这么过来了，我决定听老司机的了。</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cj6c58stc000bhcg6qosethwu" class="article-share-link">Delen</a>
+      
+        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Commentaren</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/10/2017-8-9-GLSL/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">OpenGL Shading Language(GLSL)概览</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -190,11 +236,13 @@
 <script>
   var disqus_shortname = 'theysp-github-io';
   
+  var disqus_url = 'http://theysp.github.io/2017/08/14/2017-8-14-Opengl/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
