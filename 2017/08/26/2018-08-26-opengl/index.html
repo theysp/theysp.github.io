@@ -6,14 +6,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Catégorie: 技术积累 | YSP AND HLL</title>
+  <title>深度测试，阴影和深度剥离 | YSP AND HLL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="YSP AND HLL">
-<meta property="og:url" content="http://theysp.github.io/categories/技术积累/index.html">
+  <meta name="description" content="下图是裸阴影（后期可通过模糊处理，得到一般的阴影，具体可参考著名opengl在线教程）  下面是深度图  基于深度缓存，更进一步是深度剥离(Depth peeling)方法，其原理就是从光源出发多次渲染后获得一正一反一正一反的偶数组深度缓存，在真正的图形渲染时，基于多层深度缓存，对每个像素计算其前面挡住光源的几何体的厚度。 深度剥离的难点在于边缘位置的处理，很容易出现异常点。需要容忍一定的误差，作">
+<meta name="keywords" content="opengl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度测试，阴影和深度剥离">
+<meta property="og:url" content="http://theysp.github.io/2017/08/26/2018-08-26-opengl/index.html">
 <meta property="og:site_name" content="YSP AND HLL">
+<meta property="og:description" content="下图是裸阴影（后期可通过模糊处理，得到一般的阴影，具体可参考著名opengl在线教程）  下面是深度图  基于深度缓存，更进一步是深度剥离(Depth peeling)方法，其原理就是从光源出发多次渲染后获得一正一反一正一反的偶数组深度缓存，在真正的图形渲染时，基于多层深度缓存，对每个像素计算其前面挡住光源的几何体的厚度。 深度剥离的难点在于边缘位置的处理，很容易出现异常点。需要容忍一定的误差，作">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/shadow1.png">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/depth_map.png">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/depthpeeli_clip.gif">
+<meta property="og:updated_time" content="2017-09-07T19:06:17.406Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YSP AND HLL">
+<meta name="twitter:title" content="深度测试，阴影和深度剥离">
+<meta name="twitter:description" content="下图是裸阴影（后期可通过模糊处理，得到一般的阴影，具体可参考著名opengl在线教程）  下面是深度图  基于深度缓存，更进一步是深度剥离(Depth peeling)方法，其原理就是从光源出发多次渲染后获得一正一反一正一反的偶数组深度缓存，在真正的图形渲染时，基于多层深度缓存，对每个像素计算其前面挡住光源的几何体的厚度。 深度剥离的难点在于边缘位置的处理，很容易出现异常点。需要容忍一定的误差，作">
+<meta name="twitter:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/shadow1.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -58,154 +67,86 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/26/2018-08-26-opengl/" class="archive-article-date">
-  <time datetime="2017-08-26T16:14:16.000Z" itemprop="datePublished">Aug 26</time>
+        <section id="main"><article id="post-2018-08-26-opengl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/26/2018-08-26-opengl/" class="article-date">
+  <time datetime="2017-08-26T16:14:16.000Z" itemprop="datePublished">2017-08-26</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/26/2018-08-26-opengl/">深度测试，阴影和深度剥离</a>
+    <h1 class="article-title" itemprop="name">
+      深度测试，阴影和深度剥离
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/14/2017-8-14-Opengl/" class="archive-article-date">
-  <time datetime="2017-08-14T12:28:06.000Z" itemprop="datePublished">Aug 14</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/14/2017-8-14-Opengl/">GLFW多上下文与多线程资源读取</a>
-    </h1>
-  
+        <p>下图是裸阴影（后期可通过模糊处理，得到一般的阴影，具体可参考<a href="www.learnopengl.com">著名opengl在线教程</a>）</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/shadow1.png" alt=""></p>
+<p>下面是深度图</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/depth_map.png" alt=""></p>
+<p>基于深度缓存，更进一步是深度剥离(Depth peeling)方法，其原理就是从光源出发多次渲染后获得一正一反一正一反的偶数组深度缓存，在真正的图形渲染时，基于多层深度缓存，对每个像素计算其前面挡住光源的几何体的厚度。</p>
+<p>深度剥离的难点在于边缘位置的处理，很容易出现异常点。需要容忍一定的误差，作模糊处理。</p>
+<p>作为一个应用，可获得半透明物体的投影强度。如下图所示。<br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/depthpeeli_clip.gif" alt=""></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/08/10/2017-8-9-GLSL/" class="archive-article-date">
-  <time datetime="2017-08-10T08:48:05.000Z" itemprop="datePublished">Aug 10</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/10/2017-8-9-GLSL/">OpenGL Shading Language(GLSL)概览</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/29/2017-7-29-imgui-tips/" class="archive-article-date">
-  <time datetime="2017-07-29T08:48:05.000Z" itemprop="datePublished">Jul 29</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/26/2018-08-26-opengl/" data-id="cj7atns6q000ip0g6l26j5dds" class="article-share-link">Partager</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/29/2017-7-29-imgui-tips/">IMGUI用法小结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/25/2017-07-25-GUILIBRARY/" class="archive-article-date">
-  <time datetime="2017-07-25T09:32:13.000Z" itemprop="datePublished">Jul 25</time>
-</a>
+        <a href="http://theysp.github.io/2017/08/26/2018-08-26-opengl/#disqus_thread" class="article-comment-link">Commentaires</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/25/2017-07-25-GUILIBRARY/">立即模式（Immediate mode）界面</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/23/2017-07-23/" class="archive-article-date">
-  <time datetime="2017-07-23T17:06:52.000Z" itemprop="datePublished">Jul 23</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/23/2017-07-23/">OpenGL 2 了解计算机三维渲染过程</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/16/opengl-history/" class="archive-article-date">
-  <time datetime="2017-07-16T13:14:32.000Z" itemprop="datePublished">Jul 16</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/16/opengl-history/">OpenGL 1 从OpenGL的角度看三维计算机图形库的发展</a>
-    </h1>
+    <a href="/2017/09/07/2018-09-07-nice/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          蔚蓝海岸，富人口岸：尼斯-摩纳哥游记
+        
+      </div>
+    </a>
   
+  
+    <a href="/2017/08/19/2017-08-19/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">忙碌又闲适的8月第三周-马赛-电影-项目</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -304,11 +245,13 @@
 <script>
   var disqus_shortname = 'theysp-github-io';
   
+  var disqus_url = 'http://theysp.github.io/2017/08/26/2018-08-26-opengl/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
