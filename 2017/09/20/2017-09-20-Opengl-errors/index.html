@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- -->
+<head>
+  <meta charset="utf-8">
+  
+  <title>实践路上遍布荆棘-Opengl常见问题记录 | YSP AND HLL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="说多了都是泪啊。三维渲染程序编译通过却总是看不见图像，看见图像了颜色又不对，出Opengl标准的想象中的boss们的小人被自己在心里默默扎了无数遍。。。之后常见的错误都会记录在这里。 初步诊断这里记录一下常见的问题可能的原因，可能的解决方法：  渲染一帧过程中切换shader不起作用：八成是新shader未通过编译，导致该shader无效，所以切换到该shader的命令也无效了。  视野内无物体：">
+<meta name="keywords" content="opengl,Opengl常见错误">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实践路上遍布荆棘-Opengl常见问题记录">
+<meta property="og:url" content="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/index.html">
+<meta property="og:site_name" content="YSP AND HLL">
+<meta property="og:description" content="说多了都是泪啊。三维渲染程序编译通过却总是看不见图像，看见图像了颜色又不对，出Opengl标准的想象中的boss们的小人被自己在心里默默扎了无数遍。。。之后常见的错误都会记录在这里。 初步诊断这里记录一下常见的问题可能的原因，可能的解决方法：  渲染一帧过程中切换shader不起作用：八成是新shader未通过编译，导致该shader无效，所以切换到该shader的命令也无效了。  视野内无物体：">
+<meta property="og:updated_time" content="2017-09-21T13:33:34.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实践路上遍布荆棘-Opengl常见问题记录">
+<meta name="twitter:description" content="说多了都是泪啊。三维渲染程序编译通过却总是看不见图像，看见图像了颜色又不对，出Opengl标准的想象中的boss们的小人被自己在心里默默扎了无数遍。。。之后常见的错误都会记录在这里。 初步诊断这里记录一下常见的问题可能的原因，可能的解决方法：  渲染一帧过程中切换shader不起作用：八成是新shader未通过编译，导致该shader无效，所以切换到该shader的命令也无效了。  视野内无物体：">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YSP AND HLL</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-09-20-Opengl-errors" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/20/2017-09-20-Opengl-errors/" class="article-date">
+  <time datetime="2017-09-20T08:30:26.000Z" itemprop="datePublished">2017-09-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      实践路上遍布荆棘-Opengl常见问题记录
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>说多了都是泪啊。<br>三维渲染程序编译通过却总是看不见图像，看见图像了颜色又不对，出Opengl标准的想象中的boss们的小人被自己在心里默默扎了无数遍。。。<br>之后常见的错误都会记录在这里。</p>
+<h2 id="初步诊断"><a href="#初步诊断" class="headerlink" title="初步诊断"></a>初步诊断</h2><p>这里记录一下常见的问题可能的原因，可能的解决方法：</p>
+<ol>
+<li><p>渲染一帧过程中切换shader不起作用：八成是新shader未通过编译，导致该shader无效，所以切换到该shader的命令也无效了。</p>
+</li>
+<li><p>视野内无物体：有可能是该帧初始化时没有清除缓存，也有可能是视角的转换矩阵设置错误。</p>
+</li>
+<li><p>渲染到屏幕缓存的过程中插入一段渲染到内存缓存的命令（可能是用于生成纹理），然后后面的渲染就看不见了：渲染到缓存时，一般会调整视窗范围，在后续的渲染到屏幕缓存命令前需要重置视窗为屏幕整体。</p>
+</li>
+</ol>
+<h2 id="Shader的uniform变量一定要初始化"><a href="#Shader的uniform变量一定要初始化" class="headerlink" title="Shader的uniform变量一定要初始化"></a>Shader的uniform变量一定要初始化</h2><p>不然你永远得不到你想要的东西。<br>比如顶点shader中，你加一个modelspacetrans的矩阵吧，这个矩阵如果在程序中不初始化（gluniformxxx)，那么等待你的可能是未知的随机矩阵。</p>
+<h2 id="渲染每个场景前，一定也要初始化要渲染的Buffer"><a href="#渲染每个场景前，一定也要初始化要渲染的Buffer" class="headerlink" title="渲染每个场景前，一定也要初始化要渲染的Buffer"></a>渲染每个场景前，一定也要初始化要渲染的Buffer</h2><p>不然会出现这样的情况，比如Buffer里的深度信息都是零，那么你什么也渲染不上去，或者出现各种破烂哦。<br>所以两个函数要牢记心间：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">glClearColor</span><span class="params">(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>)</span></span>; </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">glClear</span><span class="params">(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)</span></span>;</div></pre></td></tr></table></figure>
+<h2 id="勤输出出错信息，勤观察出错信息"><a href="#勤输出出错信息，勤观察出错信息" class="headerlink" title="勤输出出错信息，勤观察出错信息"></a>勤输出出错信息，勤观察出错信息</h2><p>opengl提供了一些用于出错信息输出的接口。</p>
+<ol>
+<li>一个回调函数，opengl会在所有出错的时候调用这个回调函数</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在初始化时添加回调函数</span></div><div class="line">glfwSetErrorCallback(gl_error_callback);</div><div class="line"><span class="comment">//需要自行实现的回调函数本体</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">gl_error_callback</span><span class="params">(<span class="keyword">int</span> code, <span class="keyword">const</span> <span class="keyword">char</span>* info)</span> </span>&#123;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; info &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>第二个回调函数，用于在Debug时输出详细信息</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在初始化时添加回调函数</span></div><div class="line">glDebugMessageCallback(glDebugOutput, <span class="literal">nullptr</span>);</div><div class="line"><span class="comment">//启用debug信息</span></div><div class="line">glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, <span class="number">0</span>, <span class="literal">nullptr</span>, GL_TRUE);</div><div class="line"><span class="comment">//需要自行实现的回调函数本体</span></div><div class="line"><span class="function"><span class="keyword">void</span> APIENTRY <span class="title">glDebugOutput</span><span class="params">(GLenum source,</span></span></div><div class="line">	GLenum type,</div><div class="line">	GLuint id,</div><div class="line">	GLenum severity,</div><div class="line">	GLsizei length,</div><div class="line">	<span class="keyword">const</span> GLchar *message,</div><div class="line">	<span class="keyword">const</span> <span class="keyword">void</span> *userParam)</div><div class="line">&#123;</div><div class="line">	<span class="comment">// ignore non-significant error/warning codes</span></div><div class="line">	<span class="keyword">if</span> (id == <span class="number">131169</span> || id == <span class="number">131185</span> || id == <span class="number">131218</span> || id == <span class="number">131204</span>) <span class="keyword">return</span>;</div><div class="line"></div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"---------------"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Debug message ("</span> &lt;&lt; id &lt;&lt; <span class="string">"): "</span> &lt;&lt; message &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">switch</span> (source)</div><div class="line">	&#123;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_API_ARB:             <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: API"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB:   <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Window System"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_SHADER_COMPILER_ARB: <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Shader Compiler"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_THIRD_PARTY_ARB:     <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Third Party"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_APPLICATION_ARB:     <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Application"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_OTHER_ARB:           <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Other"</span>; <span class="keyword">break</span>;</div><div class="line">	&#125; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	<span class="keyword">switch</span> (type)</div><div class="line">	&#123;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_ERROR_ARB:               <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Error"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB: <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Deprecated Behaviour"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB:  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Undefined Behaviour"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_PORTABILITY_ARB:         <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Portability"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_PERFORMANCE_ARB:         <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Performance"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_OTHER_ARB:               <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Other"</span>; <span class="keyword">break</span>;</div><div class="line">	&#125; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">	<span class="keyword">switch</span> (severity)</div><div class="line">	&#123;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SEVERITY_HIGH:         <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Severity: high"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SEVERITY_MEDIUM:       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Severity: medium"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SEVERITY_LOW:          <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Severity: low"</span>; <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> GL_DEBUG_SEVERITY_NOTIFICATION: <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Severity: notification"</span>; <span class="keyword">break</span>;</div><div class="line">	&#125; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>可以自己编写一个报错信息检查函数，可插入代码的任意位置，报告当前位置最后一个错误</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function">GLenum <span class="title">glCheckError_</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *file, <span class="keyword">int</span> line)</span></span></div><div class="line">&#123;</div><div class="line">	GLenum errorCode;</div><div class="line">	<span class="keyword">while</span> ((errorCode = glGetError()) != GL_NO_ERROR)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">std</span>::<span class="built_in">string</span> error;</div><div class="line">		<span class="keyword">switch</span> (errorCode)</div><div class="line">		&#123;</div><div class="line">		<span class="keyword">case</span> GL_INVALID_ENUM:                  error = <span class="string">"INVALID_ENUM"</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> GL_INVALID_VALUE:                 error = <span class="string">"INVALID_VALUE"</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> GL_INVALID_OPERATION:             error = <span class="string">"INVALID_OPERATION"</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> GL_OUT_OF_MEMORY:                 error = <span class="string">"OUT_OF_MEMORY"</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> GL_INVALID_FRAMEBUFFER_OPERATION: error = <span class="string">"INVALID_FRAMEBUFFER_OPERATION"</span>; <span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(error.size()&gt;<span class="number">0</span>)</div><div class="line">			<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; error &lt;&lt; <span class="string">" | "</span> &lt;&lt; file &lt;&lt; <span class="string">" ("</span> &lt;&lt; line &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> errorCode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/" data-id="cj7ui0jqx000amsg69k730u9j" class="article-share-link">Partager</a>
+      
+        <a href="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/07/2018-09-07-nice/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">蔚蓝海岸，富人口岸：尼斯-摩纳哥游记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/“法国生活/">“法国生活"</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/法国生活/" style="font-size: 10px;">-法国生活</a> <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/20/2017-09-20-Opengl-errors/">实践路上遍布荆棘-Opengl常见问题记录</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/07/2018-09-07-nice/">蔚蓝海岸，富人口岸：尼斯-摩纳哥游记</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/26/2018-08-26-opengl/">深度测试，阴影和深度剥离</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/19/2017-08-19/">忙碌又闲适的8月第三周-马赛-电影-项目</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/14/2017-8-14-Opengl/">GLFW多上下文与多线程资源读取</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 ysp<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'theysp-github-io';
+  
+  var disqus_url = 'http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
