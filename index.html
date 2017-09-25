@@ -49,7 +49,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
@@ -59,6 +59,112 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-2017-09-26-suits-view-opinions" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/25/2017-09-26-suits-view-opinions/" class="article-date">
+  <time datetime="2017-09-25T20:52:22.000Z" itemprop="datePublished">2017-09-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/法国生活/">法国生活</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/25/2017-09-26-suits-view-opinions/">suits观后感</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>看了快四季的suits，除了领略一下纽约西装革履的讼棍们的日常外，还是深有所感的。</p>
+<p>首先，看美剧学英语，每一集的shit语简直之极灵魂深处：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">I&apos;m gonna beat the shit out of you.</div><div class="line">You piece of shit.</div><div class="line">I&apos;m gonna fire the shit of you.</div><div class="line">Who you are in bed with.</div><div class="line">He did some bad shit.</div><div class="line">You and I don&apos;t mess shit up.</div><div class="line">He sang like a canary. (告密的小婊砸)</div><div class="line">I am god dammn do it.</div></pre></td></tr></table></figure>
+<p>律所里有这么一位律师路易，心地纯良，但总是被他人利用其性格搞砸很多事。但每每让人感动的也是他啊。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">There comes a time when a man must look at himself in the mirror, to judge himself instead of waiting to be judged by others.</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/09/25/2017-09-26-suits-view-opinions/" data-id="cj80o6qm3000ke4g68j11qu2k" class="article-share-link">Delen</a>
+      
+        <a href="http://theysp.github.io/2017/09/25/2017-09-26-suits-view-opinions/#disqus_thread" class="article-comment-link">Commentaren</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/美剧/">美剧</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-09-22-Students-T-test" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/22/2017-09-22-Students-T-test/" class="article-date">
+  <time datetime="2017-09-22T08:47:54.000Z" itemprop="datePublished">2017-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/学术积累/">学术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/22/2017-09-22-Students-T-test/">学生t检验，Student&#39;s T Test</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天和临时Boss，Michael讨论了一下怎么进行程序的正确性校验，被上了一课。<br>程序的校验一般是通过对比实验的测量结果和程序的计算结果进行的，判断程序计算可靠性其实就是对比实验测量结果和计算结果是同一个事件的置信度。这个置信度的计算可借助统计学中的学生t检验进行。</p>
+<p>相似得置信度估计方法包括：Z-test，ANOVA（变异数分析），Student’s T test。<br>Student’s T test 是英国人威廉·戈塞针对小样本数量的 Z test的改进。<br>当带比较得数据有3组以上时，因误差无法压低，可以使用ANOVA。</p>
+<p>从维基百科开始，我对Student’s T test做了一个详细的调研和理解，如下是学习笔记。</p>
+<h2 id="学生t-分布-Student’s-t-distribution"><a href="#学生t-分布-Student’s-t-distribution" class="headerlink" title="学生t-分布, Student’s t-distribution"></a><a href="https://zh.wikipedia.org/wiki/%E5%AD%A6%E7%94%9Ft-%E5%88%86%E5%B8%83" target="_blank" rel="external">学生t-分布, Student’s t-distribution</a></h2><p>回到正态分布的概念，正态分布的意义是：在已知样本总体方差的前提下（比如采样数量足够大时），根据采样结果得到的总体的均值的分布函数。比如已知采样结果[a1, a2, …, an],假设n非常大，那么目标的</p>
+<p>但是，对于数量较小的采样样本，正态分布的假设（已知样本总体方差）不成立，为此引入了学生t分布。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>对于我们的已经收敛的蒙卡粒子输运程序而言，Z-test可能是更好的置信度分析方法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/09/22/2017-09-22-Students-T-test/" data-id="cj80o6qm0000he4g6larczdyf" class="article-share-link">Delen</a>
+      
+        <a href="http://theysp.github.io/2017/09/22/2017-09-22-Students-T-test/#disqus_thread" class="article-comment-link">Commentaren</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/统计学/">统计学</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-2017-09-21-leetcode-trick-problem" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -91,9 +197,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/" data-id="cj7ukmdbk000etgg6rahgrj8r" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/" data-id="cj80o6qls000de4g6bozdoxlt" class="article-share-link">Delen</a>
       
-        <a href="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -164,9 +270,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/" data-id="cj7ukmdba0009tgg6xprg3wl0" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/" data-id="cj80o6qny0029e4g6l3eejxrf" class="article-share-link">Delen</a>
       
-        <a href="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -284,9 +390,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/09/07/2018-09-07-nice/" data-id="cj7ukmdc1000wtgg62npstlkn" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/09/07/2018-09-07-nice/" data-id="cj80o6qnx0028e4g6rh4lmbkn" class="article-share-link">Delen</a>
       
-        <a href="http://theysp.github.io/2017/09/07/2018-09-07-nice/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/09/07/2018-09-07-nice/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li></ul>
@@ -339,9 +445,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/26/2018-08-26-opengl/" data-id="cj7ukmdc5000ztgg6qfjxy5ly" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/08/26/2018-08-26-opengl/" data-id="cj80o6qmo0011e4g64pqyjg41" class="article-share-link">Delen</a>
       
-        <a href="http://theysp.github.io/2017/08/26/2018-08-26-opengl/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/08/26/2018-08-26-opengl/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -449,9 +555,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/19/2017-08-19/" data-id="cj7ukmdbe000btgg6fyag6dcy" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/08/19/2017-08-19/" data-id="cj80o6qlp000ae4g60znb8pvt" class="article-share-link">Delen</a>
       
-        <a href="http://theysp.github.io/2017/08/19/2017-08-19/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/08/19/2017-08-19/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
@@ -514,9 +620,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cj7ukmdbr000ltgg600u3bai2" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cj80o6qmb000re4g66v4d90bn" class="article-share-link">Delen</a>
       
-        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -569,9 +675,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cj7ukmdbz000ttgg61y95s2wk" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cj80o6qmm000ye4g6669uzh00" class="article-share-link">Delen</a>
       
-        <a href="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/并行计算/">并行计算</a></li></ul>
@@ -633,142 +739,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/" data-id="cj7ukmdbu000ptgg6ioj9yku0" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/" data-id="cj80o6qmh000ve4g6ej9n6bl7" class="article-share-link">Delen</a>
       
-        <a href="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/#disqus_thread" class="article-comment-link">Commentaren</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ITER/">ITER</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-2017-7-29-imgui-tips" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/29/2017-7-29-imgui-tips/" class="article-date">
-  <time datetime="2017-07-29T08:48:05.000Z" itemprop="datePublished">2017-07-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/29/2017-7-29-imgui-tips/">IMGUI用法小结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在本文中，“窗口”imgui在操作系统提供的窗口中创建的img界面容器。<br>“控件”指imgui在“窗口”中创建的界面元素。</p>
-<h2 id="字体导入与使用"><a href="#字体导入与使用" class="headerlink" title="字体导入与使用"></a>字体导入与使用</h2><p>由于是国内的项目，需要使用中文字体，因此借鉴<a href="https://github.com/ocornut/imgui" target="_blank" rel="external">imgui主页</a>的例子。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ImGuiIO&amp; io = ImGui::GetIO();</div><div class="line">io.Fonts-&gt;AddFontFromFileTTF(<span class="string">"ArialUni.ttf"</span>, <span class="number">18.0f</span>, <span class="literal">NULL</span>, io.Fonts-&gt;GetGlyphRangesJapanese());</div><div class="line"></div><div class="line"><span class="comment">// For Microsoft IME, pass your HWND to enable IME positioning:</span></div><div class="line">io.ImeWindowHandle = my_hwnd;</div></pre></td></tr></table></figure></p>
-<p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png" alt=""><br>可以实现相应的中文输入。</p>
-<p>基本上imgui也是个状态机，字体的颜色、窗口的背景等等均可通过PushStyle和PosStyle实现，所以以往接触过opengl立即模式的话应该很快能理解。</p>
-<p>目前imgui没有实现运行时字体动态大小切换功能，一个比较费事的方法是在导入字体时生成多种大小的字体，在程序运行中通过PushFont和PopFont实现。<br>此外，imgui可支持子界面的缩放，适当运用也可以缓解字体缩放的困难，如<a href="https://github.com/ocornut/imgui/issues/772#issuecomment-244512595" target="_blank" rel="external">#772 (comment)</a>所示。</p>
-<h2 id="UI排版"><a href="#UI排版" class="headerlink" title="UI排版"></a>UI排版</h2><p>主要是从<a href="http://blog.csdn.net/sunny__chen/article/details/51273726" target="_blank" rel="external">参考文章</a>中获取的信息。<br>imgui的排版建议开始按自动的来。<br>自动布局时，默认情况下，各控件由上到下依次显示。<br>可以使用GUILayout.BeginHoriztontal(),GUILayout.EndHorizontal(), GUILayout.BeginVertical(), and GUILayout.EndVertical().来控制各控件水平显示或垂直显示。可嵌套。</p>
-<p>关于UI在主窗口的停靠，目前官方没有出排版套路，但是一些用户给出了解决方法。</p>
-<p>目前我的做法是直接把子界面的位置固定在窗口内，只做一个隐藏弹出的切换。</p>
-<h2 id="c-11支持utf8-vs2017-community"><a href="#c-11支持utf8-vs2017-community" class="headerlink" title="c++11支持utf8 + vs2017 community"></a>c++11支持utf8 + vs2017 community</h2><p>支持utf8了！再也不用与编码纠缠了，再见GTK，再见GB。</p>
-<h2 id="imgui窗口的定位"><a href="#imgui窗口的定位" class="headerlink" title="imgui窗口的定位"></a>imgui窗口的定位</h2><p>imgui所有的定位坐标都是相对于操作系统提供的总体窗口的。<br>imgui提供了一系列的函数用于窗口定位：<br>    IMGUI_API ImVec2        GetContentRegionMax();       //窗口右下角坐标（含需要滚动条才能到达的区域）<br>    IMGUI_API ImVec2        GetContentRegionAvail();     //窗口尺寸<br>    IMGUI_API float         GetContentRegionAvailWidth();//窗口尺寸宽度<br>    IMGUI_API ImVec2        GetWindowContentRegionMin(); //窗口左上角坐标<br>    IMGUI_API ImVec2        GetWindowContentRegionMax(); //窗口<br>    IMGUI_API float         GetWindowContentRegionWidth();<br>以及ImGui::GetIO().DisplaySize用于获得总体窗口的尺寸（在总体窗口缩放时会用到）。</p>
-<h2 id="隐去windows窗口标题栏"><a href="#隐去windows窗口标题栏" class="headerlink" title="隐去windows窗口标题栏"></a>隐去windows窗口标题栏</h2><p>原文来自：<a href="http://bbs.csdn.net/topics/370099236" target="_blank" rel="external">http://blog.csdn.net/LYP951018/article/details/24503207</a></p>
-<blockquote>
-<p>————————以下为原文——————————<br>case WM_SIZE:<br>   {<br>       LONG_PTR Style = ::GetWindowLongPtr(hWnd,GWL_STYLE);<br>       Style = Style &amp;~WS_CAPTION &amp;~WS_SYSMENU &amp;~WS_SIZEBOX;<br>       ::SetWindowLongPtr(hWnd, GWL_STYLE, Style);<br>       break;<br>   }</p>
-</blockquote>
-<p>## </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cj7ukmdbo000itgg6me2bmjim" class="article-share-link">Share</a>
-      
-        <a href="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-2017-07-26-Cooking" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/26/2017-07-26-Cooking/" class="article-date">
-  <time datetime="2017-07-26T18:03:39.000Z" itemprop="datePublished">2017-07-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/法国生活/">法国生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/26/2017-07-26-Cooking/">论怎么花10分钟做出两天的饭</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>出来了，感觉整天有好多东西需要学的，那么剩下做饭的时间就不多了哦。</p>
-<p>上周开始时，我还尝试炒两个菜烧个汤，但是整下来大概要花大半个小时，还需要一直盯着，这样可不行啊，等我吃完坐下来开始写东西或者看东西时，已经只有2个小时了。<br>我开始琢磨怎么在不降低生活水平，不多花钱的情况下，<b>用最少的时间烧今晚和明天中午的饭</b>。</p>
-<p>我开始去城西最大的casino超市逛起来了。。。</p>
-<p>然后就知道了怎么做了。</p>
-<p>第一次用力过猛做太多了，但是味道还是挺赞的，结果第二天中午吃的有点撑。不要问我为什么一定要吃完，你自己做过饭就懂了。</p>
-<h2 id="这一锅用力过猛的料理就是："><a href="#这一锅用力过猛的料理就是：" class="headerlink" title="这一锅用力过猛的料理就是："></a>这一锅用力过猛的料理就是：</h2><p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/ylgm.jpg" alt="虾仁青椒盖红烧肉饭"></p>
-<p>步骤如下，以飨各位在异国过在国内的同志</p>
-<ul>
-<li>老套路烧红烧肉，但是不必收汤，这点汤有点用的。嗯，只需要开头5分钟在，焖的10~20分钟该干嘛干嘛。</li>
-<li>趁汤还在，米下锅，注意根据最后想要的米饭的软硬调整米和汤的比例。这个确实不好掌握。我主要是通过抽样方法，一勺子下锅捞出来米汤比例合适就OK了。嗯，又只需要2~3分钟。</li>
-<li>为了拍照好看，等饭成型了，剥几个虾仁，切点蔬菜点缀到饭上面。嗯，要是有我这么熟练的刀工，只需要2~3分钟。</li>
-</ul>
-<p>以上，10分钟一大锅哦，可惜只有我独享。</p>
-<h2 id="法国的冰淇凌好便宜"><a href="#法国的冰淇凌好便宜" class="headerlink" title="法国的冰淇凌好便宜"></a>法国的冰淇凌好便宜</h2><p>2欧6枚。</p>
-<p>嗯，饭后甜点。<br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/scream.jpg" alt="饭后甜点"></p>
-<h2 id="突发山火"><a href="#突发山火" class="headerlink" title="突发山火"></a>突发山火</h2><p>据说这里最近两个月只下过一两场雨，干燥的空气，通透的大气和夏日的骄阳，也许还有担心消防部门申请不到钱维护消防直升机的纵火者。<br>我第一次看到了稍成规模的山火，烟雾从卡达拉舍旁一路飘到了艾克斯。</p>
-<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/fire3.jpg" alt=""></p>
-<p>怎么说呢，大巴在烟雾下穿过，我还是看到了比家里更蓝的天。希望随着我们这代，国家能建设得更好，也能时时拥抱清澈的蓝天吧。</p>
-<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/fire2.jpg" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/" data-id="cj7ukmdb70006tgg6xcjmld5b" class="article-share-link">Share</a>
-      
-        <a href="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
 
     </footer>
   </div>
@@ -792,9 +768,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Categorieën</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/“法国生活/">“法国生活"</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/“法国生活/">“法国生活"</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/学术积累/">学术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
     </div>
   </div>
 
@@ -802,9 +778,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Labels</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学/">统计学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美剧/">美剧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
     </div>
   </div>
 
@@ -814,14 +790,14 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/法国生活/" style="font-size: 10px;">-法国生活</a> <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
+      <a href="/tags/法国生活/" style="font-size: 10px;">-法国生活</a> <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/统计学/" style="font-size: 10px;">统计学</a> <a href="/tags/美剧/" style="font-size: 10px;">美剧</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
     </div>
@@ -831,9 +807,17 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/09/25/2017-09-26-suits-view-opinions/">suits观后感</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/22/2017-09-22-Students-T-test/">学生t检验，Student&#39;s T Test</a>
+          </li>
         
           <li>
             <a href="/2017/09/21/2017-09-21-leetcode-trick-problem/">LeetCode上一道陷阱题</a>
@@ -845,14 +829,6 @@
         
           <li>
             <a href="/2017/09/07/2018-09-07-nice/">蔚蓝海岸，富人口岸：尼斯-摩纳哥游记</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/26/2018-08-26-opengl/">深度测试，阴影和深度剥离</a>
-          </li>
-        
-          <li>
-            <a href="/2017/08/19/2017-08-19/">忙碌又闲适的8月第三周-马赛-电影-项目</a>
           </li>
         
       </ul>
