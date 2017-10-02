@@ -49,7 +49,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
@@ -59,6 +59,72 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-2017-10-02-leetcode-contest-52" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/02/2017-10-02-leetcode-contest-52/" class="article-date">
+  <time datetime="2017-10-02T08:40:08.000Z" itemprop="datePublished">2017-10-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/02/2017-10-02-leetcode-contest-52/">身在法国凌晨起不来只能之后慢慢做题解馋的leetcode竞赛</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>leetcode上写代码最激动人心的一刻应该是提交后看到一个绿色的accept吧，啊哈哈。</p>
+<p>这次的4题难度不小，以我的水平解出四题已经超过2小时了~~。</p>
+<ol>
+<li>第一题是送分题，不说了, 虽然是用python写的，但完全是C++的样子，代码如下：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">repeatedStringMatch</span><span class="params">(self, A, B)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type A: str</div><div class="line">        :type B: str</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        ret = <span class="number">0</span></div><div class="line">        <span class="comment">#if B is substring of A</span></div><div class="line">        <span class="keyword">if</span> A.find(B) &gt;=<span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span></div><div class="line">        <span class="comment">#if a is substring of b</span></div><div class="line">        <span class="keyword">elif</span> B.find(A) &gt;=<span class="number">0</span>:</div><div class="line">            tmpi = B.find(A)</div><div class="line">            ret = <span class="number">0</span></div><div class="line">            <span class="keyword">if</span> tmpi&gt;<span class="number">0</span>:</div><div class="line">                ret += <span class="number">1</span></div><div class="line">                <span class="keyword">if</span> B[:tmpi] != A[-tmpi:]:</div><div class="line">                    <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">            tr = (len(B)-tmpi)%len(A)</div><div class="line">            tc = int((len(B)-tmpi)/len(A))</div><div class="line">            <span class="comment">#print("tr&#123;&#125; tc&#123;&#125;".format(tr,tc))</span></div><div class="line">            ret += tc</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(tc):</div><div class="line">                <span class="keyword">if</span> B[tmpi+i*len(A):tmpi+i*len(A)+len(A)] != A:</div><div class="line">                    <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">            <span class="keyword">if</span> tr &gt; <span class="number">0</span>:</div><div class="line">                ret += <span class="number">1</span></div><div class="line">                <span class="comment">#print(B[-tr:])</span></div><div class="line">                <span class="keyword">if</span> A.find(B[-tr:]) != <span class="number">0</span>:</div><div class="line">                    <span class="keyword">return</span> <span class="number">-1</span></div><div class="line">            <span class="keyword">return</span> ret</div><div class="line">        <span class="comment">#if a is not substring of b</span></div><div class="line">        <span class="keyword">elif</span> len(B)&lt;len(A)*<span class="number">2</span>:</div><div class="line">            <span class="comment">#find the begin part</span></div><div class="line">            start = max(<span class="number">1</span>,len(B)-len(A)+<span class="number">1</span>)</div><div class="line">            <span class="comment">#print(start)</span></div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(start,len(B)):</div><div class="line">                <span class="keyword">if</span> A[-i:] == B[:i] <span class="keyword">and</span> A[:len(B)-i] == B[i:]:</div><div class="line">                    <span class="keyword">return</span> <span class="number">2</span></div><div class="line">        <span class="keyword">return</span> <span class="number">-1</span></div></pre></td></tr></table></figure>
+<ol>
+<li>第二题主要的思路是最长的长度就是一个节点左边最长的同值链长度加上右边最长的同值链长度，使用动态规划算法深度优先递归求得各节点向下最长的长度，然后供上层节点调用即可。<br>这里，用了lendown map来缓存子节点的最长向下长度。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="built_in">map</span>&lt;TreeNode *,<span class="keyword">int</span>&gt; lendown;</div><div class="line">    <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; maxlen;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestDown</span><span class="params">(TreeNode *node)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(lendown.find(node) != lendown.end())</div><div class="line">            <span class="keyword">return</span> lendown[node];</div><div class="line">        <span class="keyword">int</span> lenl = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> lenr = <span class="number">0</span>;</div><div class="line">        <span class="keyword">if</span>(node-&gt;right &amp;&amp; node-&gt;right-&gt;val == node-&gt;val)&#123;</div><div class="line">            lenr = <span class="number">1</span> + longestDown(node-&gt;right);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(node-&gt;left &amp;&amp; node-&gt;left-&gt;val == node-&gt;val)&#123;</div><div class="line">            lenl = <span class="number">1</span>+longestDown(node-&gt;left);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(maxlen.find(node-&gt;val)==maxlen.end())</div><div class="line">            maxlen[node-&gt;val]=<span class="number">0</span>;</div><div class="line">        maxlen[node-&gt;val]=max(maxlen[node-&gt;val],lenl+lenr);</div><div class="line">        lendown[node] = max(lenl,lenr);</div><div class="line">        <span class="keyword">return</span> lendown[node];</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">longestUnivaluePath</span><span class="params">(TreeNode* root)</span> </span>&#123;</div><div class="line">        <span class="built_in">vector</span>&lt;TreeNode *&gt; q;</div><div class="line">        <span class="keyword">if</span>(root)</div><div class="line">            q.push_back(root);</div><div class="line">        <span class="keyword">int</span> ret = <span class="number">0</span>;</div><div class="line">        <span class="keyword">while</span>(q.size()&gt;<span class="number">0</span>)&#123;</div><div class="line">            TreeNode *node = q.back();</div><div class="line">            q.pop_back();</div><div class="line">            longestDown(node);</div><div class="line">            ret = max(maxlen[node-&gt;val],ret);</div><div class="line">            <span class="keyword">if</span>(node-&gt;right)</div><div class="line">                q.push_back(node-&gt;right);</div><div class="line">            <span class="keyword">if</span>(node-&gt;left)</div><div class="line">                q.push_back(node-&gt;left);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ol>
+<li>第三题一开始看到概率，小数点我就头疼了。但是其实这题还是动态规划的题。设f(i,j,k)为棋盘上第（i,j）格子k步内留在棋盘上的概率。则设k步后的概率为8个方向各走一步后，再走k-1步后概率的平均。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">double</span> *dp;</div><div class="line">    <span class="keyword">int</span> myN;</div><div class="line">    <span class="keyword">int</span> myK;</div><div class="line">    <span class="keyword">int</span> mydpWidth;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">double</span> <span class="title">OutP</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j, <span class="keyword">int</span> k)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(dp[i*mydpWidth+j*(myK+<span class="number">1</span>)+k]&gt;=<span class="number">0.0</span>)</div><div class="line">            <span class="keyword">return</span> dp[i*mydpWidth+j*(myK+<span class="number">1</span>)+k];</div><div class="line">        <span class="keyword">int</span> ni,nj;</div><div class="line">        <span class="keyword">double</span> oc = <span class="number">0.0</span>;</div><div class="line">        <span class="keyword">static</span> <span class="keyword">int</span> step[<span class="number">8</span>][<span class="number">2</span>] = &#123;&#123;<span class="number">-2</span>,<span class="number">-1</span>&#125;,&#123;<span class="number">-2</span>,<span class="number">1</span>&#125;,&#123;<span class="number">-1</span>,<span class="number">2</span>&#125;,&#123;<span class="number">1</span>,<span class="number">2</span>&#125;,&#123;<span class="number">2</span>,<span class="number">1</span>&#125;,&#123;<span class="number">2</span>,<span class="number">-1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">-2</span>&#125;,&#123;<span class="number">-1</span>,<span class="number">-2</span>&#125;&#125;;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> idx=<span class="number">0</span>;idx&lt;<span class="number">8</span>;++idx)</div><div class="line">        &#123;</div><div class="line">            ni=i+step[idx][<span class="number">0</span>];</div><div class="line">            nj=j+step[idx][<span class="number">1</span>];</div><div class="line">            <span class="keyword">if</span>(ni&gt;=myN || nj &gt;=myN || ni&lt;<span class="number">0</span> || nj&lt;<span class="number">0</span>)&#123;</div><div class="line">                oc += <span class="number">1.0</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> </div><div class="line">                oc += OutP(ni,nj, k<span class="number">-1</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        dp[i*mydpWidth+j*(myK+<span class="number">1</span>)+k] = oc/<span class="number">8.0</span>;</div><div class="line">        <span class="keyword">return</span> dp[i*mydpWidth+j*(myK+<span class="number">1</span>)+k];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">double</span> <span class="title">knightProbability</span><span class="params">(<span class="keyword">int</span> N, <span class="keyword">int</span> K, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</div><div class="line">        dp = <span class="keyword">new</span> <span class="keyword">double</span>[N*N*(K+<span class="number">1</span>)];  <span class="comment">//possibility of i,j th cell go out by k steps  </span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N*N*(K+<span class="number">1</span>);++i)</div><div class="line">            dp[i] = <span class="number">-1.0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N*N;++i)</div><div class="line">            dp[i*(K+<span class="number">1</span>)] = <span class="number">0.0</span>;</div><div class="line">        myN = N;</div><div class="line">        myK = K;</div><div class="line">        mydpWidth = N*(K+<span class="number">1</span>);</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>-OutP(r,c,K);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ol>
+<li>第4题咋一看头疼啊，其实头疼就是因为人脑算不过来啊，但是电脑可以让他记啊，分而治之，动态规划。又是动态规划。<br>可恨啊，写代码手生了，写写改改就过去一小时了。<br>要点有2个：1. 当前位置向后k个值相加的结果存到一个单独的数组中。2. 两个动态规划缓存，一个存储当前位置后，一个最大子序列的起始位置。另一个存储当前位置后，两个不重叠最大子序列的开始位置。</li>
+</ol>
+<p>代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sumk;</div><div class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp2;</div><div class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp1;</div><div class="line">	<span class="keyword">int</span> k;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">maxSum</span><span class="params">(<span class="keyword">int</span> start)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (dp1[start] &gt;= <span class="number">0</span>) &#123;</div><div class="line">			<span class="keyword">return</span> dp1[start];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> tmp = sumk[start];</div><div class="line">		<span class="keyword">int</span> maxnow = sumk[maxSum(start + <span class="number">1</span>)];</div><div class="line">		<span class="keyword">if</span> (maxnow &gt; tmp)</div><div class="line">			dp1[start] = dp1[start + <span class="number">1</span>];</div><div class="line">		<span class="keyword">else</span></div><div class="line">			dp1[start] = start;</div><div class="line">		<span class="keyword">return</span> dp1[start];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">maxSum2</span><span class="params">(<span class="keyword">int</span> start)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span> (dp2[start] &gt;= <span class="number">0</span>)</div><div class="line">			<span class="keyword">return</span> dp2[start];</div><div class="line">		<span class="keyword">int</span> maxpost = sumk[maxSum2(start + <span class="number">1</span>)] + sumk[maxSum(dp2[start+<span class="number">1</span>]+k)];</div><div class="line">		<span class="keyword">int</span> maxnow = sumk[start] + sumk[maxSum(start + k)];</div><div class="line">		<span class="keyword">if</span>(maxnow &gt;= maxpost)</div><div class="line">			dp2[start] = start;</div><div class="line">		<span class="keyword">else</span></div><div class="line">			dp2[start] = dp2[start + <span class="number">1</span>];</div><div class="line">		<span class="keyword">return</span> dp2[start];</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxSumOfThreeSubarrays(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</div><div class="line">		sumk.resize(nums.size() - k + <span class="number">1</span>);</div><div class="line">		sumk[<span class="number">0</span>] = <span class="number">0</span>;</div><div class="line">		<span class="keyword">this</span>-&gt;k = k;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;k; ++i) &#123;</div><div class="line">			sumk[<span class="number">0</span>] += nums[i];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i&lt;nums.size() - k + <span class="number">1</span>; ++i) &#123;</div><div class="line">			sumk[i] = sumk[i - <span class="number">1</span>] - nums[i - <span class="number">1</span>] + nums[i + k - <span class="number">1</span>];</div><div class="line">			<span class="comment">//cout&lt;&lt;i&lt;&lt;" "&lt;&lt;sumk[i]&lt;&lt;endl;</span></div><div class="line">		&#125;</div><div class="line">		dp2.resize(sumk.size());</div><div class="line">		dp1.resize(sumk.size());</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i&lt;sumk.size(); ++i) &#123;</div><div class="line">			dp1[i] = <span class="number">-1</span>;</div><div class="line">			dp2[i] = <span class="number">-1</span>;</div><div class="line">		&#125;</div><div class="line">		dp1[sumk.size() - <span class="number">1</span>] = sumk.size() - <span class="number">1</span>;</div><div class="line">		dp2[sumk.size() - <span class="number">1</span> - k] = sumk.size() - <span class="number">1</span> - k;</div><div class="line">		<span class="comment">//iteratively check</span></div><div class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ret;</div><div class="line">		ret.resize(<span class="number">3</span>);</div><div class="line">		<span class="keyword">int</span> maxsum = <span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = nums.size() - k * <span class="number">3</span>; i &gt;= <span class="number">0</span>; --i) &#123;</div><div class="line">			<span class="keyword">int</span> tmp = sumk[i] + sumk[maxSum2(i + k)] + sumk[maxSum(maxSum2(i + k) + k)];</div><div class="line">			<span class="keyword">if</span> (tmp&gt;=maxsum)</div><div class="line">			&#123;</div><div class="line">				ret[<span class="number">0</span>] = i;</div><div class="line">				ret[<span class="number">1</span>] = maxSum2(i + k);</div><div class="line">				ret[<span class="number">2</span>] = maxSum(maxSum2(i + k) + k);</div><div class="line">				maxsum = tmp;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> ret;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/10/02/2017-10-02-leetcode-contest-52/" data-id="cj89y9ieh000slsg6x3tjuhak" class="article-share-link">Partager</a>
+      
+        <a href="http://theysp.github.io/2017/10/02/2017-10-02-leetcode-contest-52/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/">leetcode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-2017-10-01" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -97,9 +163,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/10/01/2017-10-01/" data-id="cj88y3mo5000nisg6cx219ip6" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/10/01/2017-10-01/" data-id="cj89y9ied000plsg6ea7rlsyq" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/10/01/2017-10-01/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/10/01/2017-10-01/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/参会/">参会</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/斯洛文尼亚/">斯洛文尼亚</a></li></ul>
@@ -150,9 +216,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/09/25/2017-09-26-suits-view-opinions/" data-id="cj88y3mo2000kisg6hbj69h6t" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/09/25/2017-09-26-suits-view-opinions/" data-id="cj89y9ie7000llsg6sjwfgr1g" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/09/25/2017-09-26-suits-view-opinions/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/09/25/2017-09-26-suits-view-opinions/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/美剧/">美剧</a></li></ul>
@@ -204,9 +270,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/09/22/2017-09-22-Students-T-test/" data-id="cj88y3mqu002lisg6k1xkcccb" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/09/22/2017-09-22-Students-T-test/" data-id="cj89y9ie2000ilsg6pwml41hg" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/09/22/2017-09-22-Students-T-test/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/09/22/2017-09-22-Students-T-test/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/统计学/">统计学</a></li></ul>
@@ -253,9 +319,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/" data-id="cj88y3mnz000hisg6oalrur32" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/" data-id="cj89y9ido000blsg6ltpcu9c3" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
@@ -326,9 +392,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/" data-id="cj88y3mns000disg6poyj6yzv" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/" data-id="cj89y9idx000elsg6pfce7rs2" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -446,9 +512,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/09/07/2018-09-07-nice/" data-id="cj88y3mog000zisg6p4mx6wjy" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/09/07/2018-09-07-nice/" data-id="cj89y9if50017lsg69wwck1xo" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/09/07/2018-09-07-nice/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/09/07/2018-09-07-nice/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li></ul>
@@ -501,9 +567,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/26/2018-08-26-opengl/" data-id="cj88y3mol0012isg6vr959g4y" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/08/26/2018-08-26-opengl/" data-id="cj89y9ifd001alsg62p4pw0i0" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/08/26/2018-08-26-opengl/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/08/26/2018-08-26-opengl/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -611,9 +677,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/19/2017-08-19/" data-id="cj88y3mno000aisg6zfwbo1nk" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/08/19/2017-08-19/" data-id="cj89y9idk0009lsg61foq5yu6" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/08/19/2017-08-19/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/08/19/2017-08-19/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
@@ -676,67 +742,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cj88y3moc000sisg66umgplob" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cj89y9ien000xlsg6s0p1745l" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-2017-8-9-GLSL" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/08/10/2017-8-9-GLSL/" class="article-date">
-  <time datetime="2017-08-10T08:48:05.000Z" itemprop="datePublished">2017-08-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/2017-8-9-GLSL/">OpenGL Shading Language(GLSL)概览</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>翻了很久的learnopengl，快到结尾了，终于感觉入门了的感觉。<br>整个教程除了OpenGL的入门，反反复复介绍的就是利用shader进行各种花式渲染。<br>那么聪明如我的读者肯定就知道了，图形编程的关键是深入到shader编程，通过其提升渲染效率及提供高级渲染效果。</p>
-<p>在<a href="https://learnopengl.com/#!In-Practice/Debugging" target="_blank" rel="external">教程的Debugging</a>一节，打开了一扇门，其中提到了不同的显卡厂商在驱动中带的GLSL编译器的标准是略不同的。<br>NVIDIA比AMD要求松一些，适当兼容了不在OpenGL中不包含的情况，所以可能出现NVIDIA上的shader编译无问题的情况在AMD显卡上无法运行的情况。所以就有这样一个标准的<a href="https://www.khronos.org/opengles/sdk/tools/Reference-Compiler/" target="_blank" rel="external">Shader检查器(GLSL reference compiler)</a>。良心啊，开源的，关键是显卡厂商就是不愿意统一，和JS、CSS等问题感觉类似。</p>
-<h2 id="各式各样的shader"><a href="#各式各样的shader" class="headerlink" title="各式各样的shader"></a>各式各样的shader</h2><p>有这样一系列的shader类型：<br>.vert - a vertex shader<br>.tesc - a tessellation control shader<br>.tese - a tessellation evaluation shader<br>.geom - a geometry shader<br>.frag - a fragment shader<br>.comp - a compute shader</p>
-<p>其中，有一个比较特别的compute shader，细看之下应该就是OpenCL一类的底层吧，难怪NVIDIA这么厉害了，在GLSL标准外额外支持了一系列的API，然后就在并行计算上胜了AMD一招。</p>
-<p>这个compute shader是脱离在GL的渲染流程之外的，是单独的<a href="https://www.khronos.org/opengl/wiki/GLAPI/glDispatchCompute" target="_blank" rel="external">glDispatchCompute</a>函数对其执行的调用。问题是这个和opencl有什么关系呢？之后还得再看看，如果opencl足够好用了，这个感觉也没多大意思了。</p>
-<h2 id="项目的背景图案"><a href="#项目的背景图案" class="headerlink" title="项目的背景图案"></a>项目的背景图案</h2><p>经过两日的努力，终于做出了比较炫的地球了，这下项目界面的背景终于有着落了</p>
-<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/eearth_clip1.gif" alt="地球"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cj88y3moo0016isg68pfbh4y4" class="article-share-link">Share</a>
-      
-        <a href="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/并行计算/">并行计算</a></li></ul>
 
     </footer>
   </div>
@@ -760,7 +771,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/“法国生活/">“法国生活"</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/学术积累/">学术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
     </div>
@@ -770,9 +781,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/参会/">参会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯洛文尼亚/">斯洛文尼亚</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学/">统计学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美剧/">美剧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/参会/">参会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯洛文尼亚/">斯洛文尼亚</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学/">统计学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美剧/">美剧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
     </div>
   </div>
 
@@ -780,9 +791,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/法国生活/" style="font-size: 10px;">-法国生活</a> <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/参会/" style="font-size: 10px;">参会</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/斯洛文尼亚/" style="font-size: 10px;">斯洛文尼亚</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/统计学/" style="font-size: 10px;">统计学</a> <a href="/tags/美剧/" style="font-size: 10px;">美剧</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
+      <a href="/tags/法国生活/" style="font-size: 10px;">-法国生活</a> <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/参会/" style="font-size: 10px;">参会</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/斯洛文尼亚/" style="font-size: 10px;">斯洛文尼亚</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/统计学/" style="font-size: 10px;">统计学</a> <a href="/tags/美剧/" style="font-size: 10px;">美剧</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
     </div>
   </div>
 
@@ -799,9 +810,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/10/02/2017-10-02-leetcode-contest-52/">身在法国凌晨起不来只能之后慢慢做题解馋的leetcode竞赛</a>
+          </li>
         
           <li>
             <a href="/2017/10/01/2017-10-01/">2017-10-01</a>
@@ -819,10 +834,6 @@
             <a href="/2017/09/21/2017-09-21-leetcode-trick-problem/">LeetCode上一道陷阱题</a>
           </li>
         
-          <li>
-            <a href="/2017/09/20/2017-09-20-Opengl-errors/">实践路上遍布荆棘-Opengl常见问题记录</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -836,7 +847,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 ysp<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

@@ -49,7 +49,7 @@
       </nav>
       <nav id="sub-nav">
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
@@ -59,6 +59,61 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-2017-8-9-GLSL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/10/2017-8-9-GLSL/" class="article-date">
+  <time datetime="2017-08-10T08:48:05.000Z" itemprop="datePublished">2017-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/2017-8-9-GLSL/">OpenGL Shading Language(GLSL)概览</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>翻了很久的learnopengl，快到结尾了，终于感觉入门了的感觉。<br>整个教程除了OpenGL的入门，反反复复介绍的就是利用shader进行各种花式渲染。<br>那么聪明如我的读者肯定就知道了，图形编程的关键是深入到shader编程，通过其提升渲染效率及提供高级渲染效果。</p>
+<p>在<a href="https://learnopengl.com/#!In-Practice/Debugging" target="_blank" rel="external">教程的Debugging</a>一节，打开了一扇门，其中提到了不同的显卡厂商在驱动中带的GLSL编译器的标准是略不同的。<br>NVIDIA比AMD要求松一些，适当兼容了不在OpenGL中不包含的情况，所以可能出现NVIDIA上的shader编译无问题的情况在AMD显卡上无法运行的情况。所以就有这样一个标准的<a href="https://www.khronos.org/opengles/sdk/tools/Reference-Compiler/" target="_blank" rel="external">Shader检查器(GLSL reference compiler)</a>。良心啊，开源的，关键是显卡厂商就是不愿意统一，和JS、CSS等问题感觉类似。</p>
+<h2 id="各式各样的shader"><a href="#各式各样的shader" class="headerlink" title="各式各样的shader"></a>各式各样的shader</h2><p>有这样一系列的shader类型：<br>.vert - a vertex shader<br>.tesc - a tessellation control shader<br>.tese - a tessellation evaluation shader<br>.geom - a geometry shader<br>.frag - a fragment shader<br>.comp - a compute shader</p>
+<p>其中，有一个比较特别的compute shader，细看之下应该就是OpenCL一类的底层吧，难怪NVIDIA这么厉害了，在GLSL标准外额外支持了一系列的API，然后就在并行计算上胜了AMD一招。</p>
+<p>这个compute shader是脱离在GL的渲染流程之外的，是单独的<a href="https://www.khronos.org/opengl/wiki/GLAPI/glDispatchCompute" target="_blank" rel="external">glDispatchCompute</a>函数对其执行的调用。问题是这个和opencl有什么关系呢？之后还得再看看，如果opencl足够好用了，这个感觉也没多大意思了。</p>
+<h2 id="项目的背景图案"><a href="#项目的背景图案" class="headerlink" title="项目的背景图案"></a>项目的背景图案</h2><p>经过两日的努力，终于做出了比较炫的地球了，这下项目界面的背景终于有着落了</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/eearth_clip1.gif" alt="地球"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cj89y9if00014lsg6vkpj7h1m" class="article-share-link">Partager</a>
+      
+        <a href="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/并行计算/">并行计算</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-2017-8-5-safty-training" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -106,9 +161,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/" data-id="cj88y3moe000visg6qknjzcql" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/" data-id="cj89y9ieu0010lsg6hh7onrih" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ITER/">ITER</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
@@ -169,9 +224,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cj88y3mo6000pisg6yiqpx29j" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cj89y9iek000ulsg6dorquh1r" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -236,9 +291,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/" data-id="cj88y3mnl0006isg63uwdyyww" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/" data-id="cj89y9idh0006lsg6rfusoeza" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
@@ -307,9 +362,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/" data-id="cj88y3mnc0004isg68itgmzfb" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/" data-id="cj89y9ida0005lsg6jatvwjlx" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -374,9 +429,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj88y3mn40001isg644zh7pql" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj89y9id70003lsg6c9ijuked" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
@@ -432,9 +487,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/22/2017-07-22/" data-id="cj88y3mne0005isg615bxa35o" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/22/2017-07-22/" data-id="cj89y9ics0000lsg6teoz3vze" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/22/2017-07-22/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/07/22/2017-07-22/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">-法国生活</a></li></ul>
@@ -482,9 +537,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/19/2017-07-19/" data-id="cj88y3mmx0000isg6607bgtm0" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/19/2017-07-19/" data-id="cj89y9icz0001lsg63jldqxxa" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/19/2017-07-19/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/07/19/2017-07-19/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
@@ -558,9 +613,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/16/opengl-history/" data-id="cj88y3mp4001gisg6wi6palvv" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/16/opengl-history/" data-id="cj89y9ifz001llsg6d4wf2y2b" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/16/opengl-history/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/07/16/opengl-history/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/历史/">历史</a></li></ul>
@@ -610,66 +665,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/16/sadthing/" data-id="cj88y3mp8001jisg6e662ng66" class="article-share-link">Share</a>
+      <a data-url="http://theysp.github.io/2017/07/16/sadthing/" data-id="cj89y9ig7001olsg6wsgjyvzp" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/16/sadthing/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://theysp.github.io/2017/07/16/sadthing/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-Day2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/15/Day2/" class="article-date">
-  <time datetime="2017-07-15T12:43:57.000Z" itemprop="datePublished">2017-07-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/法国生活/">法国生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/15/Day2/">今天的目标是米和肉</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="顺利-肉米菇姜"><a href="#顺利-肉米菇姜" class="headerlink" title="顺利,肉米菇姜"></a>顺利,肉米菇姜</h2><p>在NARUTO碰到一个中国妹子，我刚开口用国人口音的英语就被认出是老乡啦，挺赞的。一听我在找哪买米，立马告诉我这里最大的monoprix连锁店里有，就在正大街上呢，3分钟就到。感谢言多不表，我立马去了那。<br>最大的店果然不一样啊，和我们那商场有的一拼了，一楼是各种衣服鞋子内衣等等，楼下就是我的riz咯。</p>
-<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/monoprix.jpg" alt="本镇最大MONOPRIX"></p>
-<p>为了买米我连翻译都带好了，Ou puis-je acheter du riz?<br>然并<ruby>卵<rt>luǎn</rt></ruby>，我根本不会念。店里的妹子说得了，直接说英文吧。然后就操着比我流利一百倍的英文给我带路、找东西。<br>米和肉啊，都来我袋里。<br>法国资本家良心阿，两斤米要2.89€。<br>“I just want the cheapest rice, they are not cheap.”<br>“Totally not cheap, but the best rise, very soft.”妹子笑得欢快。<br>好吧，我还找到了生姜，我妈的最爱。她烧菜一流，我就信她的拿来一起准备晚上大展身手啦。<br>战利品如下：两斤米够我吃一周了吧？”Not cheap”啊。</p>
-<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/rice_meat_mushroom_ginger.jpg" alt="购物清单"></p>
-<p>之后就是烧饭了，终于能吃上饭了，之后三个多月的生活算是有保障了。<br>首先是烧饭，这里没有电饭锅，就拿不锈钢锅凑合烧了，一勺米，两勺水，十分钟即可入口了。这米非常软，烧之前是千万不能泡的，不然就会变成粥。<br>拿两个蘑菇，还有一个明天煮汤喝。取二两肉切片，蘑菇切片，生姜切片。色拉油入锅大火烧热后放入姜随即放入肉爆炒两分钟后加盐加酱油加蘑菇再炒一分钟，加水焖至收汤即成蘑菇红烧肉。配上还算清爽的番茄鸡蛋汤。就是我的晚饭了。<br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/cooking.jpg" alt=""><br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/rices.jpg" alt=""><br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/eggtomatosoup.jpg" alt=""><br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/mashroomandmeat.jpg" alt=""></p>
-<h2 id="明日的目的地"><a href="#明日的目的地" class="headerlink" title="明日的目的地"></a>明日的目的地</h2><p>一处博物馆<br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/target_07_16.png" alt="博物馆位置"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/15/Day2/" data-id="cj88y3mot001aisg6rgsnuwrk" class="article-share-link">Share</a>
-      
-        <a href="http://theysp.github.io/2017/07/15/Day2/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
 
     </footer>
   </div>
@@ -693,7 +694,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/“法国生活/">“法国生活"</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/学术积累/">学术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
     </div>
@@ -703,9 +704,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/参会/">参会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯洛文尼亚/">斯洛文尼亚</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学/">统计学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美剧/">美剧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/参会/">参会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯洛文尼亚/">斯洛文尼亚</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学/">统计学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美剧/">美剧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
     </div>
   </div>
 
@@ -713,9 +714,9 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nuage de mot-clés</h3>
     <div class="widget tagcloud">
-      <a href="/tags/法国生活/" style="font-size: 10px;">-法国生活</a> <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/参会/" style="font-size: 10px;">参会</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/斯洛文尼亚/" style="font-size: 10px;">斯洛文尼亚</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/统计学/" style="font-size: 10px;">统计学</a> <a href="/tags/美剧/" style="font-size: 10px;">美剧</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
+      <a href="/tags/法国生活/" style="font-size: 10px;">-法国生活</a> <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/参会/" style="font-size: 10px;">参会</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/斯洛文尼亚/" style="font-size: 10px;">斯洛文尼亚</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/统计学/" style="font-size: 10px;">统计学</a> <a href="/tags/美剧/" style="font-size: 10px;">美剧</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
     </div>
   </div>
 
@@ -732,9 +733,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/10/02/2017-10-02-leetcode-contest-52/">身在法国凌晨起不来只能之后慢慢做题解馋的leetcode竞赛</a>
+          </li>
         
           <li>
             <a href="/2017/10/01/2017-10-01/">2017-10-01</a>
@@ -752,10 +757,6 @@
             <a href="/2017/09/21/2017-09-21-leetcode-trick-problem/">LeetCode上一道陷阱题</a>
           </li>
         
-          <li>
-            <a href="/2017/09/20/2017-09-20-Opengl-errors/">实践路上遍布荆棘-Opengl常见问题记录</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -769,7 +770,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 ysp<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
