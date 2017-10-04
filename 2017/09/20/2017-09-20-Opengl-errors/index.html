@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/index.html">
 <meta property="og:site_name" content="YSP AND HLL">
 <meta property="og:description" content="说多了都是泪啊。三维渲染程序编译通过却总是看不见图像，看见图像了颜色又不对，出Opengl标准的想象中的boss们的小人被自己在心里默默扎了无数遍。。。之后常见的错误都会记录在这里。 初步诊断这里记录一下常见的问题可能的原因，可能的解决方法：  渲染一帧过程中切换shader不起作用：八成是新shader未通过编译，导致该shader无效，所以切换到该shader的命令也无效了。  视野内无物体：">
-<meta property="og:updated_time" content="2017-09-21T13:33:34.089Z">
+<meta property="og:updated_time" content="2017-10-04T14:27:41.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实践路上遍布荆棘-Opengl常见问题记录">
 <meta name="twitter:description" content="说多了都是泪啊。三维渲染程序编译通过却总是看不见图像，看见图像了颜色又不对，出Opengl标准的想象中的boss们的小人被自己在心里默默扎了无数遍。。。之后常见的错误都会记录在这里。 初步诊断这里记录一下常见的问题可能的原因，可能的解决方法：  渲染一帧过程中切换shader不起作用：八成是新shader未通过编译，导致该shader无效，所以切换到该shader的命令也无效了。  视野内无物体：">
@@ -115,10 +115,11 @@
 <li>可以自己编写一个报错信息检查函数，可插入代码的任意位置，报告当前位置最后一个错误</li>
 </ol>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function">GLenum <span class="title">glCheckError_</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *file, <span class="keyword">int</span> line)</span></span></div><div class="line">&#123;</div><div class="line">	GLenum errorCode;</div><div class="line">	<span class="keyword">while</span> ((errorCode = glGetError()) != GL_NO_ERROR)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">std</span>::<span class="built_in">string</span> error;</div><div class="line">		<span class="keyword">switch</span> (errorCode)</div><div class="line">		&#123;</div><div class="line">		<span class="keyword">case</span> GL_INVALID_ENUM:                  error = <span class="string">"INVALID_ENUM"</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> GL_INVALID_VALUE:                 error = <span class="string">"INVALID_VALUE"</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> GL_INVALID_OPERATION:             error = <span class="string">"INVALID_OPERATION"</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> GL_OUT_OF_MEMORY:                 error = <span class="string">"OUT_OF_MEMORY"</span>; <span class="keyword">break</span>;</div><div class="line">		<span class="keyword">case</span> GL_INVALID_FRAMEBUFFER_OPERATION: error = <span class="string">"INVALID_FRAMEBUFFER_OPERATION"</span>; <span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(error.size()&gt;<span class="number">0</span>)</div><div class="line">			<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; error &lt;&lt; <span class="string">" | "</span> &lt;&lt; file &lt;&lt; <span class="string">" ("</span> &lt;&lt; line &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> errorCode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/" data-id="cj89y9idx000elsg6pfce7rs2" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/" data-id="cj8d4zlgg000stkg6bvjtia8e" class="article-share-link">Partager</a>
       
         <a href="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/#disqus_thread" class="article-comment-link">Commentaires</a>
       
@@ -141,7 +142,7 @@
     </a>
   
   
-    <a href="/2017/09/07/2018-09-07-nice/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/07/2017-09-07-nice/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
       <div class="article-nav-title">蔚蓝海岸，富人口岸：尼斯-摩纳哥游记</div>
     </a>
@@ -211,6 +212,10 @@
       <ul>
         
           <li>
+            <a href="/2017/10/04/2017-10-04-something-fun/">实时剂量计算</a>
+          </li>
+        
+          <li>
             <a href="/2017/10/02/2017-10-02-leetcode-contest-52/">身在法国凌晨起不来只能之后慢慢做题解馋的leetcode竞赛</a>
           </li>
         
@@ -224,10 +229,6 @@
         
           <li>
             <a href="/2017/09/22/2017-09-22-Students-T-test/">学生t检验，Student&#39;s T Test</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/21/2017-09-21-leetcode-trick-problem/">LeetCode上一道陷阱题</a>
           </li>
         
       </ul>

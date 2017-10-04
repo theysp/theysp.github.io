@@ -6,21 +6,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>OpenGL 2 了解计算机三维渲染过程 | YSP AND HLL</title>
+  <title>第一篇 | YSP AND HLL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。原文在这里, 中文版翻译在这里，原文作者在这里 以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。 看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的">
-<meta name="keywords" content="opengl">
+  <meta name="description" content="终于开始学着写博客了为了能将每天在异域的风情记录下来，逼着自己开了一个博客，学习了基于github创建博客、基于Hexo做框架、学习markdown的语法，然后为了上传图片又学习了怎么用七牛的云存储，现在万事俱备，就等我每天出去逛逛或者学习、工作并将这些记录下来吧。All free ^_^。 之后再有空时再看看怎么把ejs等等，看看怎么把这个模板完善一下。 第一天的琐事记录说是第一天，其实是第二天">
+<meta name="keywords" content="万事开头难,法国生活">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenGL 2 了解计算机三维渲染过程">
-<meta property="og:url" content="http://theysp.github.io/2017/07/23/2017-07-23/index.html">
+<meta property="og:title" content="第一篇">
+<meta property="og:url" content="http://theysp.github.io/2017/07/14/2017-07-16hello-world/index.html">
 <meta property="og:site_name" content="YSP AND HLL">
-<meta property="og:description" content="这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。原文在这里, 中文版翻译在这里，原文作者在这里 以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。 看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的">
-<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/pipeline.png">
-<meta property="og:updated_time" content="2017-08-09T13:51:09.020Z">
+<meta property="og:description" content="终于开始学着写博客了为了能将每天在异域的风情记录下来，逼着自己开了一个博客，学习了基于github创建博客、基于Hexo做框架、学习markdown的语法，然后为了上传图片又学习了怎么用七牛的云存储，现在万事俱备，就等我每天出去逛逛或者学习、工作并将这些记录下来吧。All free ^_^。 之后再有空时再看看怎么把ejs等等，看看怎么把这个模板完善一下。 第一天的琐事记录说是第一天，其实是第二天">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/airport_mars.jpg">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/myplace.jpg">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/stairs.jpg">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/cherry.jpg">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/烹饪.jpeg">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/breakfast0.jpg">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/hotel.jpg">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/streat1.jpg">
+<meta property="og:updated_time" content="2017-07-16T13:13:15.815Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenGL 2 了解计算机三维渲染过程">
-<meta name="twitter:description" content="这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。原文在这里, 中文版翻译在这里，原文作者在这里 以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。 看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的">
-<meta name="twitter:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/pipeline.png">
+<meta name="twitter:title" content="第一篇">
+<meta name="twitter:description" content="终于开始学着写博客了为了能将每天在异域的风情记录下来，逼着自己开了一个博客，学习了基于github创建博客、基于Hexo做框架、学习markdown的语法，然后为了上传图片又学习了怎么用七牛的云存储，现在万事俱备，就等我每天出去逛逛或者学习、工作并将这些记录下来吧。All free ^_^。 之后再有空时再看看怎么把ejs等等，看看怎么把这个模板完善一下。 第一天的琐事记录说是第一天，其实是第二天">
+<meta name="twitter:image" content="http://7yusyv.com1.z0.glb.clouddn.com/airport_mars.jpg">
   
   
     <link rel="icon" href="/favicon.png">
@@ -65,14 +72,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2017-07-23" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2017-07-16hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/07/23/2017-07-23/" class="article-date">
-  <time datetime="2017-07-23T17:06:52.000Z" itemprop="datePublished">2017-07-23</time>
+    <a href="/2017/07/14/2017-07-16hello-world/" class="article-date">
+  <time datetime="2017-07-14T07:15:08.472Z" itemprop="datePublished">2017-07-14</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+    <a class="article-category-link" href="/categories/法国生活/">法国生活</a>
   </div>
 
   </div>
@@ -83,7 +90,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      OpenGL 2 了解计算机三维渲染过程
+      第一篇
     </h1>
   
 
@@ -91,35 +98,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。<br><a href="https://learnopengl.com/" target="_blank" rel="external">原文在这里</a>, <a href="https://learnopengl-cn.github.io/" target="_blank" rel="external">中文版翻译在这里</a>，<a href="https://www.patreon.com/learnopengl" target="_blank" rel="external">原文作者在这里</a></p>
-<p>以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。</p>
-<p>看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的：</p>
-<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/pipeline.png" alt=""></p>
-<h2 id="1-VERTEX-DATA"><a href="#1-VERTEX-DATA" class="headerlink" title="1. VERTEX DATA"></a>1. VERTEX DATA</h2><p>VERTEX DATA中可包含任意你需要的内容，包括模型顶点坐标、顶点属性（颜色、材质、纹理坐标、<span style="color:#de2020">任意其他属性</span>）。有了这些数据，可以在渲染的过程中做很多的事情。</p>
-<h2 id="2-VERTEX-SHADER"><a href="#2-VERTEX-SHADER" class="headerlink" title="2. VERTEX SHADER"></a>2. VERTEX SHADER</h2><p>这个步骤对每个参与渲染的顶点都做一次处理（SHADER其实就是一个小程序，其输入就是这每一个对象）。</p>
-<p>这里只要出现了SHADER，就说明这个是我们可以控制的部分了，这个过程可以做两类事情：<br>    生成渲染需要的顶点坐标，这个顶点坐标根据渲染的类型不同含义不同。如果是三角形渲染方式，那么每3个坐标为一个三角形的三个定点，如果是线段渲染，那每两个坐标为线段的两端点。<br>    进行其他处理，将数据传递给之后的SHADER。</p>
-<p>在这一步骤中，通过VERTEX SHADER进行顶点生成的目标是将需要可视化的内容放到(-1,-1,-1)到(1,1,1)中。及标准化设备坐标(Normalized Device Coordinate, NDC)中。形象一点说，OpenGL其实就是一个2X2X2的鱼缸，OpenGL渲染过程就是把鱼缸里的东西全部压扁到鱼缸的一个面形成图像。为了实现我们需要的视角，我们需要透过种种坐标变换，将实际三维空间按我们定义的视角映射到这个2X2X2的标准设备空间中。</p>
-<h2 id="3-SHAPE-ASSEMBLY"><a href="#3-SHAPE-ASSEMBLY" class="headerlink" title="3. SHAPE ASSEMBLY"></a>3. SHAPE ASSEMBLY</h2><p>就是将步骤1中生成的顶点按渲染方式组装成几何体，比如，如果渲染方式是三角形，这里会将每3个顶点组装成一个三角形。</p>
-<h2 id="4-GEOMETRY-SHADER"><a href="#4-GEOMETRY-SHADER" class="headerlink" title="4. GEOMETRY SHADER"></a>4. GEOMETRY SHADER</h2><p>这个步骤对每个前面步骤组装的集合体都做一个处理。</p>
-<p>GEOMETRY SHADER默认可不设置，那么就会直接把ASSEMBLE后的SHAPE直接发给后面的步骤了。</p>
-<p>GEOMETRY SHADER的输入就是前面ASSEMBLE后的个几何基本体（点/线段/三角形)。其可做的操作就是添加任意类型的几何基本体到当前的图形中，并交给后面的步骤处理。</p>
-<h2 id="5-RASTERIZATION"><a href="#5-RASTERIZATION" class="headerlink" title="5. RASTERIZATION"></a>5. RASTERIZATION</h2><p>在这个步骤，OpenGL底层自动对所有几何按照(-1,-1,-1)到(1,1,1)这个范围进行裁剪。并将所有的基本集合体映射到光栅上，形成一个个片段（可以理解为一个个像素点）。这每一个片段都将在下一步骤进行处理。</p>
-<p>这每个片段都将包含在步骤1的VERTEX SHADER中输出的属性值。对于非顶点的图形位置，其属性值是其所在基本体各定点的属性值的线性插值。<br>比如三角形内部点的纹理坐标就是各顶点纹理坐标的插值。用户也可自定义一些属性，比如三角形各顶点的属性也可以就是其坐标，那么内部顶点的属性也就会处理成其真实坐标。</p>
-<h2 id="6-FRAGMENT-SHADER"><a href="#6-FRAGMENT-SHADER" class="headerlink" title="6. FRAGMENT SHADER"></a>6. FRAGMENT SHADER</h2><p>在这个步骤，对每个片段（可理解为像素点）进行处理，其输入就是VERTEX SHADER传来的属性。输出为一个4通道颜色信息。</p>
-<h2 id="7-TESETS-AND-BLENDING"><a href="#7-TESETS-AND-BLENDING" class="headerlink" title="7. TESETS AND BLENDING"></a>7. TESETS AND BLENDING</h2><p>根据深度等信息，将所有FRAGMENT混合成一张图像。</p>
-<blockquote>
-<p>Shader程序是由GLSL语言编写的子程序。这些子程序以字符串的形式传递给OpenGL的API，并由OpenGL的API进行编译、链接，并在三维渲染流程中被调用。Shader给予了程序员极大的自由度来操作三维渲染的过程。GLSL其实是在2004年才正式引入OpenGL 2.0的。具体可以参考<a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language" target="_blank" rel="external">维基百科</a>。</p>
-</blockquote>
+        <h2 id="终于开始学着写博客了"><a href="#终于开始学着写博客了" class="headerlink" title="终于开始学着写博客了"></a>终于开始学着写博客了</h2><p>为了能将每天在异域的风情记录下来，逼着自己开了一个博客，学习了基于github创建博客、基于Hexo做框架、学习<a href="http://www.cnblogs.com/hnrainll/p/3514637.html" target="_blank" rel="external">markdown</a>的语法，然后为了上传图片又学习了怎么用七牛的云存储，现在万事俱备，就等我每天出去逛逛或者学习、工作并将这些记录下来吧。All free ^_^。</p>
+<p>之后再有空时再看看怎么把<a href="http://www.embeddedjs.com/" target="_blank" rel="external">ejs</a>等等，看看怎么把这个模板完善一下。</p>
+<h2 id="第一天的琐事记录"><a href="#第一天的琐事记录" class="headerlink" title="第一天的琐事记录"></a>第一天的琐事记录</h2><p>说是第一天，其实是第二天了。13号下午到的Aix，中间飞机晚点改签到下午3点的航班。刚出飞机时感觉还行，阳光海滨，蓝天绿水。一张照片远不能表现出来这里的风景阿，终于出飞机了，得好好吸收一下这里的新鲜空气。<br><img src="http://7yusyv.com1.z0.glb.clouddn.com/airport_mars.jpg" alt="终于下飞机了"></p>
+<p>这里的第一天其实是14号了，也是法国巴士底日放假的第二天，满街的店都关了不少，即便如此，游客仍然熙熙攘攘好不热闹。<br>我现在住的地方在Aix的市政广场旁边，虽然有900欧，但是比酒店要便宜起码一半。略奢侈，但是比之前倪木一在马村也仅贵了200欧每月。<br>下图中右边的门就是我现在住处的大门了，据房东讲这建筑有一百年的历史了，里面的翻新就是刷刷墙，重新装修了厨房和浴室。这里墙有小半米厚，据说冬天时一点也不冷呢。现在夏天每天房子会被晒半天，但是屋内仍然是阴凉的，相比之下国内的商品房可能还达不到这样的质量和用料水准吧。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/myplace.jpg" alt="我的门"></p>
+<p>老旧的楼梯，森森的一下子就想到各种欧美电影里的场景。<br><img src="http://7yusyv.com1.z0.glb.clouddn.com/stairs.jpg" alt="楼梯"></p>
+<h2 id="吃饭"><a href="#吃饭" class="headerlink" title="吃饭"></a>吃饭</h2><p>早饭忘记拍了，第一天时差倒得很痛苦,由于是国庆日，晚上这里直到半夜2点才安静下去。早上4点多我就睡不着了，直接醒来去煮了方便面吃了起来。<br>吃完我得赶紧出门找吃的了，新鲜的蔬菜、水果、肉、米。但是转了半天，只买到了我熟悉的胡萝卜、西红柿、鸡蛋、樱桃。</p>
+<p>面对不多的食材，我这食神附体也做不出山珍海味阿。<br>我先吃点樱桃平复一下心情。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/cherry.jpg" alt="樱桃"></p>
+<p>之后我拿出平生所学，精心烹饪一道美味：</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/烹饪.jpeg" alt="烹饪"></p>
+<p>嗯，我的中饭就是这样了，挺好。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/breakfast0.jpg" alt="第一天的早饭"></p>
+<h2 id="一点点探索"><a href="#一点点探索" class="headerlink" title="一点点探索"></a>一点点探索</h2><p>吃完饭后，之后我就开始小小探索了一下小城，目标还是希望能买到米和肉。路上已经遇到一家肉店了，但是米，riz，到底在哪呢。我就不停地走啊，看啊，小镇还是有不少有意思的地方的。<br><img src="http://7yusyv.com1.z0.glb.clouddn.com/hotel.jpg" alt="小镇"><br><img src="http://7yusyv.com1.z0.glb.clouddn.com/streat1.jpg" alt="小镇"></p>
+<p>今天就到这里，明天见啦。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj8d4zlfo000btkg6p1m5e18m" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/14/2017-07-16hello-world/" data-id="cj8d4zlf50004tkg69w9a4bgk" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://theysp.github.io/2017/07/14/2017-07-16hello-world/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
 
     </footer>
   </div>
@@ -127,20 +130,15 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/07/25/2017-07-25-GUILIBRARY/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/07/15/2017-07-16Day2/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Récent</strong>
       <div class="article-nav-title">
         
-          立即模式（Immediate mode）界面
+          今天的目标是米和肉
         
       </div>
     </a>
   
-  
-    <a href="/2017/07/22/2017-07-22/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">人人人</div>
-    </a>
   
 </nav>
 
@@ -255,7 +253,7 @@
 <script>
   var disqus_shortname = 'theysp-github-io';
   
-  var disqus_url = 'http://theysp.github.io/2017/07/23/2017-07-23/';
+  var disqus_url = 'http://theysp.github.io/2017/07/14/2017-07-16hello-world/';
   
   (function(){
     var dsq = document.createElement('script');

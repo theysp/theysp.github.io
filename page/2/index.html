@@ -60,6 +60,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2017-8-14-Opengl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/14/2017-8-14-Opengl/" class="article-date">
+  <time datetime="2017-08-14T12:28:06.000Z" itemprop="datePublished">2017-08-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/14/2017-8-14-Opengl/">GLFW多上下文与多线程资源读取</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。</p>
+<p>由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。</p>
+<h2 id="底层Opengl的API支持"><a href="#底层Opengl的API支持" class="headerlink" title="底层Opengl的API支持"></a>底层Opengl的API支持</h2><p>Opengl是通过context间共享资源实现多线程加载的。虽然官方不太推荐，但是好歹给了一个方法。</p>
+<h2 id="GLFW封装的方法"><a href="#GLFW封装的方法" class="headerlink" title="GLFW封装的方法"></a>GLFW封装的方法</h2><p>但是我这从头学起的工程，都是基于GLFW编的，所以我就找了一圈，找到一个老司机的答案：</p>
+<p><a href="https://www.opengl.org/discussion_boards/showthread.php/184813-Creating-multiple-OpenGL-contexts-with-GLFW-on-different-threads" target="_blank" rel="external">一老司机的回答</a></p>
+<blockquote>
+<p>Make a second invisible window that has the main window as the parent (the last parameter is for list sharing)<br>E.g.: GLUtil::_loaderWindow = glfwCreateWindow(1, 1, “whatever”, nullptr, GLUtil::_mainWindow);<br>Create another thread and in its run()(or whatever) method call this: glfwMakeContextCurrent(GLUtil::_loaderWindow);</p>
+<p>If you are using GLEW, build GLEW with the GLEW_MX define and call init() in the second thread as well. Read up on GLEW_MX about multithreaded usage. I strongly recommend boost thread specific pointers for this.</p>
+<p>Remember to destroy the second window just like the main one. That’s it. I’ve been using this method for background resource loading for years and haven’t ran into any issues.</p>
+<p>Hope it helps.</p>
+</blockquote>
+<p>大意是直接用glfw通过与原上下文共享的方式创建新上下文即可，把新出现的窗口隐藏就行了。<br>然后主线程用主上下文，在资源读取线程中，将新的上下文设置为当前上下文即可。由于在创建时新的上下文使用了GLFWWindow作为最后一个参数，即与原上下文共享了列表（sharelist,一大堆显卡相关的东西），所以在使用新的上下文线程中可以进行shader编译、texture读取等等操作。</p>
+<p>好吧，老司机说这么多年都这么过来了，我决定听老司机的了。</p>
+<h2 id="需要注意的事项"><a href="#需要注意的事项" class="headerlink" title="需要注意的事项"></a>需要注意的事项</h2><ol>
+<li>OpenGL不允许在不同的context下共享顶点缓存（VAO）。<br>所以顶点缓存还需要在主线程中创建。<br>目前在线程中做的主要是将纹理的读取和处理放在非主线程中了。用c++11的std::thread非常方便，爱上新标准了。</li>
+<li>在Load线程结束时需要加一句glfwMakeContextCurrent(mainWindow);具体原因还需要再看一下。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cj8d4zlhu001ntkg683o3fwd4" class="article-share-link">Partager</a>
+      
+        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-2017-8-9-GLSL" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/08/10/2017-8-9-GLSL/" class="article-date">
@@ -97,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cj89y9if00014lsg6vkpj7h1m" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cj8d4zli3001utkg63v4add9a" class="article-share-link">Partager</a>
       
         <a href="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/#disqus_thread" class="article-comment-link">Commentaires</a>
       
@@ -161,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/" data-id="cj89y9ieu0010lsg6hh7onrih" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/" data-id="cj8d4zlhx001qtkg6eetynk7c" class="article-share-link">Partager</a>
       
         <a href="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/#disqus_thread" class="article-comment-link">Commentaires</a>
       
@@ -224,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cj89y9iek000ulsg6dorquh1r" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cj8d4zlho001jtkg6x6pgiz7b" class="article-share-link">Partager</a>
       
         <a href="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/#disqus_thread" class="article-comment-link">Commentaires</a>
       
@@ -291,7 +356,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/" data-id="cj89y9idh0006lsg6rfusoeza" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/" data-id="cj8d4zlfz000htkg68ty8o6wr" class="article-share-link">Partager</a>
       
         <a href="http://theysp.github.io/2017/07/26/2017-07-26-Cooking/#disqus_thread" class="article-comment-link">Commentaires</a>
       
@@ -362,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/" data-id="cj89y9ida0005lsg6jatvwjlx" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/" data-id="cj8d4zlfw000etkg6w0ll4syp" class="article-share-link">Partager</a>
       
         <a href="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/#disqus_thread" class="article-comment-link">Commentaires</a>
       
@@ -429,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj89y9id70003lsg6c9ijuked" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cj8d4zlfo000btkg6p1m5e18m" class="article-share-link">Partager</a>
       
         <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Commentaires</a>
       
@@ -487,7 +552,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/22/2017-07-22/" data-id="cj89y9ics0000lsg6teoz3vze" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/22/2017-07-22/" data-id="cj8d4zlff0006tkg6xzvbe63o" class="article-share-link">Partager</a>
       
         <a href="http://theysp.github.io/2017/07/22/2017-07-22/#disqus_thread" class="article-comment-link">Commentaires</a>
       
@@ -537,7 +602,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/19/2017-07-19/" data-id="cj89y9icz0001lsg63jldqxxa" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/19/2017-07-19/" data-id="cj8d4zlf70005tkg6begehki6" class="article-share-link">Partager</a>
       
         <a href="http://theysp.github.io/2017/07/19/2017-07-19/#disqus_thread" class="article-comment-link">Commentaires</a>
       
@@ -555,9 +620,9 @@
 
 
   
-    <article id="post-opengl-history" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-07-16-opengl-history" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/07/16/opengl-history/" class="article-date">
+    <a href="/2017/07/16/2017-07-16-opengl-history/" class="article-date">
   <time datetime="2017-07-16T13:14:32.000Z" itemprop="datePublished">2017-07-16</time>
 </a>
     
@@ -573,7 +638,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/16/opengl-history/">OpenGL 1 从OpenGL的角度看三维计算机图形库的发展</a>
+      <a class="article-title" href="/2017/07/16/2017-07-16-opengl-history/">OpenGL 1 从OpenGL的角度看三维计算机图形库的发展</a>
     </h1>
   
 
@@ -613,64 +678,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/16/opengl-history/" data-id="cj89y9ifz001llsg6d4wf2y2b" class="article-share-link">Partager</a>
+      <a data-url="http://theysp.github.io/2017/07/16/2017-07-16-opengl-history/" data-id="cj8d4zlej0000tkg6p0c2bnye" class="article-share-link">Partager</a>
       
-        <a href="http://theysp.github.io/2017/07/16/opengl-history/#disqus_thread" class="article-comment-link">Commentaires</a>
+        <a href="http://theysp.github.io/2017/07/16/2017-07-16-opengl-history/#disqus_thread" class="article-comment-link">Commentaires</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/历史/">历史</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-sadthing" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/16/sadthing/" class="article-date">
-  <time datetime="2017-07-16T07:29:38.000Z" itemprop="datePublished">2017-07-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/法国生活/">法国生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/16/sadthing/">不好的事情引发的一系列想法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>家里老人情况比较严重了，今天就不说其他事情了。回忆一下以往的印象和经历吧。</p>
-<p>想起来五六年前我还痴迷于摩托车之类的事务，虽然现在偶尔还会心动一下，但是更多的是对摩托车那恼人的轰隆声的厌恶了。感觉经过这几年我和之前那天不怕地不怕的少年渐行渐远，我已经不是我了？数年前，身在事外时，很多事情道不尽摸不透，总有朦胧的美感，但是俯身探到其脚下又发现那高不可攀的巨像面目狰狞浑身不是迷雾而是热辣辣的蒸汽喷发。无法驾驭的巨龙对普通人来说仿佛是地底岩浆塑成的恶魔，你不是乘着巨龙遨游云巅而是在旷野上被龙火炙烤。碧玉深潭是擅泳者的冒险天堂，确是泥牛葬身之处。那么问题来了，谁说你不行呢？也许只是内心的畏惧和表面的高墙的限制吧。</p>
-<p>过去几年对人在世上与他人的关系这件事情认识上有了深刻的转变，独行侠这条路也许只有天才才能走到头吧。一般人还是互相抱团取暖，才能得到善终。<br>虽然心有不甘，但是如果要免俗，对技能的锻炼所要付出的努力是相当大的。</p>
-<p>想法的改变对于老人来说真是很困难，在二三十年前，一块钱和现在的一块钱的意义改变得太大了。人心也被飞速发展的社会生产力改变得太多了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://theysp.github.io/2017/07/16/sadthing/" data-id="cj89y9ig7001olsg6wsgjyvzp" class="article-share-link">Partager</a>
-      
-        <a href="http://theysp.github.io/2017/07/16/sadthing/#disqus_thread" class="article-comment-link">Commentaires</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li></ul>
 
     </footer>
   </div>
@@ -738,6 +751,10 @@
       <ul>
         
           <li>
+            <a href="/2017/10/04/2017-10-04-something-fun/">实时剂量计算</a>
+          </li>
+        
+          <li>
             <a href="/2017/10/02/2017-10-02-leetcode-contest-52/">身在法国凌晨起不来只能之后慢慢做题解馋的leetcode竞赛</a>
           </li>
         
@@ -751,10 +768,6 @@
         
           <li>
             <a href="/2017/09/22/2017-09-22-Students-T-test/">学生t检验，Student&#39;s T Test</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/21/2017-09-21-leetcode-trick-problem/">LeetCode上一道陷阱题</a>
           </li>
         
       </ul>
