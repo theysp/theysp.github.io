@@ -209,22 +209,25 @@
                             <th></th>
                         </tr>
                         <tr>
-                            <td><p >输入月薪(1~1亿)：</p> </td>
+                            <td>输入月薪(1~1亿)：</td>
                             <td colSpan="2"><InputNum ref="Salary" limit_up={1e8} limit_down={1} value="10000" changeValue={val=>this.changeSalary(val)}/></td>
                         </tr>
                         <tr>
-                            <td> <p align="right">输入五险一金基准月薪(1~月薪)：</p> </td>
+                            <td> 输入五险一金基准月薪(1~月薪)： </td>
                             <td colSpan="2"><InputNum ref="BaseSalary" limit_up={10000} limit_down={1} value="10000"/></td>
                             {console.log("output base salary ")}
                         </tr>
                         <tr>
-                            <td> <p align="right">输入月薪数量(12~1000)：</p> </td>
+                            <td> 输入月薪数量(12~1000)： </td>
                             <td colSpan="2"><InputNum ref="SalaryNumber" limit_up={10000} limit_down={12} value="15"/></td>
                         </tr>
                         <tr>
+                            <td colSpan="3"> </td>
+                        </tr>
+                        <tr>
                             <td></td>
-                            <td><p align="center">个人比例 %</p></td>
-                            <td><p align="center">单位比例 %</p></td>
+                            <td style={{align:"center"}}>个人比例 %</td>
+                            <td>单位比例 %</td>
                         </tr>
                         <tr>
                             <td>养老保险</td>
