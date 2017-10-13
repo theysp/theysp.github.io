@@ -5,6 +5,11 @@
     <script src="../build/react.js"></script>
     <script src="../build/react-dom.js"></script>
     <script src="../build/browser.min.js"></script>
+    <style>
+    table.salarycalculator {width: 100%;font-size: 4vw;}
+    button.calculatebutton {background-color: #678f8d;color: #ffffff; border-style:none ;width: 100%; font-size: 4vw}
+    input { width: 100%;font-size:4vw}
+    </style>
   </head>
   <body>
     <div id="example"></div>
@@ -194,7 +199,7 @@
             render: function(){
                 return (
                     <div>
-                    <table style={{textAlign:"center"}}>
+                    <table className="salarycalculator">
                     <tbody> 
                         <tr>
                             <th></th>
@@ -251,10 +256,10 @@
                         </tr>
                         <tr>
                             <td>扣除数（元）</td>
-                            <td colSpan='2' style={{margin: 0, padding: 0}}><InputNum ref="IncomeTaxDiscount" limit_up={1e8} limit_down={1} value="3500"/></td>
+                            <td colSpan='2' ><InputNum ref="IncomeTaxDiscount" limit_up={1e8} limit_down={1} value="3500"/></td>
                         </tr>
                         <tr>
-                            <td colSpan='3' style={{textAlign:"right", margin: 0, padding: 0}}><input type="button" value="计算收入" onClick={this.handleClick}/></td>
+                            <td colSpan='3' ><button className="calculatebutton" type="button" onClick={this.handleClick}>计算收入</button></td>
                         </tr>
                         <tr><td colSpan='3'>公积金：{this.houseComm}</td></tr>
                         <tr><td colSpan='3'>医疗保险：{this.medInssure}</td></tr>
