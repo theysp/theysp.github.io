@@ -19533,7 +19533,7 @@ var SalaryDiagram = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { style: { height: "100vh" } },
+                { style: { height: "50vh" } },
                 _react2.default.createElement(_reactChartjs.Bar, { ref: 'myBarSalary',
                     data: this.state.data,
                     options: { maintainAspectRatio: false },
@@ -19852,12 +19852,12 @@ var SalaryCalculator = function (_React$Component) {
                         _react2.default.createElement('span', { className: 'label2' }),
                         _react2.default.createElement(
                             'span',
-                            { className: 'label2', style: { align: "center" } },
+                            { className: 'label3', style: { align: "center" } },
                             '\u4E2A\u4EBA\u6BD4\u4F8B %'
                         ),
                         _react2.default.createElement(
                             'span',
-                            { className: 'label2' },
+                            { className: 'label3', style: { align: "center" } },
                             '\u5355\u4F4D\u6BD4\u4F8B %'
                         )
                     ),
@@ -32714,7 +32714,7 @@ exports = module.exports = __webpack_require__(229)(undefined);
 
 
 // module
-exports.push([module.i, "table.salarycalculator {width: 100%;font-size: 4vw;}    \r\nbutton.lineButton {background-color: #678f8d;color: #ffffff; border-style:none ;width: 100%; font-size: 8vw; padding:0}\r\ntd {margin:0; padding:0;padding-left:1vw;padding-right:1vw}\r\ninput {width:100%; font-size:4vw;}\r\nspan {display:inline-block;}\r\nspan.input {width:30%;}\r\nspan.label1 {width: 68%;padding-left:1%}\r\nspan.label2 {width: 38%;padding-left:1%}\r\nli {width:100%;font-size: 3vw; color:rgb(38, 29, 116)}\r\n", ""]);
+exports.push([module.i, "input {width:100%; font-size:4vw;}\r\nspan {display:inline-block;}\r\nspan.input {width:30%;}\r\nspan.label1 {width: 68%;padding-left:1%}\r\nspan.label2 {width: 38%;padding-left:1%}\r\nspan.label3 {width: 30%;}\r\nspan.lineButton{width:100%;padding-top:1%;padding-bottom: 1%;}\r\nbutton.calculatebutton{width:100%;background-color: #73cf5b;color: #ffffff; border-style:none ;width: 100%; font-size: 8vw; padding:0}\r\nli {width:100%;font-size: 3vw; color:rgb(38, 29, 116)}\r\n", ""]);
 
 // exports
 
