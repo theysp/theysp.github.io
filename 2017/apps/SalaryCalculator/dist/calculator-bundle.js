@@ -19800,224 +19800,205 @@ var SalaryCalculator = function (_React$Component) {
                 'div',
                 null,
                 _react2.default.createElement(
-                    'table',
-                    { className: 'salarycalculator' },
+                    'div',
+                    null,
                     _react2.default.createElement(
-                        'tbody',
+                        'div',
                         null,
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement('th', null),
-                            _react2.default.createElement('th', null),
-                            _react2.default.createElement('th', null)
+                            'span',
+                            { className: 'label1' },
+                            '\u8F93\u5165\u6708\u85AA(1~1\u4EBF)\uFF1A'
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { colSpan: '2' },
-                                '\u8F93\u5165\u6708\u85AA(1~1\u4EBF)\uFF1A'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'Salary', limit_up: 1e8, limit_down: 1, value: '10000', changeValue: this.changeSalary.bind(this) })
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'Salary', limit_up: 1e8, limit_down: 1, value: '10000', changeValue: this.changeSalary.bind(this) })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label1' },
+                            ' \u8F93\u5165\u4E94\u9669\u4E00\u91D1\u57FA\u51C6\u6708\u85AA(1~\u6708\u85AA)\uFF1A '
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { colSpan: '2' },
-                                ' \u8F93\u5165\u4E94\u9669\u4E00\u91D1\u57FA\u51C6\u6708\u85AA(1~\u6708\u85AA)\uFF1A '
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'BaseSalary', limit_up: 10000, limit_down: 1, value: '10000' })
-                            ),
-                            console.log("output base salary ")
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'BaseSalary', limit_up: 10000, limit_down: 1, value: '10000' })
+                        ),
+                        console.log("output base salary ")
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label1' },
+                            ' \u8F93\u5165\u6708\u85AA\u6570\u91CF(12~1000)\uFF1A '
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { colSpan: '2' },
-                                ' \u8F93\u5165\u6708\u85AA\u6570\u91CF(12~1000)\uFF1A '
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'SalaryNumber', limit_up: 10000, limit_down: 12, value: '15' })
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'SalaryNumber', limit_up: 10000, limit_down: 12, value: '15' })
+                        )
+                    ),
+                    _react2.default.createElement('div', null),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement('span', { className: 'label2' }),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label2', style: { align: "center" } },
+                            '\u4E2A\u4EBA\u6BD4\u4F8B %'
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { colSpan: '3' },
-                                ' '
-                            )
+                            'span',
+                            { className: 'label2' },
+                            '\u5355\u4F4D\u6BD4\u4F8B %'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label2' },
+                            '\u517B\u8001\u4FDD\u9669'
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement('td', null),
-                            _react2.default.createElement(
-                                'td',
-                                { style: { align: "center" } },
-                                '\u4E2A\u4EBA\u6BD4\u4F8B %'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                '\u5355\u4F4D\u6BD4\u4F8B %'
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'OldInssureRate0', limit_up: 100, limit_down: 0, value: '8' })
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { 'class': 'inputlabel' },
-                                '\u517B\u8001\u4FDD\u9669'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'OldInssureRate0', limit_up: 100, limit_down: 0, value: '8' })
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'OldInssureRate1', limit_up: 100, limit_down: 0, value: '20' })
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'OldInssureRate1', limit_up: 100, limit_down: 0, value: '20' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label2' },
+                            '\u533B\u7597\u4FDD\u9669'
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { 'class': 'inputlabel' },
-                                '\u533B\u7597\u4FDD\u9669'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'MedInssureRate0', limit_up: 100, limit_down: 0, value: '2' })
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'MedInssureRate1', limit_up: 100, limit_down: 0, value: '11' })
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'MedInssureRate0', limit_up: 100, limit_down: 0, value: '2' })
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { 'class': 'inputlabel' },
-                                '\u5931\u4E1A\u4FDD\u9669'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'JobInssureRate0', limit_up: 100, limit_down: 0, value: '0.5' })
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'JobInssureRate1', limit_up: 100, limit_down: 0, value: '1.5' })
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'MedInssureRate1', limit_up: 100, limit_down: 0, value: '11' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label2' },
+                            '\u5931\u4E1A\u4FDD\u9669'
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { className: 'inputlabel' },
-                                '\u4F4F\u623F\u516C\u79EF\u91D1'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'HouseCommRate0', limit_up: 100, limit_down: 0, value: '12' })
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'HouseCommRate1', limit_up: 100, limit_down: 0, value: '12' })
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'JobInssureRate0', limit_up: 100, limit_down: 0, value: '0.5' })
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { className: 'inputlabel' },
-                                '\u5DE5\u4F24\u4FDD\u9669'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'WorkInjureInssureRate0', limit_up: 100, limit_down: 0, value: '0' })
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'WorkInjureInssureRate1', limit_up: 100, limit_down: 0, value: '0.5' })
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'JobInssureRate1', limit_up: 100, limit_down: 0, value: '1.5' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label2' },
+                            '\u4F4F\u623F\u516C\u79EF\u91D1'
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { className: 'inputlabel' },
-                                '\u751F\u80B2\u4FDD\u9669'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'ReproductionInssureRate0', limit_up: 100, limit_down: 0, value: '0' })
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                null,
-                                _react2.default.createElement(InputNum, { ref: 'ReproductionInssureRate1', limit_up: 100, limit_down: 0, value: '1' })
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'HouseCommRate0', limit_up: 100, limit_down: 0, value: '12' })
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
-                            _react2.default.createElement(
-                                'td',
-                                { className: 'inputlabel' },
-                                '\u6263\u9664\u6570\uFF08\u5143\uFF09'
-                            ),
-                            _react2.default.createElement(
-                                'td',
-                                { colSpan: '2' },
-                                _react2.default.createElement(InputNum, { ref: 'IncomeTaxDiscount', limit_up: 1e8, limit_down: 1, value: '3500' })
-                            )
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'HouseCommRate1', limit_up: 100, limit_down: 0, value: '12' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label2' },
+                            '\u5DE5\u4F24\u4FDD\u9669'
                         ),
                         _react2.default.createElement(
-                            'tr',
-                            null,
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'WorkInjureInssureRate0', limit_up: 100, limit_down: 0, value: '0' })
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'WorkInjureInssureRate1', limit_up: 100, limit_down: 0, value: '0.5' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label2' },
+                            '\u751F\u80B2\u4FDD\u9669'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'ReproductionInssureRate0', limit_up: 100, limit_down: 0, value: '0' })
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'ReproductionInssureRate1', limit_up: 100, limit_down: 0, value: '1' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'label1' },
+                            '\u6263\u9664\u6570\uFF08\u5143\uFF09'
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'input' },
+                            _react2.default.createElement(InputNum, { ref: 'IncomeTaxDiscount', limit_up: 1e8, limit_down: 1, value: '3500' })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'lineButton' },
                             _react2.default.createElement(
-                                'td',
-                                { colSpan: '3' },
-                                _react2.default.createElement(
-                                    'button',
-                                    { className: 'calculatebutton', type: 'button', onClick: this.handleClick.bind(this) },
-                                    '\u8BA1\u7B97\u6536\u5165'
-                                )
+                                'button',
+                                { className: 'calculatebutton', type: 'button', onClick: this.handleClick.bind(this) },
+                                '\u8BA1\u7B97\u6536\u5165'
                             )
                         )
                     )
@@ -32733,7 +32714,7 @@ exports = module.exports = __webpack_require__(229)(undefined);
 
 
 // module
-exports.push([module.i, "table.salarycalculator {width: 100%;font-size: 4vw;}    \r\nbutton.calculatebutton {background-color: #678f8d;color: #ffffff; border-style:none ;width: 100%; font-size: 8vw; padding:0}\r\ntd {margin:0; padding:0;padding-left:1vw;padding-right:1vw}\r\ntd.inputlabel {width:30%}\r\ninput { width: 100%;font-size:4vw}\r\nli {width:100%;font-size: 3vw; color:rgb(38, 29, 116)}\r\n", ""]);
+exports.push([module.i, "table.salarycalculator {width: 100%;font-size: 4vw;}    \r\nbutton.lineButton {background-color: #678f8d;color: #ffffff; border-style:none ;width: 100%; font-size: 8vw; padding:0}\r\ntd {margin:0; padding:0;padding-left:1vw;padding-right:1vw}\r\ninput {width:100%; font-size:4vw;}\r\nspan {display:inline-block;}\r\nspan.input {width:30%;}\r\nspan.label1 {width: 68%;padding-left:1%}\r\nspan.label2 {width: 38%;padding-left:1%}\r\nli {width:100%;font-size: 3vw; color:rgb(38, 29, 116)}\r\n", ""]);
 
 // exports
 
