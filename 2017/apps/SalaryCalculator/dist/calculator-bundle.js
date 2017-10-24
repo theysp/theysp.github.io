@@ -32714,7 +32714,7 @@ exports = module.exports = __webpack_require__(229)(undefined);
 
 
 // module
-exports.push([module.i, "input {width:100%; font-size:4vw;}\r\nspan {display:inline-block;}\r\nspan.input {width:30%;}\r\nspan.label1 {width: 68%;padding-left:1%; font-size:4vw;}\r\nspan.label2 {width: 38%;padding-left:1%; font-size:4vw;}\r\nspan.label3 {width: 30%; font-size:4vw;}\r\nspan.lineButton{width:100%;padding-top:1%;padding-bottom: 1%;padding-right:0;padding-left:0;}\r\nbutton.calculatebutton{width:100%;background-color: #73cf5b;color: #ffffff; border-style:none ;width: 100%; font-size: 8vw; padding:0}\r\nli {width:100%;font-size: 3vw; color:rgb(38, 29, 116)}\r\n", ""]);
+exports.push([module.i, "input {width:100%; font-size:4vw;box-sizing: border-box;padding:0}\r\nspan {display:inline-block;}\r\nspan.input {width:30%;}\r\nspan.label1 {width: 68%;padding-left:1%; font-size:4vw;}\r\nspan.label2 {width: 38%;padding-left:1%; font-size:4vw;}\r\nspan.label3 {width: 30%; font-size:4vw;}\r\nspan.lineButton{width:100%;padding-top:1%;padding-bottom: 1%;padding-right:0;padding-left:0;}\r\nbutton.calculatebutton{width:100%;background-color: #73cf5b;color: #ffffff; border-style:none ;width: 100%; font-size: 8vw; padding:0}\r\nli {width:100%;font-size: 3vw; color:rgb(38, 29, 116)}\r\n", ""]);
 
 // exports
 
