@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- -->
+<head>
+  <meta charset="utf-8">
+  
+  <title>YSP AND HLL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="YSP AND HLL">
+<meta property="og:url" content="http://theysp.github.io/page/2/index.html">
+<meta property="og:site_name" content="YSP AND HLL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YSP AND HLL">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YSP AND HLL</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-2017-09-21-leetcode-trick-problem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/21/2017-09-21-leetcode-trick-problem/" class="article-date">
+  <time datetime="2017-09-21T08:44:14.000Z" itemprop="datePublished">2017-09-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/21/2017-09-21-leetcode-trick-problem/">LeetCode上一道陷阱题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这样一道题：Search in Rotated Sorted Array II<br>这道题咋看上去可以有O(log(n)的解法，但是实际上只有O(n)的解法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/" data-id="cjihlvn070015jku42wusnhyw" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/09/21/2017-09-21-leetcode-trick-problem/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-09-20-Opengl-errors" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/20/2017-09-20-Opengl-errors/" class="article-date">
+  <time datetime="2017-09-20T02:30:26.000Z" itemprop="datePublished">2017-09-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/20/2017-09-20-Opengl-errors/">实践路上遍布荆棘-Opengl常见问题记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>说多了都是泪啊。<br>三维渲染程序编译通过却总是看不见图像，看见图像了颜色又不对，出Opengl标准的想象中的boss们的小人被自己在心里默默扎了无数遍。。。<br>之后常见的错误都会记录在这里。</p>
+<h2 id="初步诊断"><a href="#初步诊断" class="headerlink" title="初步诊断"></a>初步诊断</h2><p>这里记录一下常见的问题可能的原因，可能的解决方法：</p>
+<ol>
+<li><p>渲染一帧过程中切换shader不起作用：八成是新shader未通过编译，导致该shader无效，所以切换到该shader的命令也无效了。</p>
+</li>
+<li><p>视野内无物体：有可能是该帧初始化时没有清除缓存，也有可能是视角的转换矩阵设置错误。</p>
+</li>
+<li><p>渲染到屏幕缓存的过程中插入一段渲染到内存缓存的命令（可能是用于生成纹理），然后后面的渲染就看不见了：渲染到缓存时，一般会调整视窗范围，在后续的渲染到屏幕缓存命令前需要重置视窗为屏幕整体。</p>
+</li>
+</ol>
+<h2 id="Shader的uniform变量一定要初始化"><a href="#Shader的uniform变量一定要初始化" class="headerlink" title="Shader的uniform变量一定要初始化"></a>Shader的uniform变量一定要初始化</h2><p>不然你永远得不到你想要的东西。<br>比如顶点shader中，你加一个modelspacetrans的矩阵吧，这个矩阵如果在程序中不初始化（gluniformxxx)，那么等待你的可能是未知的随机矩阵。</p>
+<h2 id="Shader中，函数返回vec一定要显示定义vec"><a href="#Shader中，函数返回vec一定要显示定义vec" class="headerlink" title="Shader中，函数返回vec一定要显示定义vec"></a>Shader中，函数返回vec一定要显示定义vec</h2><p>比如下面：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">vec3 <span class="title">FloatToRGBData</span><span class="params">(<span class="keyword">float</span> attenuationRate)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmpI = floatBitsToInt(attenuationRate);</span><br><span class="line">	tmpI = floatBitsToInt(<span class="number">0.0342</span>);</span><br><span class="line">	<span class="keyword">int</span> ir = (<span class="number">0xff000000</span> &amp; tmpI)&gt;&gt;<span class="number">24</span>; <span class="comment">//exp part</span></span><br><span class="line">	<span class="keyword">int</span> ig = (<span class="number">0xff0000</span> &amp; tmpI)&gt;&gt;<span class="number">16</span>;</span><br><span class="line">	<span class="keyword">int</span> ib = (<span class="number">0xff00</span> &amp; tmpI)&gt;&gt;<span class="number">8</span>;</span><br><span class="line">	<span class="keyword">float</span> r = ir/<span class="number">256.0</span>;</span><br><span class="line">	<span class="keyword">float</span> g = ig/<span class="number">256.0</span>;</span><br><span class="line">	<span class="keyword">float</span> b = ib/<span class="number">256.0</span>;</span><br><span class="line">	<span class="keyword">return</span> vec3(r,g,b);  <span class="comment">//正确写法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">vec3 <span class="title">FloatToRGBData</span><span class="params">(<span class="keyword">float</span> attenuationRate)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tmpI = floatBitsToInt(attenuationRate);</span><br><span class="line">	tmpI = floatBitsToInt(<span class="number">0.0342</span>);</span><br><span class="line">	<span class="keyword">int</span> ir = (<span class="number">0xff000000</span> &amp; tmpI)&gt;&gt;<span class="number">24</span>; <span class="comment">//exp part</span></span><br><span class="line">	<span class="keyword">int</span> ig = (<span class="number">0xff0000</span> &amp; tmpI)&gt;&gt;<span class="number">16</span>;</span><br><span class="line">	<span class="keyword">int</span> ib = (<span class="number">0xff00</span> &amp; tmpI)&gt;&gt;<span class="number">8</span>;</span><br><span class="line">	<span class="keyword">float</span> r = ir/<span class="number">256.0</span>;</span><br><span class="line">	<span class="keyword">float</span> g = ig/<span class="number">256.0</span>;</span><br><span class="line">	<span class="keyword">float</span> b = ib/<span class="number">256.0</span>;</span><br><span class="line">	<span class="keyword">return</span> (r,g,b);  <span class="comment">//错误写法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="渲染每个场景前，一定也要初始化要渲染的Buffer"><a href="#渲染每个场景前，一定也要初始化要渲染的Buffer" class="headerlink" title="渲染每个场景前，一定也要初始化要渲染的Buffer"></a>渲染每个场景前，一定也要初始化要渲染的Buffer</h2><p>不然会出现这样的情况，比如Buffer里的深度信息都是零，那么你什么也渲染不上去，或者出现各种破烂哦。<br>所以两个函数要牢记心间：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glClearColor</span><span class="params">(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>)</span></span>; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">glClear</span><span class="params">(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)</span></span>;</span><br></pre></td></tr></table></figure>
+<h2 id="勤输出出错信息，勤观察出错信息"><a href="#勤输出出错信息，勤观察出错信息" class="headerlink" title="勤输出出错信息，勤观察出错信息"></a>勤输出出错信息，勤观察出错信息</h2><p>opengl提供了一些用于出错信息输出的接口。</p>
+<ol>
+<li>一个回调函数，opengl会在所有出错的时候调用这个回调函数</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在初始化时添加回调函数</span></span><br><span class="line">glfwSetErrorCallback(gl_error_callback);</span><br><span class="line"><span class="comment">//需要自行实现的回调函数本体</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">gl_error_callback</span><span class="params">(<span class="keyword">int</span> code, <span class="keyword">const</span> <span class="keyword">char</span>* info)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; info &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>第二个回调函数，用于在Debug时输出详细信息</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在初始化时添加回调函数</span></span><br><span class="line">glDebugMessageCallback(glDebugOutput, <span class="literal">nullptr</span>);</span><br><span class="line"><span class="comment">//启用debug信息</span></span><br><span class="line">glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, <span class="number">0</span>, <span class="literal">nullptr</span>, GL_TRUE);</span><br><span class="line"><span class="comment">//需要自行实现的回调函数本体</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> APIENTRY <span class="title">glDebugOutput</span><span class="params">(GLenum source,</span></span></span><br><span class="line"><span class="function"><span class="params">	GLenum type,</span></span></span><br><span class="line"><span class="function"><span class="params">	GLuint id,</span></span></span><br><span class="line"><span class="function"><span class="params">	GLenum severity,</span></span></span><br><span class="line"><span class="function"><span class="params">	GLsizei length,</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> GLchar *message,</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">const</span> <span class="keyword">void</span> *userParam)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// ignore non-significant error/warning codes</span></span><br><span class="line">	<span class="keyword">if</span> (id == <span class="number">131169</span> || id == <span class="number">131185</span> || id == <span class="number">131218</span> || id == <span class="number">131204</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"---------------"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Debug message ("</span> &lt;&lt; id &lt;&lt; <span class="string">"): "</span> &lt;&lt; message &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">switch</span> (source)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_API_ARB:             <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: API"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB:   <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Window System"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_SHADER_COMPILER_ARB: <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Shader Compiler"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_THIRD_PARTY_ARB:     <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Third Party"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_APPLICATION_ARB:     <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Application"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SOURCE_OTHER_ARB:           <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Source: Other"</span>; <span class="keyword">break</span>;</span><br><span class="line">	&#125; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">switch</span> (type)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_ERROR_ARB:               <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Error"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB: <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Deprecated Behaviour"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB:  <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Undefined Behaviour"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_PORTABILITY_ARB:         <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Portability"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_PERFORMANCE_ARB:         <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Performance"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_TYPE_OTHER_ARB:               <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Type: Other"</span>; <span class="keyword">break</span>;</span><br><span class="line">	&#125; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">switch</span> (severity)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SEVERITY_HIGH:         <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Severity: high"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SEVERITY_MEDIUM:       <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Severity: medium"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SEVERITY_LOW:          <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Severity: low"</span>; <span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> GL_DEBUG_SEVERITY_NOTIFICATION: <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Severity: notification"</span>; <span class="keyword">break</span>;</span><br><span class="line">	&#125; <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>可以自己编写一个报错信息检查函数，可插入代码的任意位置，报告当前位置最后一个错误</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">GLenum <span class="title">glCheckError_</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *file, <span class="keyword">int</span> line)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	GLenum errorCode;</span><br><span class="line">	<span class="keyword">while</span> ((errorCode = glGetError()) != GL_NO_ERROR)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">std</span>::<span class="built_in">string</span> error;</span><br><span class="line">		<span class="keyword">switch</span> (errorCode)</span><br><span class="line">		&#123;</span><br><span class="line">		<span class="keyword">case</span> GL_INVALID_ENUM:                  error = <span class="string">"INVALID_ENUM"</span>; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> GL_INVALID_VALUE:                 error = <span class="string">"INVALID_VALUE"</span>; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> GL_INVALID_OPERATION:             error = <span class="string">"INVALID_OPERATION"</span>; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> GL_OUT_OF_MEMORY:                 error = <span class="string">"OUT_OF_MEMORY"</span>; <span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> GL_INVALID_FRAMEBUFFER_OPERATION: error = <span class="string">"INVALID_FRAMEBUFFER_OPERATION"</span>; <span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(error.size()&gt;<span class="number">0</span>)</span><br><span class="line">			<span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; error &lt;&lt; <span class="string">" | "</span> &lt;&lt; file &lt;&lt; <span class="string">" ("</span> &lt;&lt; line &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> errorCode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/" data-id="cjihlvn02000zjku4isprqiy5" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/09/20/2017-09-20-Opengl-errors/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-10-18-anli-freemind" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/20/2017-10-18-anli-freemind/" class="article-date">
+  <time datetime="2017-09-20T02:30:26.000Z" itemprop="datePublished">2017-09-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/20/2017-10-18-anli-freemind/">脑图软件推荐</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>脑图对信息的整理非常有帮助。比如之前做ITER那个项目一个人写程序时，经常在界面的地方忘记了自己写的数据处理的模块的API，经常需要翻过来翻过去看代码。可以用脑图的方式把程序的层次结构整理出来，一方面整理的过程有助于找到设计上逻辑不通的地方，另一方面便于之后的查询。若开始接触新的模块或做一些事情的时候，也可以这样整理一下。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/09/20/2017-10-18-anli-freemind/" data-id="cjihlvn0h001gjku40tlft3mp" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/09/20/2017-10-18-anli-freemind/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/脑图/">脑图</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-09-07-nice" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/07/2017-09-07-nice/" class="article-date">
+  <time datetime="2017-09-07T12:30:05.000Z" itemprop="datePublished">2017-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/“法国生活/">“法国生活"</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/07/2017-09-07-nice/">蔚蓝海岸，富人口岸：尼斯-摩纳哥游记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>其实这趟出来最主要的目的是去摩纳哥看看蒙特卡罗赌场。这个赌场就是当年蒙特卡罗方法的起源。汽车从艾克斯到尼斯需要3小时，而在尼斯车站直接就有去摩纳哥的公交。</p>
+<p>下面跟着我一起经历这两天一夜的旅程吧。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/001early_depart.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/002early_depart.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/003early_depart.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/004tugh_waiting.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/005no_waiting_direct_monaco.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/006no_waiting_monaco2.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/007_sea_besides_road.jpg" alt=""></p>
+<p>摩纳哥在印象中就是富豪们的销金场，眼见的事实也确实如此。赌场虽号称是欧洲最大，但是看起来却不甚宏伟。黑底烫金的门脸，西装革履的门卫，嗯，多少还是有些派头的，那就合影一二吧。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/008arrivemonaco_monte_carlo_casino.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/009inside_casino.jpg" alt=""></p>
+<p>在这里的街上，豪车是最稀松平常的了，BBA已然是平民车了。等等，这也不是普通的奔驰啊，爆炸的排气声浪也在表明其AMG的身份。<br>在赌场门口转了转，绕过巴黎饭店后，就来到了海边的高台。下面是接天的碧蓝海面，以及停满豪华游艇的海港。和马赛那挤满港口的渔船不同，这里都是带泳池，有工人忙着维护的游艇。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/010yachts.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/011yachts2.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/012yachts3.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/013yachts4.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/014yacht5.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/015monte_carlo.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/017unknown palace.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/018monte_carlo_casino.jpg" alt=""></p>
+<p>这是著名的巴黎饭店，曾经topgear有一集是三个人选一辆车，看谁的车能不被从门口开走。哈哈。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/019hotel_paris.jpg" alt=""></p>
+<p>这门口一般都是停着这些价值不菲的豪车的。三个人最后是找了一辆根本没人会开的20世纪初的老爷车来放这的。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/020before_hotel_paris.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/021before_hotel_paris2.jpg" alt=""></p>
+<p>海风宜人，风景更宜人哦。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/022theseaandtheroof.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/023theseaandthesky.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/024team_cook.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/025rollingcar.jpg" alt=""></p>
+<p>青年旅馆的电梯，因为在二楼，我也懒得坐这玩意儿了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/026younghotel2.jpg" alt=""></p>
+<p>青年旅馆守则，嗯，与人为善。但是我给忘记了我晚上会打呼，估计给几位室友添麻烦了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/026younghotel.jpg" alt=""></p>
+<p>Allo Allo，哈哈，印度人的发音。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/027alloallo.jpg" alt=""></p>
+<p>早上预定要去夏加尔博物馆的，时间未到，我便被这尖顶吸引来了。远观尚可，无奈前面停了好多车，只好照上半身啦。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/028unknownchurch.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/028unknownchurch2.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/029twistedchurch.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/030thehole.jpg" alt=""></p>
+<p>在夏加尔博物馆，我仿佛自己给自己上了一趟美术课。<br>刚进馆时，咋一看，顿时有一种小学生蜡笔画既视感。我一边拿着导游器听着，一边准备走起。但是转身我立马被这副“摩西在燃烧的树枝前”（下图）给迷住了。恍惚之间，画上的海面仿佛有波光流转，画上密密麻麻的人物仿佛就站在了纸面上。我这才恍然大悟，这画简直是有魔力一般。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/031-Chagall.jpg" alt=""></p>
+<p>如果不明白我为什么说蜡笔画，可以看这一幅诺亚方舟。但是真正在现场仿佛会觉得画上的人物是雕刻出来的，整幅画一种跃然而起的感觉。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/032-Chagall2.jpg" alt=""></p>
+<p>当然，后面他献给妻子的那一圈画实在是欣赏不能，也许是没静下心来吧。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/033oldtree.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/034entryofMatisse.jpg" alt=""></p>
+<p>在马蒂斯博物馆，终于能连玻璃也不隔着地近看大师地画作了。虽不比卢浮宫的惊人数量的画作，但是屏息之间，仿佛能看到画家如何一笔一笔抹出这些作品的，也是很难得。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/035Matisse.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/036Matisse.jpg" alt=""></p>
+<p>可以用刷毛自然勾勒出细密的书页。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/037Matisse.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/038Matisse.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/039Matisse.jpg" alt=""></p>
+<p>也可以把色彩的魅力发挥到极致。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/040Matisse.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/041Matisse.jpg" alt=""></p>
+<p>哈</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/042Matisse.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/043Matisse.jpg" alt=""></p>
+<p>有种扫地僧的感觉。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/044Matisse.jpg" alt=""></p>
+<p>之后就是现代艺术博物馆了，略不能理解。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/045modern.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/046modern.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/047modern.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/048modern.jpg" alt=""></p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/049modern.jpg" alt=""></p>
+<p>怎么说呢，还是有点累的。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/050mywalk.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/09/07/2017-09-07-nice/" data-id="cjihlvmzt000ojku44tf739re" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/09/07/2017-09-07-nice/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-08-26-opengl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/26/2017-08-26-opengl/" class="article-date">
+  <time datetime="2017-08-26T10:14:16.000Z" itemprop="datePublished">2017-08-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/26/2017-08-26-opengl/">深度测试，阴影和深度剥离</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>下图是裸阴影（后期可通过模糊处理，得到一般的阴影，具体可参考<a href="www.learnopengl.com">著名opengl在线教程</a>）</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/shadow1.png" alt=""></p>
+<p>下面是深度图</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/depth_map.png" alt=""></p>
+<p>基于深度缓存，更进一步是深度剥离(Depth peeling)方法，其原理就是从光源出发多次渲染后获得一正一反一正一反的偶数组深度缓存，在真正的图形渲染时，基于多层深度缓存，对每个像素计算其前面挡住光源的几何体的厚度。</p>
+<p>深度剥离的难点在于边缘位置的处理，很容易出现异常点。需要容忍一定的误差，作模糊处理。</p>
+<p>作为一个应用，可获得半透明物体的投影强度。如下图所示。<br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-09/depthpeeli_clip.gif" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/26/2017-08-26-opengl/" data-id="cjihlvmzz000wjku4hnx7065w" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/08/26/2017-08-26-opengl/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-08-19" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/19/2017-08-19/" class="article-date">
+  <time datetime="2017-08-19T13:36:33.000Z" itemprop="datePublished">2017-08-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/法国生活/">法国生活</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/19/2017-08-19/">忙碌又闲适的8月第三周-马赛-电影-项目</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="马赛之行"><a href="#马赛之行" class="headerlink" title="马赛之行"></a>马赛之行</h2><p>成hao是法国留学硕士毕业后在ITER找到工作的，他妻子檖同学是马赛大学的毕业生，两人都在法国工作了，眼看应该也要在法国定居了。<br>上周六他们计划去马赛拿定制的结婚戒指，就把我给带上了。<br>终于，我要走出艾克斯小镇，踏上法国的港口重镇了。</p>
+<p>来这里之前，我问过一些人，有人建议不要去那里，可以去去里昂之类的城市，但是鄙人新来，还不太识路，所以先去这个离住处仅半小时车程的城市转转也挺好的。</p>
+<p>在这个有voyage标志的地方买票，要么不买，要么就买6次往返的联程票。共计25欧，比在马赛住一晚便宜多了，何乐不为呢。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai1.jpg" alt=""></p>
+<p>那么就出发啦，坐着宽敞的梅赛德斯奔驰，就这么一路向马赛进发啦。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai0.jpg" alt=""></p>
+<p>下车后，檖同学向我介绍了这个车站本身就是一大景点哦，我就这么听她说着说着不知不觉就到了码头，然后和他们分开后我就独自行动啦。</p>
+<p>在码头有这么一个建筑，不锈钢的柱子搭着不锈钢的顶棚，像一面巨大的镜子罩着大伙。引得不少游人驻足留影。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai3.jpg" alt=""></p>
+<p>我就这么从分开的地方出发了，走过了行人如织的码头，</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai2.jpg" alt=""></p>
+<p>走过了如林的桅杆，</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai4.jpg" alt=""></p>
+<p>走着走着就走进了一个城堡，圣约翰堡。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai5.jpg" alt=""></p>
+<p>城堡陆陆续续建了几百年，厚实的墙壁不由让人感叹，这样的东西才能存在几百年啊。不过也有赖于当地没有丰富的地震史吧。不知有没有人研究地震历史对文明进程的影响规律。</p>
+<p>走着走着，我一想，该有把椅子就好了，然后我就看到椅子了。空旷的堡顶平台，只有三三两两的游客，趁没人的时候坐着偷会懒真是惬意。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai6.jpg" alt=""></p>
+<p>堡前的海湾里，填出了一块平台，那里有新建的地中海文明博物馆，馆外看着还是挺好的哈，现代的简洁线条和海湾自然的曲线，蓝天、黑壁、白墙、绿水，历史与现在形成了鲜明的对比。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai7.jpg
+![](http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai8.jpg" alt=""></p>
+<p>沿着天桥，便从历史中抽身，进入了工业化世界了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai9.jpg" alt=""></p>
+<p>整个博物馆由钢铁和预制的钢精水泥柱搭建而成，斑驳的阳光从带孔的黑色墙壁漏下，没有感觉出什么美感，只是在地中海的艳阳下，给人们提供了一个遮阳而又通透的实用空间。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai10.jpg" alt=""></p>
+<p>博物馆内部和墙壁间是斜度很小的围廊，从顶至底环绕而下，估计不走旁边的捷径这够我走一会了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai11.jpg" alt=""></p>
+<p>出了博物馆后，我又绕回了古堡，在另一边的天台上，拍了一下青铜雕像，并遥望了下一个目的地，请注意雕像右边那凸起的小山丘上的尖顶建筑，那就是金顶教堂了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai12.jpg" alt=""><br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai13.jpg" alt=""></p>
+<p>这牛是傲娇的，让你们摸，我这么高了再看你们怎么摸。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai14.jpg" alt=""></p>
+<p>途中登山，一条马路从山顶下去又折向对面的山顶，置身其中仿佛对面要如《inception》似的翻折过来了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai15.jpg" alt=""></p>
+<p>强大的法院。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai16.jpg" alt=""></p>
+<p>见过的最丑的奥迪，没有之一。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai17.jpg" alt=""></p>
+<p>我后来看了一下，当天行走了有十多公里。一顿跋涉之后，我终于看到金顶的教堂了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai18.jpg" alt=""></p>
+<p>怎么说呢，登高望远确实有吸引力，一登上顶峰我所有的烦恼都丢下了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai19.jpg" alt=""><br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai20.jpg" alt=""></p>
+<p>山上好多国人，好幸福。找了最面善的同学给我拍了照。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai21.jpg" alt=""></p>
+<p>海天相接，那里可看到地球的弧度。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai23.jpg" alt=""></p>
+<p>这是金顶教堂正面的照片，里面虽然进去了，但是乏善可陈，毕竟也不好意思拿出手机咔嚓咔嚓一顿拍。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai24.jpg" alt=""></p>
+<p>这有个仿名作的栏杆头雕塑，乍看还算可爱，但是比卢浮宫大理石的要差远啦。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai26.jpg" alt=""></p>
+<p>二战的坦克。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai27.jpg" alt=""></p>
+<p>另一处老教堂，可能历史要到罗马前了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai28.jpg" alt=""><br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai29.jpg" alt=""></p>
+<p>走回到车站，看着远方的曾经感觉那么遥不可及的目标，历经跋涉后不也在眼前嘛。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai30.jpg" alt=""><br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai31.jpg" alt=""></p>
+<p>好啦，马赛就到这啦。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/me-masai.jpg" alt=""></p>
+<p>回家看我多多最可爱了。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/masai34.jpg" alt=""></p>
+<p>羊排和饭。</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/yangpai.jpg" alt=""><br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/羊排饭.jpg" alt=""></p>
+<p>加上饭后的甜点，生活真是惬意啊。不过哈格达斯太甜了，还是少吃为妙。<br><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/哈格达斯.jpg" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/19/2017-08-19/" data-id="cjihlvmzg000ajku47eshy68l" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/08/19/2017-08-19/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/电影/">电影</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-8-14-Opengl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/14/2017-8-14-Opengl/" class="article-date">
+  <time datetime="2017-08-14T06:28:06.000Z" itemprop="datePublished">2017-08-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/14/2017-8-14-Opengl/">GLFW多上下文与多线程资源读取</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。</p>
+<p>由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。</p>
+<h2 id="底层Opengl的API支持"><a href="#底层Opengl的API支持" class="headerlink" title="底层Opengl的API支持"></a>底层Opengl的API支持</h2><p>Opengl是通过context间共享资源实现多线程加载的。虽然官方不太推荐，但是好歹给了一个方法。</p>
+<h2 id="GLFW封装的方法"><a href="#GLFW封装的方法" class="headerlink" title="GLFW封装的方法"></a>GLFW封装的方法</h2><p>但是我这从头学起的工程，都是基于GLFW编的，所以我就找了一圈，找到一个老司机的答案：</p>
+<p><a href="https://www.opengl.org/discussion_boards/showthread.php/184813-Creating-multiple-OpenGL-contexts-with-GLFW-on-different-threads" target="_blank" rel="noopener">一老司机的回答</a></p>
+<blockquote>
+<p>Make a second invisible window that has the main window as the parent (the last parameter is for list sharing)<br>E.g.: GLUtil::_loaderWindow = glfwCreateWindow(1, 1, “whatever”, nullptr, GLUtil::_mainWindow);<br>Create another thread and in its run()(or whatever) method call this: glfwMakeContextCurrent(GLUtil::_loaderWindow);</p>
+</blockquote>
+<blockquote>
+<p>If you are using GLEW, build GLEW with the GLEW_MX define and call init() in the second thread as well. Read up on GLEW_MX about multithreaded usage. I strongly recommend boost thread specific pointers for this.</p>
+</blockquote>
+<blockquote>
+<p>Remember to destroy the second window just like the main one. That’s it. I’ve been using this method for background resource loading for years and haven’t ran into any issues.</p>
+</blockquote>
+<blockquote>
+<p>Hope it helps.</p>
+</blockquote>
+<p>大意是直接用glfw通过与原上下文共享的方式创建新上下文即可，把新出现的窗口隐藏就行了。<br>然后主线程用主上下文，在资源读取线程中，将新的上下文设置为当前上下文即可。由于在创建时新的上下文使用了GLFWWindow作为最后一个参数，即与原上下文共享了列表（sharelist,一大堆显卡相关的东西），所以在使用新的上下文线程中可以进行shader编译、texture读取等等操作。</p>
+<p>好吧，老司机说这么多年都这么过来了，我决定听老司机的了。</p>
+<h2 id="需要注意的事项"><a href="#需要注意的事项" class="headerlink" title="需要注意的事项"></a>需要注意的事项</h2><ol>
+<li>OpenGL不允许在不同的context下共享顶点缓存（VAO）。<br>所以顶点缓存还需要在主线程中创建。<br>目前在线程中做的主要是将纹理的读取和处理放在非主线程中了。用c++11的std::thread非常方便，爱上新标准了。</li>
+<li>在Load线程结束时需要加一句glfwMakeContextCurrent(mainWindow);具体原因还需要再看一下。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cjihlvn0y0022jku4rkat8rxk" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-8-9-GLSL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/10/2017-8-9-GLSL/" class="article-date">
+  <time datetime="2017-08-10T02:48:05.000Z" itemprop="datePublished">2017-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/10/2017-8-9-GLSL/">OpenGL Shading Language(GLSL)概览</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>翻了很久的learnopengl，快到结尾了，终于感觉入门了的感觉。<br>整个教程除了OpenGL的入门，反反复复介绍的就是利用shader进行各种花式渲染。<br>那么聪明如我的读者肯定就知道了，图形编程的关键是深入到shader编程，通过其提升渲染效率及提供高级渲染效果。</p>
+<p>在<a href="https://learnopengl.com/#!In-Practice/Debugging" target="_blank" rel="noopener">教程的Debugging</a>一节，打开了一扇门，其中提到了不同的显卡厂商在驱动中带的GLSL编译器的标准是略不同的。<br>NVIDIA比AMD要求松一些，适当兼容了不在OpenGL中不包含的情况，所以可能出现NVIDIA上的shader编译无问题的情况在AMD显卡上无法运行的情况。所以就有这样一个标准的<a href="https://www.khronos.org/opengles/sdk/tools/Reference-Compiler/" target="_blank" rel="noopener">Shader检查器(GLSL reference compiler)</a>。良心啊，开源的，关键是显卡厂商就是不愿意统一，和JS、CSS等问题感觉类似。</p>
+<h2 id="各式各样的shader"><a href="#各式各样的shader" class="headerlink" title="各式各样的shader"></a>各式各样的shader</h2><p>有这样一系列的shader类型：<br>.vert - a vertex shader<br>.tesc - a tessellation control shader<br>.tese - a tessellation evaluation shader<br>.geom - a geometry shader<br>.frag - a fragment shader<br>.comp - a compute shader</p>
+<p>其中，有一个比较特别的compute shader，细看之下应该就是OpenCL一类的底层吧，难怪NVIDIA这么厉害了，在GLSL标准外额外支持了一系列的API，然后就在并行计算上胜了AMD一招。</p>
+<p>这个compute shader是脱离在GL的渲染流程之外的，是单独的<a href="https://www.khronos.org/opengl/wiki/GLAPI/glDispatchCompute" target="_blank" rel="noopener">glDispatchCompute</a>函数对其执行的调用。问题是这个和opencl有什么关系呢？之后还得再看看，如果opencl足够好用了，这个感觉也没多大意思了。</p>
+<h2 id="项目的背景图案"><a href="#项目的背景图案" class="headerlink" title="项目的背景图案"></a>项目的背景图案</h2><p>经过两日的努力，终于做出了比较炫的地球了，这下项目界面的背景终于有着落了</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/eearth_clip1.gif" alt="地球"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cjihlvn0x0020jku4ybgyxb1f" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/并行计算/">并行计算</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-8-5-safty-training" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/05/2017-8-5-safty-training/" class="article-date">
+  <time datetime="2017-08-05T12:34:04.000Z" itemprop="datePublished">2017-08-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/法国生活/">法国生活</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/05/2017-8-5-safty-training/">ITER的安全培训</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了能够参加ITER工地的参观，我参加了ITER的安全培训。International。</p>
+<p>培训的老师是一位工程经验丰富的法国大叔。强健的体魄，修身的蓝体恤和红牛仔裤，黑底与亮绿色边框的手机壳。<span style="color:#ffff9f; background-color:black">To whom that thinks I am 25, I am not, I am double of that.”.</span></p>
+<p>参加培训的有新员工，有合同承包商，有工地的工人。法国人、意大利人、英国人、美国人、中国人等等。</p>
+<p>整个过程学习了。<br>比如：</p>
+<h2 id="Color-Code"><a href="#Color-Code" class="headerlink" title="Color Code"></a>Color Code</h2><p><span style="color:#00ff00; background-color:#00ff00">绿</span><span style="color:#fffffff; background-color:#fffffff">白</span><span style="color:#00ff00; background-color:#00ff00">绿</span><span style="color:#fffffff; background-color:#fffffff">白</span>：表示信息</p>
+<p><span style="color:#ff0000; background-color:#ff0000">红</span><span style="color:#fffffff; background-color:#fffffff">白</span><span style="color:#ff0000; background-color:#ff0000">红</span><span style="color:#fffffff; background-color:#fffffff">白</span>：表示禁止</p>
+<p><span style="color:#0000ff; background-color:#0000ff">蓝</span><span style="color:#fffffff; background-color:#fffffff">白</span><span style="color:#0000ff; background-color:#0000ff">蓝</span><span style="color:#fffffff; background-color:#fffffff">白</span>：表示强制的</p>
+<p><span style="color:#000000; background-color:black">黑</span><span style="color:#fffff00; background-color:#fffff00">黄</span><span style="color:#000000; background-color:black">黑</span><span style="color:#fffff00; background-color:#fffff00">黄</span>：表示警告</p>
+<h2 id="服装颜色之类的"><a href="#服装颜色之类的" class="headerlink" title="服装颜色之类的"></a>服装颜色之类的</h2><p>各色头盔、各色背心在工地上是不同的角色，对于小组boss，应该有醒目的颜色，这样吊车操作等等人员就能清晰地知道是谁在指挥了。<br>不由得想起这样得协议性得东西在人得头脑中理解再转发确实恨低效啊，想到如果精确如机器能够瞬间搭建合理得工作协议，AI一出人类在效率上还怎么比得过。</p>
+<h2 id="天津爆炸事件"><a href="#天津爆炸事件" class="headerlink" title="天津爆炸事件"></a>天津爆炸事件</h2><p>天津爆炸事件影响范围还是很广的。培训的过程中，讲师最常说的话是：“accident is expensive, if you don’t beleave, try accident.” 对于ITER的安全工作，他作为负责人相当自豪，目前还是零事故哦。</p>
+<h2 id="不允许用梯子"><a href="#不允许用梯子" class="headerlink" title="不允许用梯子"></a>不允许用梯子</h2><p>那还能不用梯子？在这里一定高度的作业必须用电动升降机，不允需要人扶的梯子。不由感慨发达国家还是略先进啊。</p>
+<h2 id="禁止抽烟"><a href="#禁止抽烟" class="headerlink" title="禁止抽烟"></a>禁止抽烟</h2><p>ITER现在整个厂区都不允许抽烟了！天台、阳台、办公室、走廊、厕所统统禁烟。<br>一是安全，另一方面他给我们语重心长地讲了抽烟对小孩不好，对环境不好。<br>他：你们了解不，你丢地每个烟屁股会污染多少水？<br>答：2~3升？<br>他：错！整整300~400升啊。你们知不知道，全法国一年要丢多少烟屁股？那位同学说的接近了，不止5000万，是整整5400万啊同学们。你以为大家丢大街上就不污染水啦？大雨一下，噗，自己算吧。这里有谁抽烟不？有儿女不？赶紧地戒了吧。</p>
+<p>我给大叔点个赞。</p>
+<h2 id="发达国家的环保意识"><a href="#发达国家的环保意识" class="headerlink" title="发达国家的环保意识"></a>发达国家的环保意识</h2><p>这里进出工地的车子，在出工地前，是要通过一个洗轮胎的机器的，也不复杂，就是下面这个样子的：</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/车胎清晰器.png" alt=""></p>
+<p>但是！很遗憾，这一次没有时间去参观了，再等到秋高气爽时再去咯。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/" data-id="cjihlvn0v001wjku4hr3qd2kn" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/08/05/2017-8-5-safty-training/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ITER/">ITER</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/法国生活/">法国生活</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-2017-7-29-imgui-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/29/2017-7-29-imgui-tips/" class="article-date">
+  <time datetime="2017-07-29T02:48:05.000Z" itemprop="datePublished">2017-07-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/29/2017-7-29-imgui-tips/">IMGUI用法小结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在本文中，“窗口”imgui在操作系统提供的窗口中创建的img界面容器。<br>“控件”指imgui在“窗口”中创建的界面元素。</p>
+<h2 id="字体导入与使用"><a href="#字体导入与使用" class="headerlink" title="字体导入与使用"></a>字体导入与使用</h2><p>由于是国内的项目，需要使用中文字体，因此借鉴<a href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">imgui主页</a>的例子。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ImGuiIO&amp; io = ImGui::GetIO();</span><br><span class="line">io.Fonts-&gt;AddFontFromFileTTF(<span class="string">"ArialUni.ttf"</span>, <span class="number">18.0f</span>, <span class="literal">NULL</span>, io.Fonts-&gt;GetGlyphRangesJapanese());</span><br><span class="line"></span><br><span class="line"><span class="comment">// For Microsoft IME, pass your HWND to enable IME positioning:</span></span><br><span class="line">io.ImeWindowHandle = my_hwnd;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png" alt=""><br>可以实现相应的中文输入。</p>
+<p>基本上imgui也是个状态机，字体的颜色、窗口的背景等等均可通过PushStyle和PosStyle实现，所以以往接触过opengl立即模式的话应该很快能理解。</p>
+<p>目前imgui没有实现运行时字体动态大小切换功能，一个比较费事的方法是在导入字体时生成多种大小的字体，在程序运行中通过PushFont和PopFont实现。<br>此外，imgui可支持子界面的缩放，适当运用也可以缓解字体缩放的困难，如<a href="https://github.com/ocornut/imgui/issues/772#issuecomment-244512595" target="_blank" rel="noopener">#772 (comment)</a>所示。</p>
+<h2 id="UI排版"><a href="#UI排版" class="headerlink" title="UI排版"></a>UI排版</h2><p>主要是从<a href="http://blog.csdn.net/sunny__chen/article/details/51273726" target="_blank" rel="noopener">参考文章</a>中获取的信息。<br>imgui的排版建议开始按自动的来。<br>自动布局时，默认情况下，各控件由上到下依次显示。<br>可以使用GUILayout.BeginHoriztontal(),GUILayout.EndHorizontal(), GUILayout.BeginVertical(), and GUILayout.EndVertical().来控制各控件水平显示或垂直显示。可嵌套。</p>
+<p>关于UI在主窗口的停靠，目前官方没有出排版套路，但是一些用户给出了解决方法。</p>
+<p>目前我的做法是直接把子界面的位置固定在窗口内，只做一个隐藏弹出的切换。</p>
+<h2 id="c-11支持utf8-vs2017-community"><a href="#c-11支持utf8-vs2017-community" class="headerlink" title="c++11支持utf8 + vs2017 community"></a>c++11支持utf8 + vs2017 community</h2><p>支持utf8了！再也不用与编码纠缠了，再见GTK，再见GB。</p>
+<h2 id="imgui窗口的定位"><a href="#imgui窗口的定位" class="headerlink" title="imgui窗口的定位"></a>imgui窗口的定位</h2><p>imgui所有的定位坐标都是相对于操作系统提供的总体窗口的。<br>imgui提供了一系列的函数用于窗口定位：<br>    IMGUI_API ImVec2        GetContentRegionMax();       //窗口右下角坐标（含需要滚动条才能到达的区域）<br>    IMGUI_API ImVec2        GetContentRegionAvail();     //窗口尺寸<br>    IMGUI_API float         GetContentRegionAvailWidth();//窗口尺寸宽度<br>    IMGUI_API ImVec2        GetWindowContentRegionMin(); //窗口左上角坐标<br>    IMGUI_API ImVec2        GetWindowContentRegionMax(); //窗口<br>    IMGUI_API float         GetWindowContentRegionWidth();<br>以及ImGui::GetIO().DisplaySize用于获得总体窗口的尺寸（在总体窗口缩放时会用到）。</p>
+<h2 id="隐去windows窗口标题栏"><a href="#隐去windows窗口标题栏" class="headerlink" title="隐去windows窗口标题栏"></a>隐去windows窗口标题栏</h2><p>原文来自：<a href="http://bbs.csdn.net/topics/370099236" target="_blank" rel="noopener">http://blog.csdn.net/LYP951018/article/details/24503207</a></p>
+<blockquote>
+<p>————————以下为原文——————————<br>case WM_SIZE:<br>   {<br>       LONG_PTR Style = ::GetWindowLongPtr(hWnd,GWL_STYLE);<br>       Style = Style &amp;~WS_CAPTION &amp;~WS_SYSMENU &amp;~WS_SIZEBOX;<br>       ::SetWindowLongPtr(hWnd, GWL_STYLE, Style);<br>       break;<br>   }</p>
+</blockquote>
+<p>## </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cjihlvn0q001qjku4rm0q7jn2" class="article-share-link">Share</a>
+      
+        <a href="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/“法国生活/">“法国生活"</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/学术积累/">学术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累-U3D/">技术积累 U3D</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">-法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/U3D/">U3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computer-visulization/">computer visulization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shaders/">shaders</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/参会/">参会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯洛文尼亚/">斯洛文尼亚</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学/">统计学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美剧/">美剧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/脑图/">脑图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/法国生活/" style="font-size: 10px;">-法国生活</a> <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/U3D/" style="font-size: 10px;">U3D</a> <a href="/tags/computer-visulization/" style="font-size: 10px;">computer visulization</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/shaders/" style="font-size: 10px;">shaders</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/参会/" style="font-size: 10px;">参会</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/斯洛文尼亚/" style="font-size: 10px;">斯洛文尼亚</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/统计学/" style="font-size: 10px;">统计学</a> <a href="/tags/美剧/" style="font-size: 10px;">美剧</a> <a href="/tags/脑图/" style="font-size: 10px;">脑图</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/17/UNITY-LEARN-2018-06-17/">UNITY_LEARN/2018-06-17</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/16/2017-07-16hello-world/">第一篇</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/16/2018-6-16/">2018-6-16</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/2018-06-05/">Learn Volumetric Light</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/11/2017-10-11-calculator/">2017-10-11-calculator</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 ysp<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'theysp-github-io';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

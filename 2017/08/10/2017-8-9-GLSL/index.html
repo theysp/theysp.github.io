@@ -6,14 +6,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017/7 | YSP AND HLL</title>
+  <title>OpenGL Shading Language(GLSL)概览 | YSP AND HLL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="YSP AND HLL">
-<meta property="og:url" content="http://theysp.github.io/archives/2017/07/index.html">
+  <meta name="description" content="翻了很久的learnopengl，快到结尾了，终于感觉入门了的感觉。整个教程除了OpenGL的入门，反反复复介绍的就是利用shader进行各种花式渲染。那么聪明如我的读者肯定就知道了，图形编程的关键是深入到shader编程，通过其提升渲染效率及提供高级渲染效果。 在教程的Debugging一节，打开了一扇门，其中提到了不同的显卡厂商在驱动中带的GLSL编译器的标准是略不同的。NVIDIA比AMD要">
+<meta name="keywords" content="opengl,并行计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL Shading Language(GLSL)概览">
+<meta property="og:url" content="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/index.html">
 <meta property="og:site_name" content="YSP AND HLL">
+<meta property="og:description" content="翻了很久的learnopengl，快到结尾了，终于感觉入门了的感觉。整个教程除了OpenGL的入门，反反复复介绍的就是利用shader进行各种花式渲染。那么聪明如我的读者肯定就知道了，图形编程的关键是深入到shader编程，通过其提升渲染效率及提供高级渲染效果。 在教程的Debugging一节，打开了一扇门，其中提到了不同的显卡厂商在驱动中带的GLSL编译器的标准是略不同的。NVIDIA比AMD要">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/eearth_clip1.gif">
+<meta property="og:updated_time" content="2018-06-16T03:55:47.848Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YSP AND HLL">
+<meta name="twitter:title" content="OpenGL Shading Language(GLSL)概览">
+<meta name="twitter:description" content="翻了很久的learnopengl，快到结尾了，终于感觉入门了的感觉。整个教程除了OpenGL的入门，反反复复介绍的就是利用shader进行各种花式渲染。那么聪明如我的读者肯定就知道了，图形编程的关键是深入到shader编程，通过其提升渲染效率及提供高级渲染效果。 在教程的Debugging一节，打开了一扇门，其中提到了不同的显卡厂商在驱动中带的GLSL编译器的标准是略不同的。NVIDIA比AMD要">
+<meta name="twitter:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/eearth_clip1.gif">
   
   
     <link rel="icon" href="/favicon.png">
@@ -58,192 +65,86 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/29/2017-7-29-imgui-tips/" class="archive-article-date">
-  <time datetime="2017-07-29T02:48:05.000Z" itemprop="datePublished">Jul 29</time>
+        <section id="main"><article id="post-2017-8-9-GLSL" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/10/2017-8-9-GLSL/" class="article-date">
+  <time datetime="2017-08-10T02:48:05.000Z" itemprop="datePublished">2017-08-10</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/29/2017-7-29-imgui-tips/">IMGUI用法小结</a>
+    <h1 class="article-title" itemprop="name">
+      OpenGL Shading Language(GLSL)概览
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/26/2017-07-26-Cooking/" class="archive-article-date">
-  <time datetime="2017-07-26T12:03:39.000Z" itemprop="datePublished">Jul 26</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/2017-07-26-Cooking/">论怎么花10分钟做出两天的饭</a>
-    </h1>
-  
+        <p>翻了很久的learnopengl，快到结尾了，终于感觉入门了的感觉。<br>整个教程除了OpenGL的入门，反反复复介绍的就是利用shader进行各种花式渲染。<br>那么聪明如我的读者肯定就知道了，图形编程的关键是深入到shader编程，通过其提升渲染效率及提供高级渲染效果。</p>
+<p>在<a href="https://learnopengl.com/#!In-Practice/Debugging" target="_blank" rel="noopener">教程的Debugging</a>一节，打开了一扇门，其中提到了不同的显卡厂商在驱动中带的GLSL编译器的标准是略不同的。<br>NVIDIA比AMD要求松一些，适当兼容了不在OpenGL中不包含的情况，所以可能出现NVIDIA上的shader编译无问题的情况在AMD显卡上无法运行的情况。所以就有这样一个标准的<a href="https://www.khronos.org/opengles/sdk/tools/Reference-Compiler/" target="_blank" rel="noopener">Shader检查器(GLSL reference compiler)</a>。良心啊，开源的，关键是显卡厂商就是不愿意统一，和JS、CSS等问题感觉类似。</p>
+<h2 id="各式各样的shader"><a href="#各式各样的shader" class="headerlink" title="各式各样的shader"></a>各式各样的shader</h2><p>有这样一系列的shader类型：<br>.vert - a vertex shader<br>.tesc - a tessellation control shader<br>.tese - a tessellation evaluation shader<br>.geom - a geometry shader<br>.frag - a fragment shader<br>.comp - a compute shader</p>
+<p>其中，有一个比较特别的compute shader，细看之下应该就是OpenCL一类的底层吧，难怪NVIDIA这么厉害了，在GLSL标准外额外支持了一系列的API，然后就在并行计算上胜了AMD一招。</p>
+<p>这个compute shader是脱离在GL的渲染流程之外的，是单独的<a href="https://www.khronos.org/opengl/wiki/GLAPI/glDispatchCompute" target="_blank" rel="noopener">glDispatchCompute</a>函数对其执行的调用。问题是这个和opencl有什么关系呢？之后还得再看看，如果opencl足够好用了，这个感觉也没多大意思了。</p>
+<h2 id="项目的背景图案"><a href="#项目的背景图案" class="headerlink" title="项目的背景图案"></a>项目的背景图案</h2><p>经过两日的努力，终于做出了比较炫的地球了，这下项目界面的背景终于有着落了</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-08/eearth_clip1.gif" alt="地球"></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/25/2017-07-25-GUILIBRARY/" class="archive-article-date">
-  <time datetime="2017-07-25T03:32:13.000Z" itemprop="datePublished">Jul 25</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/25/2017-07-25-GUILIBRARY/">立即模式（Immediate mode）界面</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/23/2017-07-23/" class="archive-article-date">
-  <time datetime="2017-07-23T11:06:52.000Z" itemprop="datePublished">Jul 23</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/" data-id="cjihlvn0x0020jku4ybgyxb1f" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/23/2017-07-23/">OpenGL 2 了解计算机三维渲染过程</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/22/2017-07-22/" class="archive-article-date">
-  <time datetime="2017-07-22T01:05:07.000Z" itemprop="datePublished">Jul 22</time>
-</a>
+        <a href="http://theysp.github.io/2017/08/10/2017-8-9-GLSL/#disqus_thread" class="article-comment-link">Comments</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/22/2017-07-22/">人人人</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/19/2017-07-19/" class="archive-article-date">
-  <time datetime="2017-07-19T12:31:09.000Z" itemprop="datePublished">Jul 19</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/19/2017-07-19/">三天大乱炖</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/并行计算/">并行计算</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/16/2017-07-16-opengl-history/" class="archive-article-date">
-  <time datetime="2017-07-16T07:14:32.000Z" itemprop="datePublished">Jul 16</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/16/2017-07-16-opengl-history/">OpenGL 1 从OpenGL的角度看三维计算机图形库的发展</a>
-    </h1>
+    <a href="/2017/08/14/2017-8-14-Opengl/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          GLFW多上下文与多线程资源读取
+        
+      </div>
+    </a>
   
+  
+    <a href="/2017/08/05/2017-8-5-safty-training/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ITER的安全培训</div>
+    </a>
+  
+</nav>
 
-    </header>
+  
+</article>
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/16/2017-07-19sadthing/" class="archive-article-date">
-  <time datetime="2017-07-16T01:29:38.000Z" itemprop="datePublished">Jul 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/16/2017-07-19sadthing/">不好的事情引发的一系列想法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/15/2017-07-16Day2/" class="archive-article-date">
-  <time datetime="2017-07-15T06:43:57.000Z" itemprop="datePublished">Jul 15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/15/2017-07-16Day2/">今天的目标是米和肉</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+</section>
 </section>
         
           <aside id="sidebar">
@@ -342,11 +243,13 @@
 <script>
   var disqus_shortname = 'theysp-github-io';
   
+  var disqus_url = 'http://theysp.github.io/2017/08/10/2017-8-9-GLSL/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

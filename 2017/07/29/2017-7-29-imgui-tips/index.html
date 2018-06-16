@@ -6,14 +6,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017/7 | YSP AND HLL</title>
+  <title>IMGUI用法小结 | YSP AND HLL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="YSP AND HLL">
-<meta property="og:url" content="http://theysp.github.io/archives/2017/07/index.html">
+  <meta name="description" content="在本文中，“窗口”imgui在操作系统提供的窗口中创建的img界面容器。“控件”指imgui在“窗口”中创建的界面元素。 字体导入与使用由于是国内的项目，需要使用中文字体，因此借鉴imgui主页的例子。12345ImGuiIO&amp;amp; io = ImGui::GetIO();io.Fonts-&amp;gt;AddFontFromFileTTF(&quot;ArialUni.ttf&quot;, 18.0f, NULL,">
+<meta name="keywords" content="opengl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IMGUI用法小结">
+<meta property="og:url" content="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/index.html">
 <meta property="og:site_name" content="YSP AND HLL">
+<meta property="og:description" content="在本文中，“窗口”imgui在操作系统提供的窗口中创建的img界面容器。“控件”指imgui在“窗口”中创建的界面元素。 字体导入与使用由于是国内的项目，需要使用中文字体，因此借鉴imgui主页的例子。12345ImGuiIO&amp;amp; io = ImGui::GetIO();io.Fonts-&amp;gt;AddFontFromFileTTF(&quot;ArialUni.ttf&quot;, 18.0f, NULL,">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png">
+<meta property="og:updated_time" content="2018-06-16T03:55:47.829Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YSP AND HLL">
+<meta name="twitter:title" content="IMGUI用法小结">
+<meta name="twitter:description" content="在本文中，“窗口”imgui在操作系统提供的窗口中创建的img界面容器。“控件”指imgui在“窗口”中创建的界面元素。 字体导入与使用由于是国内的项目，需要使用中文字体，因此借鉴imgui主页的例子。12345ImGuiIO&amp;amp; io = ImGui::GetIO();io.Fonts-&amp;gt;AddFontFromFileTTF(&quot;ArialUni.ttf&quot;, 18.0f, NULL,">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -58,192 +65,94 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/29/2017-7-29-imgui-tips/" class="archive-article-date">
-  <time datetime="2017-07-29T02:48:05.000Z" itemprop="datePublished">Jul 29</time>
+        <section id="main"><article id="post-2017-7-29-imgui-tips" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/29/2017-7-29-imgui-tips/" class="article-date">
+  <time datetime="2017-07-29T02:48:05.000Z" itemprop="datePublished">2017-07-29</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/29/2017-7-29-imgui-tips/">IMGUI用法小结</a>
+    <h1 class="article-title" itemprop="name">
+      IMGUI用法小结
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/26/2017-07-26-Cooking/" class="archive-article-date">
-  <time datetime="2017-07-26T12:03:39.000Z" itemprop="datePublished">Jul 26</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/26/2017-07-26-Cooking/">论怎么花10分钟做出两天的饭</a>
-    </h1>
-  
+        <p>在本文中，“窗口”imgui在操作系统提供的窗口中创建的img界面容器。<br>“控件”指imgui在“窗口”中创建的界面元素。</p>
+<h2 id="字体导入与使用"><a href="#字体导入与使用" class="headerlink" title="字体导入与使用"></a>字体导入与使用</h2><p>由于是国内的项目，需要使用中文字体，因此借鉴<a href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">imgui主页</a>的例子。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ImGuiIO&amp; io = ImGui::GetIO();</span><br><span class="line">io.Fonts-&gt;AddFontFromFileTTF(<span class="string">"ArialUni.ttf"</span>, <span class="number">18.0f</span>, <span class="literal">NULL</span>, io.Fonts-&gt;GetGlyphRangesJapanese());</span><br><span class="line"></span><br><span class="line"><span class="comment">// For Microsoft IME, pass your HWND to enable IME positioning:</span></span><br><span class="line">io.ImeWindowHandle = my_hwnd;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/code_sample_01_jp.png" alt=""><br>可以实现相应的中文输入。</p>
+<p>基本上imgui也是个状态机，字体的颜色、窗口的背景等等均可通过PushStyle和PosStyle实现，所以以往接触过opengl立即模式的话应该很快能理解。</p>
+<p>目前imgui没有实现运行时字体动态大小切换功能，一个比较费事的方法是在导入字体时生成多种大小的字体，在程序运行中通过PushFont和PopFont实现。<br>此外，imgui可支持子界面的缩放，适当运用也可以缓解字体缩放的困难，如<a href="https://github.com/ocornut/imgui/issues/772#issuecomment-244512595" target="_blank" rel="noopener">#772 (comment)</a>所示。</p>
+<h2 id="UI排版"><a href="#UI排版" class="headerlink" title="UI排版"></a>UI排版</h2><p>主要是从<a href="http://blog.csdn.net/sunny__chen/article/details/51273726" target="_blank" rel="noopener">参考文章</a>中获取的信息。<br>imgui的排版建议开始按自动的来。<br>自动布局时，默认情况下，各控件由上到下依次显示。<br>可以使用GUILayout.BeginHoriztontal(),GUILayout.EndHorizontal(), GUILayout.BeginVertical(), and GUILayout.EndVertical().来控制各控件水平显示或垂直显示。可嵌套。</p>
+<p>关于UI在主窗口的停靠，目前官方没有出排版套路，但是一些用户给出了解决方法。</p>
+<p>目前我的做法是直接把子界面的位置固定在窗口内，只做一个隐藏弹出的切换。</p>
+<h2 id="c-11支持utf8-vs2017-community"><a href="#c-11支持utf8-vs2017-community" class="headerlink" title="c++11支持utf8 + vs2017 community"></a>c++11支持utf8 + vs2017 community</h2><p>支持utf8了！再也不用与编码纠缠了，再见GTK，再见GB。</p>
+<h2 id="imgui窗口的定位"><a href="#imgui窗口的定位" class="headerlink" title="imgui窗口的定位"></a>imgui窗口的定位</h2><p>imgui所有的定位坐标都是相对于操作系统提供的总体窗口的。<br>imgui提供了一系列的函数用于窗口定位：<br>    IMGUI_API ImVec2        GetContentRegionMax();       //窗口右下角坐标（含需要滚动条才能到达的区域）<br>    IMGUI_API ImVec2        GetContentRegionAvail();     //窗口尺寸<br>    IMGUI_API float         GetContentRegionAvailWidth();//窗口尺寸宽度<br>    IMGUI_API ImVec2        GetWindowContentRegionMin(); //窗口左上角坐标<br>    IMGUI_API ImVec2        GetWindowContentRegionMax(); //窗口<br>    IMGUI_API float         GetWindowContentRegionWidth();<br>以及ImGui::GetIO().DisplaySize用于获得总体窗口的尺寸（在总体窗口缩放时会用到）。</p>
+<h2 id="隐去windows窗口标题栏"><a href="#隐去windows窗口标题栏" class="headerlink" title="隐去windows窗口标题栏"></a>隐去windows窗口标题栏</h2><p>原文来自：<a href="http://bbs.csdn.net/topics/370099236" target="_blank" rel="noopener">http://blog.csdn.net/LYP951018/article/details/24503207</a></p>
+<blockquote>
+<p>————————以下为原文——————————<br>case WM_SIZE:<br>   {<br>       LONG_PTR Style = ::GetWindowLongPtr(hWnd,GWL_STYLE);<br>       Style = Style &amp;~WS_CAPTION &amp;~WS_SYSMENU &amp;~WS_SIZEBOX;<br>       ::SetWindowLongPtr(hWnd, GWL_STYLE, Style);<br>       break;<br>   }</p>
+</blockquote>
+<p>## </p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/25/2017-07-25-GUILIBRARY/" class="archive-article-date">
-  <time datetime="2017-07-25T03:32:13.000Z" itemprop="datePublished">Jul 25</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/25/2017-07-25-GUILIBRARY/">立即模式（Immediate mode）界面</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/23/2017-07-23/" class="archive-article-date">
-  <time datetime="2017-07-23T11:06:52.000Z" itemprop="datePublished">Jul 23</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/" data-id="cjihlvn0q001qjku4rm0q7jn2" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/23/2017-07-23/">OpenGL 2 了解计算机三维渲染过程</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/22/2017-07-22/" class="archive-article-date">
-  <time datetime="2017-07-22T01:05:07.000Z" itemprop="datePublished">Jul 22</time>
-</a>
+        <a href="http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/22/2017-07-22/">人人人</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/19/2017-07-19/" class="archive-article-date">
-  <time datetime="2017-07-19T12:31:09.000Z" itemprop="datePublished">Jul 19</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/19/2017-07-19/">三天大乱炖</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/16/2017-07-16-opengl-history/" class="archive-article-date">
-  <time datetime="2017-07-16T07:14:32.000Z" itemprop="datePublished">Jul 16</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/16/2017-07-16-opengl-history/">OpenGL 1 从OpenGL的角度看三维计算机图形库的发展</a>
-    </h1>
+    <a href="/2017/08/05/2017-8-5-safty-training/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ITER的安全培训
+        
+      </div>
+    </a>
   
+  
+    <a href="/2017/07/26/2017-07-26-Cooking/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">论怎么花10分钟做出两天的饭</div>
+    </a>
+  
+</nav>
 
-    </header>
+  
+</article>
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/16/2017-07-19sadthing/" class="archive-article-date">
-  <time datetime="2017-07-16T01:29:38.000Z" itemprop="datePublished">Jul 16</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/16/2017-07-19sadthing/">不好的事情引发的一系列想法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/07/15/2017-07-16Day2/" class="archive-article-date">
-  <time datetime="2017-07-15T06:43:57.000Z" itemprop="datePublished">Jul 15</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/07/15/2017-07-16Day2/">今天的目标是米和肉</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+</section>
 </section>
         
           <aside id="sidebar">
@@ -342,11 +251,13 @@
 <script>
   var disqus_shortname = 'theysp-github-io';
   
+  var disqus_url = 'http://theysp.github.io/2017/07/29/2017-7-29-imgui-tips/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
