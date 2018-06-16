@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- -->
+<head>
+  <meta charset="utf-8">
+  
+  <title>GLFW多上下文与多线程资源读取 | YSP AND HLL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。 由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。 底层Opengl的API支持Opengl是通过context间共享资源实现多线程加载的。虽然官方不太推荐，但是好歹给了一个方法。 GLFW封装的方法但是我这从头学起的工程，都是基于GLFW编的，所以我就找了一圈，找到一个老">
+<meta name="keywords" content="opengl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GLFW多上下文与多线程资源读取">
+<meta property="og:url" content="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/index.html">
+<meta property="og:site_name" content="YSP AND HLL">
+<meta property="og:description" content="感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。 由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。 底层Opengl的API支持Opengl是通过context间共享资源实现多线程加载的。虽然官方不太推荐，但是好歹给了一个方法。 GLFW封装的方法但是我这从头学起的工程，都是基于GLFW编的，所以我就找了一圈，找到一个老">
+<meta property="og:updated_time" content="2018-06-16T03:55:47.837Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GLFW多上下文与多线程资源读取">
+<meta name="twitter:description" content="感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。 由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。 底层Opengl的API支持Opengl是通过context间共享资源实现多线程加载的。虽然官方不太推荐，但是好歹给了一个方法。 GLFW封装的方法但是我这从头学起的工程，都是基于GLFW编的，所以我就找了一圈，找到一个老">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YSP AND HLL</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-8-14-Opengl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/14/2017-8-14-Opengl/" class="article-date">
+  <time datetime="2017-08-14T06:28:06.000Z" itemprop="datePublished">2017-08-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      GLFW多上下文与多线程资源读取
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>感觉不惧英文后，能在网上找到很多更笃定、更自信的回答。</p>
+<p>由于三维编程需要读取大量的资源，但是不能让窗口干等着啊，所以打算起新线程来读资源，主线程根据读取进度进行不同程度的渲染。</p>
+<h2 id="底层Opengl的API支持"><a href="#底层Opengl的API支持" class="headerlink" title="底层Opengl的API支持"></a>底层Opengl的API支持</h2><p>Opengl是通过context间共享资源实现多线程加载的。虽然官方不太推荐，但是好歹给了一个方法。</p>
+<h2 id="GLFW封装的方法"><a href="#GLFW封装的方法" class="headerlink" title="GLFW封装的方法"></a>GLFW封装的方法</h2><p>但是我这从头学起的工程，都是基于GLFW编的，所以我就找了一圈，找到一个老司机的答案：</p>
+<p><a href="https://www.opengl.org/discussion_boards/showthread.php/184813-Creating-multiple-OpenGL-contexts-with-GLFW-on-different-threads" target="_blank" rel="noopener">一老司机的回答</a></p>
+<blockquote>
+<p>Make a second invisible window that has the main window as the parent (the last parameter is for list sharing)<br>E.g.: GLUtil::_loaderWindow = glfwCreateWindow(1, 1, “whatever”, nullptr, GLUtil::_mainWindow);<br>Create another thread and in its run()(or whatever) method call this: glfwMakeContextCurrent(GLUtil::_loaderWindow);</p>
+</blockquote>
+<blockquote>
+<p>If you are using GLEW, build GLEW with the GLEW_MX define and call init() in the second thread as well. Read up on GLEW_MX about multithreaded usage. I strongly recommend boost thread specific pointers for this.</p>
+</blockquote>
+<blockquote>
+<p>Remember to destroy the second window just like the main one. That’s it. I’ve been using this method for background resource loading for years and haven’t ran into any issues.</p>
+</blockquote>
+<blockquote>
+<p>Hope it helps.</p>
+</blockquote>
+<p>大意是直接用glfw通过与原上下文共享的方式创建新上下文即可，把新出现的窗口隐藏就行了。<br>然后主线程用主上下文，在资源读取线程中，将新的上下文设置为当前上下文即可。由于在创建时新的上下文使用了GLFWWindow作为最后一个参数，即与原上下文共享了列表（sharelist,一大堆显卡相关的东西），所以在使用新的上下文线程中可以进行shader编译、texture读取等等操作。</p>
+<p>好吧，老司机说这么多年都这么过来了，我决定听老司机的了。</p>
+<h2 id="需要注意的事项"><a href="#需要注意的事项" class="headerlink" title="需要注意的事项"></a>需要注意的事项</h2><ol>
+<li>OpenGL不允许在不同的context下共享顶点缓存（VAO）。<br>所以顶点缓存还需要在主线程中创建。<br>目前在线程中做的主要是将纹理的读取和处理放在非主线程中了。用c++11的std::thread非常方便，爱上新标准了。</li>
+<li>在Load线程结束时需要加一句glfwMakeContextCurrent(mainWindow);具体原因还需要再看一下。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/" data-id="cjihn5p9q001pegu4rif3pnzb" class="article-share-link">Partager</a>
+      
+        <a href="http://theysp.github.io/2017/08/14/2017-8-14-Opengl/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/19/2017-08-19/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          忙碌又闲适的8月第三周-马赛-电影-项目
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/10/2017-8-9-GLSL/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">OpenGL Shading Language(GLSL)概览</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学术积累/">学术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累-U3D/">技术积累 U3D</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/U3D/">U3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computer-visulization/">computer visulization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shaders/">shaders</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/参会/">参会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯洛文尼亚/">斯洛文尼亚</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学/">统计学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美剧/">美剧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/脑图/">脑图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/U3D/" style="font-size: 10px;">U3D</a> <a href="/tags/computer-visulization/" style="font-size: 10px;">computer visulization</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/shaders/" style="font-size: 10px;">shaders</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/参会/" style="font-size: 10px;">参会</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/斯洛文尼亚/" style="font-size: 10px;">斯洛文尼亚</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/统计学/" style="font-size: 10px;">统计学</a> <a href="/tags/美剧/" style="font-size: 10px;">美剧</a> <a href="/tags/脑图/" style="font-size: 10px;">脑图</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/17/UNITY-LEARN-2018-06-17/">UNITY_LEARN/2018-06-17</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/16/2017-07-16hello-world/">第一篇</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/16/2018-6-16/">2018-6-16</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/2018-06-05/">Learn Volumetric Light</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/11/2017-10-11-calculator/">2017-10-11-calculator</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 ysp<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'theysp-github-io';
+  
+  var disqus_url = 'http://theysp.github.io/2017/08/14/2017-8-14-Opengl/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

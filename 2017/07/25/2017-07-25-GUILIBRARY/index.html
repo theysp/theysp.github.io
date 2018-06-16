@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- -->
+<head>
+  <meta charset="utf-8">
+  
+  <title>立即模式（Immediate mode）界面 | YSP AND HLL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为了给我的新项目做UI库的选型，我调研了一些资料，最终陷入QT和imgui的纠结中。我决定点时间来整理一下思路。 好吧，来看看各种人是如何说的。 从reddit上的一篇帖子开始QT和imgui各有褒贬，但是无疑对于游戏UI，大家对imgui还是很赞同的。对于桌面开发，大家就不一定了，一方面如果以往对QT有较深的积累，QtQuick也是directUI的较好选项。 近年来，网页前端和桌面开发有融合的">
+<meta name="keywords" content="opengl,imgui">
+<meta property="og:type" content="article">
+<meta property="og:title" content="立即模式（Immediate mode）界面">
+<meta property="og:url" content="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/index.html">
+<meta property="og:site_name" content="YSP AND HLL">
+<meta property="og:description" content="为了给我的新项目做UI库的选型，我调研了一些资料，最终陷入QT和imgui的纠结中。我决定点时间来整理一下思路。 好吧，来看看各种人是如何说的。 从reddit上的一篇帖子开始QT和imgui各有褒贬，但是无疑对于游戏UI，大家对imgui还是很赞同的。对于桌面开发，大家就不一定了，一方面如果以往对QT有较深的积累，QtQuick也是directUI的较好选项。 近年来，网页前端和桌面开发有融合的">
+<meta property="og:updated_time" content="2018-06-16T03:55:47.749Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="立即模式（Immediate mode）界面">
+<meta name="twitter:description" content="为了给我的新项目做UI库的选型，我调研了一些资料，最终陷入QT和imgui的纠结中。我决定点时间来整理一下思路。 好吧，来看看各种人是如何说的。 从reddit上的一篇帖子开始QT和imgui各有褒贬，但是无疑对于游戏UI，大家对imgui还是很赞同的。对于桌面开发，大家就不一定了，一方面如果以往对QT有较深的积累，QtQuick也是directUI的较好选项。 近年来，网页前端和桌面开发有融合的">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YSP AND HLL</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-07-25-GUILIBRARY" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/25/2017-07-25-GUILIBRARY/" class="article-date">
+  <time datetime="2017-07-25T03:32:13.000Z" itemprop="datePublished">2017-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      立即模式（Immediate mode）界面
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了给我的新项目做UI库的选型，我调研了一些资料，最终陷入QT和imgui的纠结中。我决定点时间来整理一下思路。</p>
+<p>好吧，来看看各种人是如何说的。</p>
+<h3 id="从reddit上的一篇帖子开始"><a href="#从reddit上的一篇帖子开始" class="headerlink" title="从reddit上的一篇帖子开始"></a><a href="https://www.reddit.com/r/programming/comments/5zrqcn/why_qt_and_not_imgui/#df1vcvv" target="_blank" rel="noopener">从reddit上的一篇帖子开始</a></h3><p>QT和imgui各有褒贬，但是无疑对于游戏UI，大家对imgui还是很赞同的。对于桌面开发，大家就不一定了，一方面如果以往对QT有较深的积累，QtQuick也是directUI的较好选项。</p>
+<p>近年来，网页前端和桌面开发有融合的趋势了，主要原因是互联网从业人员的巨大，javascript受众多。特别是V8引擎的横空出世，硬件逐步发展，使得js已入了开发者的法眼。由于js天然的异步特性，恰好与传统桌面应用相符，出现了Electron，HEX这样的桌面开发框架。</p>
+<p>但是dear imgui,亲爱的，从另一个完全不同的角度带来了新的界面开发模式，立即模式（Immediate mode）。与传统模式需要管理一套界面数据结构不同，在立即模式下，界面对于开发者反而是透明的了。</p>
+<p>以输入一串字符串为例（伪代码），</p>
+<ul>
+<li><p>传统MVC模式需要同时管理所需的数据以及界面本身两套结构，虽然QT、MFC等框架实现了一系列自动化的方法，替代了我们的部分工作，但是呢，我想说和立即模式对比一下。：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//界面结构声明</span></span><br><span class="line">Edit a;</span><br><span class="line"></span><br><span class="line"><span class="comment">//另一处数据生命</span></span><br><span class="line"><span class="built_in">string</span> str_a;</span><br><span class="line"></span><br><span class="line"><span class="comment">//根据事件设置回调函数</span></span><br><span class="line">a.set_call_back(msg_end_edit,a.on_edit);</span><br><span class="line"></span><br><span class="line"><span class="comment">//回调函数中传回数据</span></span><br><span class="line">on_edit()</span><br><span class="line">&#123;</span><br><span class="line">    str_a = a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>立即模式，嗯，这就齐活了</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string str_a;</span><br><span class="line">inputtext(a);</span><br></pre></td></tr></table></figure>
+<p>立即模式主要的问题是需要持续更新界面，并从中立即获得反馈，相比之下较传统方式耗一些CPU，但是经过优化后这方面的劣势并不突出。由于这一特性，imgui特别适合用于游戏界面的开发，因为游戏的三维画面是需要实时渲染的。</p>
+<h3 id="更进一步看一下使用QT的传统桌面应用开发者的看法"><a href="#更进一步看一下使用QT的传统桌面应用开发者的看法" class="headerlink" title="更进一步看一下使用QT的传统桌面应用开发者的看法"></a><a href="https://deplinenoise.wordpress.com/2017/03/05/why-qt-and-not-imgui/" target="_blank" rel="noopener">更进一步看一下使用QT的传统桌面应用开发者的看法</a></h3><p>这篇帖子从传统桌面应用开发者的角度将两者的优劣进行了一定的分析。</p>
+<ul>
+<li>重新开始的痛苦：界面元素的管理、元素拷贝、UNICODE支持等等都需要重新开始写代码。</li>
+<li>重新开始真的很痛苦：字体渲染、载入icon、高DPI支持。还不知道怎么做啊。</li>
+<li>。。。</li>
+</ul>
+<p>很具有代表性的一段，很多事情都是类似的，就像马的肩宽决定了现在铁轨主流宽度，作为IT工业一环的界面开发，也不得不背负太多历史的负担。程序员们互相支撑的过程确实很难一人说拥抱新东西大家就都有时间有精力来干这件事的。</p>
+<p>好吧，既然闲着也是闲着，我决定还是趁着能折腾多经历一些，整一下imgui吧，毕竟UNITY也用的这个。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/" data-id="cjihn5p8j000aegu46d4gf5zf" class="article-share-link">Partager</a>
+      
+        <a href="http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/26/2017-07-26-Cooking/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          论怎么花10分钟做出两天的饭
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/23/2017-07-23/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">OpenGL 2 了解计算机三维渲染过程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学术积累/">学术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累-U3D/">技术积累 U3D</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/U3D/">U3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computer-visulization/">computer visulization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shaders/">shaders</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/参会/">参会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯洛文尼亚/">斯洛文尼亚</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学/">统计学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美剧/">美剧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/脑图/">脑图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/U3D/" style="font-size: 10px;">U3D</a> <a href="/tags/computer-visulization/" style="font-size: 10px;">computer visulization</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/shaders/" style="font-size: 10px;">shaders</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/参会/" style="font-size: 10px;">参会</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/斯洛文尼亚/" style="font-size: 10px;">斯洛文尼亚</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/统计学/" style="font-size: 10px;">统计学</a> <a href="/tags/美剧/" style="font-size: 10px;">美剧</a> <a href="/tags/脑图/" style="font-size: 10px;">脑图</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/17/UNITY-LEARN-2018-06-17/">UNITY_LEARN/2018-06-17</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/16/2017-07-16hello-world/">第一篇</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/16/2018-6-16/">2018-6-16</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/2018-06-05/">Learn Volumetric Light</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/11/2017-10-11-calculator/">2017-10-11-calculator</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 ysp<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'theysp-github-io';
+  
+  var disqus_url = 'http://theysp.github.io/2017/07/25/2017-07-25-GUILIBRARY/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

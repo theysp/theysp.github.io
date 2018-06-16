@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- -->
+<head>
+  <meta charset="utf-8">
+  
+  <title>OpenGL 2 了解计算机三维渲染过程 | YSP AND HLL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。原文在这里, 中文版翻译在这里，原文作者在这里 以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。 看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的">
+<meta name="keywords" content="opengl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL 2 了解计算机三维渲染过程">
+<meta property="og:url" content="http://theysp.github.io/2017/07/23/2017-07-23/index.html">
+<meta property="og:site_name" content="YSP AND HLL">
+<meta property="og:description" content="这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。原文在这里, 中文版翻译在这里，原文作者在这里 以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。 看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的">
+<meta property="og:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/pipeline.png">
+<meta property="og:updated_time" content="2018-06-16T03:55:47.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenGL 2 了解计算机三维渲染过程">
+<meta name="twitter:description" content="这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。原文在这里, 中文版翻译在这里，原文作者在这里 以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。 看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的">
+<meta name="twitter:image" content="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/pipeline.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">YSP AND HLL</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://theysp.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017-07-23" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/23/2017-07-23/" class="article-date">
+  <time datetime="2017-07-23T11:06:52.000Z" itemprop="datePublished">2017-07-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术积累/">技术积累</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OpenGL 2 了解计算机三维渲染过程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章其实是阅读了谷歌排名第一的OpenGL教程的入门部分总结的读后感。<br><a href="https://learnopengl.com/" target="_blank" rel="noopener">原文在这里</a>, <a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">中文版翻译在这里</a>，<a href="https://www.patreon.com/learnopengl" target="_blank" rel="noopener">原文作者在这里</a></p>
+<p>以前经常有大厚本的OpenGL红宝书啦、24入门啦、3个月快速开发啦这些东西，但是真正感觉还是这次看的资料有用一些。这一份东西把三维图形学从里到外讲了个透。</p>
+<p>看这个教程的入门部分，我觉得最关键的是对显卡渲染流程的了解，总结在本文中供之后借鉴。借用一下教程中的图，是下面这个样子的：</p>
+<p><img src="http://7yusyv.com1.z0.glb.clouddn.com/2017-07/pipeline.png" alt=""></p>
+<h2 id="1-VERTEX-DATA"><a href="#1-VERTEX-DATA" class="headerlink" title="1. VERTEX DATA"></a>1. VERTEX DATA</h2><p>VERTEX DATA中可包含任意你需要的内容，包括模型顶点坐标、顶点属性（颜色、材质、纹理坐标、<span style="color:#de2020">任意其他属性</span>）。有了这些数据，可以在渲染的过程中做很多的事情。</p>
+<h2 id="2-VERTEX-SHADER"><a href="#2-VERTEX-SHADER" class="headerlink" title="2. VERTEX SHADER"></a>2. VERTEX SHADER</h2><p>这个步骤对每个参与渲染的顶点都做一次处理（SHADER其实就是一个小程序，其输入就是这每一个对象）。</p>
+<p>这里只要出现了SHADER，就说明这个是我们可以控制的部分了，这个过程可以做两类事情：<br>    生成渲染需要的顶点坐标，这个顶点坐标根据渲染的类型不同含义不同。如果是三角形渲染方式，那么每3个坐标为一个三角形的三个定点，如果是线段渲染，那每两个坐标为线段的两端点。<br>    进行其他处理，将数据传递给之后的SHADER。</p>
+<p>在这一步骤中，通过VERTEX SHADER进行顶点生成的目标是将需要可视化的内容放到(-1,-1,-1)到(1,1,1)中。及标准化设备坐标(Normalized Device Coordinate, NDC)中。形象一点说，OpenGL其实就是一个2X2X2的鱼缸，OpenGL渲染过程就是把鱼缸里的东西全部压扁到鱼缸的一个面形成图像。为了实现我们需要的视角，我们需要透过种种坐标变换，将实际三维空间按我们定义的视角映射到这个2X2X2的标准设备空间中。</p>
+<h2 id="3-SHAPE-ASSEMBLY"><a href="#3-SHAPE-ASSEMBLY" class="headerlink" title="3. SHAPE ASSEMBLY"></a>3. SHAPE ASSEMBLY</h2><p>就是将步骤1中生成的顶点按渲染方式组装成几何体，比如，如果渲染方式是三角形，这里会将每3个顶点组装成一个三角形。</p>
+<h2 id="4-GEOMETRY-SHADER"><a href="#4-GEOMETRY-SHADER" class="headerlink" title="4. GEOMETRY SHADER"></a>4. GEOMETRY SHADER</h2><p>这个步骤对每个前面步骤组装的集合体都做一个处理。</p>
+<p>GEOMETRY SHADER默认可不设置，那么就会直接把ASSEMBLE后的SHAPE直接发给后面的步骤了。</p>
+<p>GEOMETRY SHADER的输入就是前面ASSEMBLE后的个几何基本体（点/线段/三角形)。其可做的操作就是添加任意类型的几何基本体到当前的图形中，并交给后面的步骤处理。</p>
+<h2 id="5-RASTERIZATION"><a href="#5-RASTERIZATION" class="headerlink" title="5. RASTERIZATION"></a>5. RASTERIZATION</h2><p>在这个步骤，OpenGL底层自动对所有几何按照(-1,-1,-1)到(1,1,1)这个范围进行裁剪。并将所有的基本集合体映射到光栅上，形成一个个片段（可以理解为一个个像素点）。这每一个片段都将在下一步骤进行处理。</p>
+<p>这每个片段都将包含在步骤1的VERTEX SHADER中输出的属性值。对于非顶点的图形位置，其属性值是其所在基本体各定点的属性值的线性插值。<br>比如三角形内部点的纹理坐标就是各顶点纹理坐标的插值。用户也可自定义一些属性，比如三角形各顶点的属性也可以就是其坐标，那么内部顶点的属性也就会处理成其真实坐标。</p>
+<h2 id="6-FRAGMENT-SHADER"><a href="#6-FRAGMENT-SHADER" class="headerlink" title="6. FRAGMENT SHADER"></a>6. FRAGMENT SHADER</h2><p>在这个步骤，对每个片段（可理解为像素点）进行处理，其输入就是VERTEX SHADER传来的属性。输出为一个4通道颜色信息。</p>
+<h2 id="7-TESETS-AND-BLENDING"><a href="#7-TESETS-AND-BLENDING" class="headerlink" title="7. TESETS AND BLENDING"></a>7. TESETS AND BLENDING</h2><p>根据深度等信息，将所有FRAGMENT混合成一张图像。</p>
+<blockquote>
+<p>Shader程序是由GLSL语言编写的子程序。这些子程序以字符串的形式传递给OpenGL的API，并由OpenGL的API进行编译、链接，并在三维渲染流程中被调用。Shader给予了程序员极大的自由度来操作三维渲染的过程。GLSL其实是在2004年才正式引入OpenGL 2.0的。具体可以参考<a href="https://en.wikipedia.org/wiki/OpenGL_Shading_Language" target="_blank" rel="noopener">维基百科</a>。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://theysp.github.io/2017/07/23/2017-07-23/" data-id="cjihn5p8o000hegu46a38o8ol" class="article-share-link">Partager</a>
+      
+        <a href="http://theysp.github.io/2017/07/23/2017-07-23/#disqus_thread" class="article-comment-link">Commentaires</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opengl/">opengl</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/25/2017-07-25-GUILIBRARY/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          立即模式（Immediate mode）界面
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/22/2017-07-22/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">人人人</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Catégories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/学术积累/">学术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累/">技术积累</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术积累-U3D/">技术积累 U3D</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/法国生活/">法国生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITER/">ITER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Opengl常见错误/">Opengl常见错误</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/U3D/">U3D</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computer-visulization/">computer visulization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/imgui/">imgui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/leetcode/">leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opengl/">opengl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shaders/">shaders</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/万事开头难/">万事开头难</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/不太好的事情/">不太好的事情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/历史/">历史</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/参会/">参会</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/尼斯/">尼斯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并行计算/">并行计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/摩纳哥/">摩纳哥</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/斯洛文尼亚/">斯洛文尼亚</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法国生活/">法国生活</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电影/">电影</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学/">统计学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美剧/">美剧</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/脑图/">脑图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/马赛/">马赛</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ITER/" style="font-size: 10px;">ITER</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Opengl常见错误/" style="font-size: 10px;">Opengl常见错误</a> <a href="/tags/U3D/" style="font-size: 10px;">U3D</a> <a href="/tags/computer-visulization/" style="font-size: 10px;">computer visulization</a> <a href="/tags/imgui/" style="font-size: 10px;">imgui</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/opengl/" style="font-size: 20px;">opengl</a> <a href="/tags/shaders/" style="font-size: 10px;">shaders</a> <a href="/tags/万事开头难/" style="font-size: 13.33px;">万事开头难</a> <a href="/tags/不太好的事情/" style="font-size: 10px;">不太好的事情</a> <a href="/tags/历史/" style="font-size: 10px;">历史</a> <a href="/tags/参会/" style="font-size: 10px;">参会</a> <a href="/tags/尼斯/" style="font-size: 10px;">尼斯</a> <a href="/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/tags/摩纳哥/" style="font-size: 10px;">摩纳哥</a> <a href="/tags/斯洛文尼亚/" style="font-size: 10px;">斯洛文尼亚</a> <a href="/tags/法国生活/" style="font-size: 16.67px;">法国生活</a> <a href="/tags/电影/" style="font-size: 10px;">电影</a> <a href="/tags/统计学/" style="font-size: 10px;">统计学</a> <a href="/tags/美剧/" style="font-size: 10px;">美剧</a> <a href="/tags/脑图/" style="font-size: 10px;">脑图</a> <a href="/tags/马赛/" style="font-size: 10px;">马赛</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/06/17/UNITY-LEARN-2018-06-17/">UNITY_LEARN/2018-06-17</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/16/2017-07-16hello-world/">第一篇</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/16/2018-6-16/">2018-6-16</a>
+          </li>
+        
+          <li>
+            <a href="/2018/06/05/2018-06-05/">Learn Volumetric Light</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/11/2017-10-11-calculator/">2017-10-11-calculator</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 ysp<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'theysp-github-io';
+  
+  var disqus_url = 'http://theysp.github.io/2017/07/23/2017-07-23/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
